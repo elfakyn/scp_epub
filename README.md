@@ -1,6 +1,6 @@
-# wikidot_epub
+# SCP epub
 
-Creates an epub from a wikidot wiki. Made specifically for SCP
+Creates an epub from the scp wiki
 
 ## Setup
 

@@ -1,5 +1,5 @@
 # Project stuff
-database/
+build/
 
 # Visual Studio Code
 .vscode/*

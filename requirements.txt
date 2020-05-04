@@ -1,1 +1,3 @@
 ratelimit
+lxml
+ebooklib

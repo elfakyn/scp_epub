@@ -2,13 +2,13 @@ import os
 import json
 import functools
 
-import constants.cache
+import constants.dirs
 
 def file_cache(relative_path, use_page_name=False):
     def decorator(func):
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
-            absolute_path = os.path.join(constants.cache.DB_PATH, relative_path)
+            absolute_path = os.path.join(constants.dirs.DB_PATH, relative_path)
             if use_page_name:
                 absolute_path = os.path.join(absolute_path, f'{kwargs["page"]}.json')
 

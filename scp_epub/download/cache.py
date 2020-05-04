@@ -16,7 +16,7 @@ def file_cache(relative_path, use_page_name=False):
                 contents = func(*args, **kwargs)
                 os.makedirs(os.path.dirname(absolute_path), exist_ok=True)
                 with open(absolute_path, 'w+') as target_file:
-                    json.dump(contents, target_file)
+                    json.dump(contents, target_file, indent=2)
             else:
                 with open(absolute_path, 'r+') as target_file:
                     contents = json.load(target_file)

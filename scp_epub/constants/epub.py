@@ -5,6 +5,6 @@ LANG = 'en'
 XML_VERSION = '1.0'
 ENCODING = 'UTF-8'
 
-STYLESHEET_PATH = '../stylesheet.css'
 
-FILENAME_EXTENSION = 'xhtml'
+
+FILENAME_EXTENSION = '.xhtml'

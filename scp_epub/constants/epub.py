@@ -6,6 +6,7 @@ XML_VERSION = '1.0'
 ENCODING = 'UTF-8'
 
 STYLESHEET_LOCAL = 'stylesheet.css'
+STYLESHEET_REL = 'stylesheet'
 STYLESHEET_TYPE = 'text/css'
 
 FILENAME_EXTENSION = '.xhtml'

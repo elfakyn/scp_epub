@@ -28,7 +28,7 @@ def create_page(page_json):
             lang = constants.epub.LANG,
         )
         logger.debug(f'{page_json[constants.scp.FILENAME_KEY]}: {len(page_json[constants.scp.CONTENT_KEY])}')
-        page.add_link(href=constants.epub.STYLESHEET_LOCAL, type = constants.epub.STYLESHEET_TYPE)
+        page.add_link(href=constants.epub.STYLESHEET_LOCAL, rel = constants.epub.STYLESHEET_REL, type = constants.epub.STYLESHEET_TYPE)
         return page
     except ParserError:
         logger.warn(f'PARSE FAIL: {page_json[constants.scp.FILENAME_KEY]}')

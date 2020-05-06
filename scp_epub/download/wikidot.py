@@ -8,18 +8,18 @@ import constants.dirs
 from download import cache
 
 def get_api_key():
-    return os.getenv(constants.wikidot.API_KEY)
+    return os.getenv(constants.download.API_KEY)
 
 
 def get_wikidot_client():
     api_key = get_api_key()
-    wikidot_client = xmlrpc.client.ServerProxy(f'https://{constants.wikidot.CLIENT_NAME}:{api_key}@www.wikidot.com/xml-rpc-api.php')
+    wikidot_client = xmlrpc.client.ServerProxy(f'https://{constants.download.CLIENT_NAME}:{api_key}@www.wikidot.com/xml-rpc-api.php')
     return wikidot_client
 
 
-@cache.file_cache(constants.dirs.PAGE_LIST_FILE)
+@cache.file_cache(constants.download.PAGE_LIST_FILE)
 @sleep_and_retry
-@limits(calls=constants.wikidot.RATE_LIMIT_CALLS, period=constants.wikidot.RATE_LIMIT_PERIOD)
+@limits(calls=constants.download.RATE_LIMIT_CALLS, period=constants.download.RATE_LIMIT_PERIOD)
 def get_page_list(*, site, categories, bypass_cache=False):
     client = get_wikidot_client()
     page_list = client.pages.select({
@@ -29,9 +29,9 @@ def get_page_list(*, site, categories, bypass_cache=False):
     return page_list
 
 
-@cache.file_cache(constants.dirs.PAGES_DIR, use_page_name=True)
+@cache.file_cache(constants.download.PAGES_DIR, use_page_name=True)
 @sleep_and_retry
-@limits(calls=constants.wikidot.RATE_LIMIT_CALLS, period=constants.wikidot.RATE_LIMIT_PERIOD)
+@limits(calls=constants.download.RATE_LIMIT_CALLS, period=constants.download.RATE_LIMIT_PERIOD)
 def get_page_data(*, site, page, bypass_cache=False):
     client = get_wikidot_client()
     page_data = client.pages.get_one({

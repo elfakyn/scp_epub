@@ -15,30 +15,37 @@ For local links:
 
 PAGE EDGE CASES:
 	* scp-3125: has weird obfuscated text content on part of it. But there's a noninteractive bit.
-	* pages using ListPages
-		* how to tell: has "[[module ListPages ...]]" in the "content" attribute.
+	* pages embedding other pages using ListPages
+		* how to tell: has "[[module ListPages ...]] ... %%content%% ... [[/module]]" in the "content" attribute.
 		* some SCPs have this as a gimmick.
-		* most hubs use this.
-		* 
+		* many hubs use this.
+	* pages with blank or very short HTML
 
 COMPONENTS:
 [DONE] 0. download all pages
 1. SELECT PAGES
-	* content pages that can use html directly
-	* pages with ListPages that have no content -> 
-1. parse each page into nice XML
+	* CHOOSE Tagged 'scp', 'tale', or 'hub'. DISCARD all others.
+	* THEN REPLACE: pages with ListPages that embed full contents of fragments, replace their HTML with the fragment's HTML, if found. If not found, DISCARD
+	* THEN DISCARD: pages with no substantive html (after removing empty div, rating box, and navigation footer). This should cover the rest of weird cases, including ListPages that we haven't covered yet.
+		* This will discard pages with countpages as a gimmick. There's about 10 of them.
+		* This will also discard other pages that circle around a gimmick.
+
+1. PRETTIFY PAGES
+	* remove empty divs
     * rating box: delete
 	* navigation footer: delete
+	* images: delete
 	* yui-navset: delete yui-nav, unwrap, prettify table, give specific class for CSS
 	* collapsible block: link becomes title which is added as a text, content gets unwrapped, give specific class for CSS
 	* footnotes: there's footnoteref and footnote-footer, make something nice and ebook friendly, give specific class for CSS
 	* block quotes: give it a specific class for CSS
-	* images: delete
 	* links: make local links redirect to correct page (/whatever -> whatever.xhtml), all other links deleted
 	* how in the fuck to deal with interactive pages?
+		* IGNORE ALL INTERACTIVITY
 	* ADD NEW STUFF:
 		* title add at beginning as <p> block, give specific class for CSS
 	* ALLOW FOR ERRORS: some pages are completely blank or have fucked up html.
+
 2. arrange book
 	* group pages (nested)
 		* SCPs by series, groups of 100
@@ -61,5 +68,5 @@ COMPONENTS:
 ===================
 Long-term: 
  * add support for images
- * top rated, other meta pages would be nice
- * option for sub-books of only some content
+ * better support for ListPages and other interactive pages
+ * option for smaller books

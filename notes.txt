@@ -22,16 +22,22 @@ PAGE EDGE CASES:
 	* pages with blank or very short HTML
 
 COMPONENTS:
-[DONE] 0. download all pages
-1. SELECT PAGES
-	* CHOOSE Tagged 'scp', 'tale', or 'hub'. DISCARD all others.
-	* THEN REPLACE: pages with ListPages that embed full contents of fragments, replace their HTML with the fragment's HTML, if found. If not found, DISCARD
-	* THEN DISCARD: pages with no substantive html (after removing empty div, rating box, and navigation footer). This should cover the rest of weird cases, including ListPages that we haven't covered yet.
-		* This will discard pages with countpages as a gimmick. There's about 10 of them.
-		* This will also discard other pages that circle around a gimmick.
 
-1. PRETTIFY PAGES
+0. download all pages
+	[DONE] * downloader with cache support
+	* also download fragments temporarily
+
+1. SELECT AND PRE-PROCESS PAGES
+	* FILTER LIST OF PAGES: ONLY USE tagged 'scp', 'tale', or 'hub'.
+	* ADD PROPERTY: pages with ListPages that embed full contents of fragments, add an "embeds" key with value an array of embedded content pages in order.
+		* this won't cover all gimmicks but should get most of them
+	* ADD PROPERTY: "embeds" for edge cases (keep manual mapping of edge case into embeds):
+		* scp-3125
+	* ADD FRAGMENTS FROM ABOVE TO LIST OF PAGES.
+
+2. PRETTIFY PAGES
 	* remove empty divs
+		* specifically the div that 
     * rating box: delete
 	* navigation footer: delete
 	* images: delete
@@ -46,19 +52,29 @@ COMPONENTS:
 		* title add at beginning as <p> block, give specific class for CSS
 	* ALLOW FOR ERRORS: some pages are completely blank or have fucked up html.
 
-2. arrange book
-	* group pages (nested)
-		* SCPs by series, groups of 100
-		* other pages by parent
-		* create DAG
-	* order pages
-		* have a nice structure
-	* add helper pages:
-		* intro
-		* landing to other SCPs??
-		* add credits page at the end
-			* build from meta on every page? or is there a credits page pre built
-	* create TOC following nested groupings
+3. POST-PROCESS PAGES
+	* DISCARD pages that BOTH do not have content AND do not have embeds
+		* this will nuke some gimmicks such as pages using the CountPages module
+
+4. arrange book (use this for TOC), USE THIS ORDER. NOTE: if a page contains embeds, add corresponding pages immediately after the parent page, but the child pages do not have an entry in TOC.
+	* INTRO
+	* HUBS
+		* SERIES 1 scps, SERIES 2 scps...
+		* SERIES 1 tales, SERIES 2 tales, ...
+		* all other hubs alphabetically
+	* SCP SERIES 1
+		* 1-100
+			* 1
+			* 2
+			* ...
+		* 101-200
+		* ...
+	* SCP SERIES 2
+	* TALES 0-9
+	* TALES A
+	* TALES B
+	* ...
+	* CREDITS
 3. add book metadata, 
 	* title, authors etc.
 	* cover photo
@@ -68,5 +84,5 @@ COMPONENTS:
 ===================
 Long-term: 
  * add support for images
- * better support for ListPages and other interactive pages
+ * better support for ListPages and other interactive content.
  * option for smaller books

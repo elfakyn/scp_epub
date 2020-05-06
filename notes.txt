@@ -15,12 +15,17 @@ For local links:
 
 PAGE EDGE CASES:
 	* scp-3125: has weird obfuscated text content on part of it. But there's a noninteractive bit.
-	* scp-1173 and others using ListPages
+	* pages using ListPages
 		* how to tell: has "[[module ListPages ...]]" in the "content" attribute.
-		* this is fucky as shit.
+		* some SCPs have this as a gimmick.
+		* most hubs use this.
+		* 
 
 COMPONENTS:
 [DONE] 0. download all pages
+1. SELECT PAGES
+	* content pages that can use html directly
+	* pages with ListPages that have no content -> 
 1. parse each page into nice XML
     * rating box: delete
 	* navigation footer: delete
@@ -35,8 +40,6 @@ COMPONENTS:
 		* title add at beginning as <p> block, give specific class for CSS
 	* ALLOW FOR ERRORS: some pages are completely blank or have fucked up html.
 2. arrange book
-	* select pages
-		* only keep content pages, not weirdass
 	* group pages (nested)
 		* SCPs by series, groups of 100
 		* other pages by parent

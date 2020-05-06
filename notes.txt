@@ -1,2 +1,62 @@
 - refactor to pkgutil.get_data
 - bs4
+
+
+Elements we definitely don't want:
+* class = page-rate-widget-box
+* class = heritage-rating-module (this one aligns to right, nope)
+* class = footer-wikiwalk-nav
+
+
+For local links:
+* WIKIDOT DOCS: the site-unix-name consists of only alphanumeric characters (0..9, 'a'..'z') and ('-')
+* local links will match regex ^\/[a-z0-9\-]+$
+* todo: test for it
+
+PAGE EDGE CASES:
+	* scp-3125: has weird obfuscated text content on part of it. But there's a noninteractive bit.
+	* scp-1173 and others using ListPages
+		* how to tell: has "[[module ListPages ...]]" in the "content" attribute.
+		* this is fucky as shit.
+
+COMPONENTS:
+[DONE] 0. download all pages
+1. parse each page into nice XML
+    * rating box: delete
+	* navigation footer: delete
+	* yui-navset: delete yui-nav, unwrap, prettify table, give specific class for CSS
+	* collapsible block: link becomes title which is added as a text, content gets unwrapped, give specific class for CSS
+	* footnotes: there's footnoteref and footnote-footer, make something nice and ebook friendly, give specific class for CSS
+	* block quotes: give it a specific class for CSS
+	* images: delete
+	* links: make local links redirect to correct page (/whatever -> whatever.xhtml), all other links deleted
+	* how in the fuck to deal with interactive pages?
+	* ADD NEW STUFF:
+		* title add at beginning as <p> block, give specific class for CSS
+	* ALLOW FOR ERRORS: some pages are completely blank or have fucked up html.
+2. arrange book
+	* select pages
+		* only keep content pages, not weirdass
+	* group pages (nested)
+		* SCPs by series, groups of 100
+		* other pages by parent
+		* create DAG
+	* order pages
+		* have a nice structure
+	* add helper pages:
+		* intro
+		* landing to other SCPs??
+		* add credits page at the end
+			* build from meta on every page? or is there a credits page pre built
+	* create TOC following nested groupings
+3. add book metadata, 
+	* title, authors etc.
+	* cover photo
+	* CSS
+		* fix weird right align if not already fixed
+
+===================
+Long-term: 
+ * add support for images
+ * top rated, other meta pages would be nice
+ * option for sub-books of only some content

@@ -55,6 +55,7 @@ COMPONENTS:
 3. POST-PROCESS PAGES
 	* DISCARD pages that BOTH do not have content AND do not have embeds
 		* this will nuke some gimmicks such as pages using the CountPages module
+		* log discarded pages
 
 4. arrange book (use this for TOC), USE THIS ORDER. NOTE: if a page contains embeds, add corresponding pages immediately after the parent page, but the child pages do not have an entry in TOC.
 	* INTRO

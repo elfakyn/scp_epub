@@ -34,7 +34,7 @@ COMPONENTS:
 		* log these pages
 	* ADD PROPERTY: "embeds" for edge cases (keep manual mapping of edge case into embeds):
 		* scp-3125
-	* ADD FRAGMENTS FROM ABOVE TO LIST OF PAGES.
+	* ~~ADD FRAGMENTS FROM ABOVE TO LIST OF PAGES~~. no reason to do this: fragment children are embedded wholesale
 
 2. PRETTIFY PAGES
 	* empty divs: delete

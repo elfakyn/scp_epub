@@ -1,4 +1,5 @@
 import unittest
+from parameterized import parameterized
 
 import process.page_gimmicks
 
@@ -44,3 +45,67 @@ class TestFragmentGimmicks(unittest.TestCase):
 
         # Assert
         self.assertEqual(expected_mapping, actual_mapping)
+
+class TestListpages(unittest.TestCase):
+    @parameterized.expand([
+        [
+            "No matches",
+            "[[include component:heritage-rating]]\n\n**Item #:** SCP-055 \n\n**Object Class:** Keter \n\n",
+            None
+        ],
+        [
+            "Normal",
+            "[[>]]\n[[module Rate]]\n[[/>]]\n\n[!--\n  This page is just a container, which can show one of several\n  fragment pages depending on the offset in the URL.\n\n  See: <http://www.scp-wiki.net/listpages-magic-and-you>\n\n  To edit the fragments which can appear here, visit:\n  Offset 0: <http://scp-wiki.wikidot.com/fragment:antimemetics-division-hub-main>\n  Offset 1: <http://scp-wiki.wikidot.com/fragment:antimemetics-division-hub-marion>\n  Offset 2: <http://scp-wiki.wikidot.com/fragment:antimemetics-division-hub-adam>\n--]\n\n[[module ListPages category=\"fragment\" parent=\".\" limit=\"1\" order=\"created_at\" offset=\"@URL|0\"]]\n%%content%%\n[[/module]]",
+            {
+                "category": "fragment",
+                "parent": ".",
+                "limit": "1",
+                "order": "created_at",
+                "offset": "@URL|0"
+            }
+        ],
+        [
+            "Missing items, extra whitespace",
+            '[[ module LiStpAgEs   limit = "1"    order = "random"  category="fragme manet"\n\n]]%%content%%[[/module]]',
+            {
+                "category": "fragme manet",
+                "parent": None,
+                "limit": "1",
+                "order": "random",
+                "offset": None
+            }
+        ],
+        [
+            "Junk surrounding content",
+            '[[ module LiStpAgEs   limit = "1"    order = "random"  category="fragme manet"\n\n]]something else other stuff %%stuff%%\n %%info%%%%content%% again other stuff \n[[/module]]',
+            {
+                "category": "fragme manet",
+                "parent": None,
+                "limit": "1",
+                "order": "random",
+                "offset": None
+            }
+        ],
+        [
+            "Nested items",
+            '[[ module LiStpAgEs   limit = "1"    order = "random"  category="fragme manet"\n\n]]something else [[title]] [[/title]] [[stuff/]]other stuff %%stuff%%\n %%info%%%%content%% again other stuff \n[[/module]]',
+            {
+                "category": "fragme manet",
+                "parent": None,
+                "limit": "1",
+                "order": "random",
+                "offset": None
+            }
+        ],
+        [
+            "No content embeds",
+            '[[ module listpages   limit = "1"    order = "random"  category="fragme manet"\n\n]]%%list%%[[/module]]',
+            None
+        ]
+    ])
+    def test_get_listpages_params(self, reason, expected_content, expected_params):
+        # Arrange and Act
+        actual_params = process.page_gimmicks.get_listpages_params_if_embeds_content(expected_content)
+
+        # Assert
+        self.assertEqual(expected_params, actual_params)

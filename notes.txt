@@ -23,9 +23,9 @@ PAGE EDGE CASES:
 
 COMPONENTS:
 
-0. download all pages
+[DONE] 0. download all pages
 	[DONE] * downloader with cache support
-	* also download fragments
+	[DONE] * also download fragments
 
 1. SELECT AND PRE-PROCESS PAGES
 	* FILTER LIST OF PAGES: ONLY USE tagged 'scp', 'tale', or 'hub'.

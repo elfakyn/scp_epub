@@ -21,6 +21,15 @@ PAGE EDGE CASES:
 		* many hubs use this.
 	* pages with blank or very short HTML
 
+Handling listpages:
+* create mapping between parents and child fragments
+* extract listpages parameters, and whether it includes content or not
+* based on listpages parameters:
+	* if category is fragment and parent is ".":
+		* if there is ordering, order based on ordering rule, otherwise order based on creation time.
+		* embed based on limit and offset
+	* ignore everything else because fuck it, but LOG what was ignored and why to see what we're looking at
+
 COMPONENTS:
 
 [DONE] 0. download all pages

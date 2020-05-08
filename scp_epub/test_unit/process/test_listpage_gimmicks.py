@@ -1,7 +1,7 @@
 import unittest
 from parameterized import parameterized
 
-import process.page_gimmicks
+import process.listpage_gimmicks
 
 class TestFragmentGimmicks(unittest.TestCase):
     def test_get_page_fragment_mapping(self):
@@ -41,7 +41,7 @@ class TestFragmentGimmicks(unittest.TestCase):
         }
 
         # Act
-        actual_mapping = process.page_gimmicks.get_page_fragment_mapping(expected_fragment_list)
+        actual_mapping = process.listpage_gimmicks.get_page_fragment_mapping(expected_fragment_list)
 
         # Assert
         self.assertEqual(expected_mapping, actual_mapping)
@@ -61,7 +61,8 @@ class TestListpages(unittest.TestCase):
                 "parent": ".",
                 "limit": "1",
                 "order": "created_at",
-                "offset": "@URL|0"
+                "offset": "@URL|0",
+                "embeds_content": True
             }
         ],
         [
@@ -72,7 +73,8 @@ class TestListpages(unittest.TestCase):
                 "parent": None,
                 "limit": "1",
                 "order": "random",
-                "offset": None
+                "offset": None,
+                "embeds_content": True
             }
         ],
         [
@@ -83,7 +85,8 @@ class TestListpages(unittest.TestCase):
                 "parent": None,
                 "limit": "1",
                 "order": "random",
-                "offset": None
+                "offset": None,
+                "embeds_content": True
             }
         ],
         [
@@ -94,18 +97,26 @@ class TestListpages(unittest.TestCase):
                 "parent": None,
                 "limit": "1",
                 "order": "random",
-                "offset": None
+                "offset": None,
+                "embeds_content": True
             }
         ],
         [
             "No content embeds",
             '[[ module listpages   limit = "1"    order = "random"  category="fragme manet"\n\n]]%%list%%[[/module]]',
-            None
+            {
+                "category": "fragme manet",
+                "parent": None,
+                "limit": "1",
+                "order": "random",
+                "offset": None,
+                "embeds_content": False
+            }
         ]
     ])
     def test_get_listpages_params(self, reason, expected_content, expected_params):
         # Arrange and Act
-        actual_params = process.page_gimmicks.get_listpages_params_if_embeds_content(expected_content)
+        actual_params = process.listpage_gimmicks.get_listpages_params(expected_content)
 
         # Assert
         self.assertEqual(expected_params, actual_params)

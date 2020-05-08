@@ -3,8 +3,7 @@ import os
 import json
 from ratelimit import limits, sleep_and_retry
 
-import constants.wikidot
-import constants.dirs
+import constants.download
 from download import cache
 
 def get_api_key():
@@ -17,19 +16,19 @@ def get_wikidot_client():
     return wikidot_client
 
 
-@cache.file_cache(constants.download.PAGE_LIST_FILE)
+@cache.file_cache(constants.download.PAGE_LIST_DIR, name_based_on_argument="category")
 @sleep_and_retry
 @limits(calls=constants.download.RATE_LIMIT_CALLS, period=constants.download.RATE_LIMIT_PERIOD)
-def get_page_list(*, site, categories, bypass_cache=False):
+def get_page_list(*, site, category, bypass_cache=False):
     client = get_wikidot_client()
     page_list = client.pages.select({
         "site": site,
-        "categories": categories
+        "categories": [category]
     })
     return page_list
 
 
-@cache.file_cache(constants.download.PAGES_DIR, use_page_name=True)
+@cache.file_cache(constants.download.PAGES_DIR, name_based_on_argument="page")
 @sleep_and_retry
 @limits(calls=constants.download.RATE_LIMIT_CALLS, period=constants.download.RATE_LIMIT_PERIOD)
 def get_page_data(*, site, page, bypass_cache=False):

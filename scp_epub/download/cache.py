@@ -1,16 +1,20 @@
 import os
 import json
 import functools
+import re
 
-import constants.dirs
+import constants.download
 
-def file_cache(relative_path, use_page_name=False):
+
+def normalize_string(raw_string):
+    return re.sub('[^a-z0-9\-]', '_', raw_string)
+
+
+def file_cache(relative_path, name_based_on_argument):
     def decorator(func):
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
-            absolute_path = os.path.join(constants.download.DB_PATH, relative_path)
-            if use_page_name:
-                absolute_path = os.path.join(absolute_path, f'{kwargs["page"]}.json')
+            absolute_path = os.path.join(constants.download.DB_PATH, relative_path, f'{normalize_string(kwargs[name_based_on_argument])}.json')
 
             if ('bypass_cache' in kwargs and kwargs['bypass_cache']) or not (os.path.exists(absolute_path) and os.path.isfile(absolute_path)):
                 contents = func(*args, **kwargs)

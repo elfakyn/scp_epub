@@ -29,7 +29,7 @@ class TestFilterPages(unittest.TestCase):
         actual_filtered_pages = process.filter.filter_tags(expected_pages)
 
         # Assert
-        self.assertEqual(actual_filtered_pages, expected_filtered_pages)
+        self.assertEqual(expected_filtered_pages, actual_filtered_pages)
 
     def test_filter_tags_include_tags(self):
         # Arrange
@@ -55,4 +55,4 @@ class TestFilterPages(unittest.TestCase):
         actual_filtered_pages = process.filter.filter_tags(expected_pages, include_tags=expected_include_tags)
 
         # Assert
-        self.assertEqual(actual_filtered_pages, expected_filtered_pages)
+        self.assertEqual(expected_filtered_pages, actual_filtered_pages)

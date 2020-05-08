@@ -28,7 +28,7 @@ COMPONENTS:
 	[DONE] * also download fragments
 
 1. SELECT AND PRE-PROCESS PAGES
-	* FILTER LIST OF PAGES: ONLY USE tagged 'scp', 'tale', or 'hub'.
+	[DONE] * FILTER LIST OF PAGES: ONLY USE tagged 'scp', 'tale', or 'hub'.
 	* ADD PROPERTY: pages with ListPages that embed full contents of fragments, add an "embeds" key with value an array of embedded content pages in order.
 		* this won't cover all gimmicks but should get most of them
 		* log these pages

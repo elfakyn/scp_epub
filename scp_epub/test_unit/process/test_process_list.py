@@ -18,4 +18,4 @@ class TestPreProcess(unittest.TestCase):
 
         # Assert
         mock_filter.filter_tags.assert_called_once_with(expected_pages, include_tags=expected_tags)
-        self.assertEqual(actual_result, expected_result)
+        self.assertEqual(expected_result, actual_result)

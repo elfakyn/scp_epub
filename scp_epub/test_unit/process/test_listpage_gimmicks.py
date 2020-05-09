@@ -49,6 +49,11 @@ class TestFragmentGimmicks(unittest.TestCase):
 class TestListpages(unittest.TestCase):
     @parameterized.expand([
         [
+            "NoneType",
+            None,
+            None
+        ],
+        [
             "No matches",
             "[[include component:heritage-rating]]\n\n**Item #:** SCP-055 \n\n**Object Class:** Keter \n\n",
             None
@@ -126,6 +131,7 @@ class TestListpages(unittest.TestCase):
             }
         ]
     ])
+
     def test_get_listpages_params(self, reason, expected_content, expected_results):
         # Arrange
         expected_params = ["category", "parent", "limit", "order", "offset"]

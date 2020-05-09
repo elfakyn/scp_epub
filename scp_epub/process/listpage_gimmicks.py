@@ -14,7 +14,13 @@ def get_page_fragment_mapping(fragment_list):
 
     return mapping
 
+def get_listpages_results(listpages_params, full_page_list, full_fragment_list):
+    return NotImplemented
+
 def get_listpages_params(content, params = constants.process.LISTPAGES_PARAMS, include_types=constants.process.LISTPAGES_INCLUDE_TYPES):
+    if content is None:
+        return None
+
     module_content = re.search(
         '\[\[\s*module\s*listpages([^[\]]*)\]\]((?:[^[]|\[\[(?!\/module\]\]))*)\[\[\s*\/module\s*\]\]',
         content,

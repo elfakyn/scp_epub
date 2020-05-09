@@ -15,11 +15,8 @@ For local links:
 
 PAGE EDGE CASES:
 	* scp-3125: has weird obfuscated text content on part of it. But there's a noninteractive bit.
-	* pages embedding other pages using ListPages
-		* how to tell: has "[[module ListPages ...]] ... %%content%% ... [[/module]]" in the "content" attribute.
-		* some SCPs have this as a gimmick.
-		* many hubs use this.
-	* pages with blank or very short HTML
+	* scp-4004, scp-3723¸ scp-4672, scp-3193, experiment-log-914-hub etc.: use ListPages to display current date. 
+	* 
 
 Handling listpages:
 [DONE] * create mapping between parents and child fragments
@@ -104,3 +101,13 @@ Long-term:
  * add support for images
  * better support for ListPages and other interactive content.
  * option for smaller books
+ 
+ ===============================
+ Manual notes
+ 
+ ['144-hour-jam-contest', '144-hour-jam-contest-two', '173-festival', '2521-xxx', '72-hour-jam-contest', 'a-reason-to-die', 'aces-and-eights', 'ad-astra-per-aspera-hub', 'aiad-homescreen', 'alexylva-university-hub', 'ambrose-restaurant-hub', 'anderson-robotics-hub', 'arcadia-hub', 'are-we-cool-yet-hub', 'art-exchange-hub', 'bellerverse', 'black-queen-hub', 'captain-kirby-s-proposal', 'chaos-insurgency-hub', 'chicago-spirit', 'church-of-the-broken-god-hub', 'creepy-pasta', 'david-rosen-file', 'deer-college-hub', 'dr-wondertainment-hub', 'end-of-death-hub', 'experiment-log-914-hub', 'factory-hub', 'fifthist-hub', 'foundation-tales-arc', 'gamers-against-weed-hub', 'goc-hub-page', 'goi-formats', 'gru-p-hub', 'halloween-contest-2018', 'herman-fuller-hub', 'highest-rated-non-scps', 'highest-rated-scps', 'history-contest', 'horizon-initiative-hub', 'ijamea-hub', 'impossible-to-destroy-reptile', 'in-the-clutches-of-life', 'incident-reports-eye-witness-interviews-and-personal-logs', 'marshall-carter-and-dark-hub', 'nobody-hub', 'oneiroi', 'oria-hub', 'parawatch-hub', 'practice-area', 'project-heimdall', 'prometheus-labs-hub', 'reimagining-contest', 'sarkicism-hub', 'scp-2864', 'scp-3123', 'scp-3193', 'scp-3305', 'scp-3393', 'scp-3448', 'scp-3449', 'scp-3684', 'scp-3723', 'scp-3737', 'scp-3844', 'scp-3939', 'scp-4004', 'scp-4321', 'scp-4514', 'scp-4672', 'scp-4921', 'scp-5170', 'scp-5301', 'scp-tldr-j', 'second-hytoth-hub', 'serpent-s-hand-hub', 'site-17-hub', 'spc-hub', 'systems-patch', 'thaumiel', 'the-lombardi-tales', 'third-law-hub', 'three-portlands-hub', 'time-contest', 'top-rated-pages', 'top-rated-pages-by-month-2008', 'top-rated-pages-by-month-2009', 'top-rated-pages-by-month-2010', 'top-rated-pages-by-month-2011', 'top-rated-pages-by-month-2012', 'top-rated-pages-by-month-2013', 'top-rated-pages-by-month-2014', 'top-rated-pages-by-month-2015', 'top-rated-pages-by-month-2016', 'top-rated-pages-by-month-2017', 'top-rated-pages-by-month-2018', 'top-rated-pages-by-month-2019', 'top-rated-pages-by-month-2020', 'top-rated-pages-this-month', 'top-rated-tales', 'unusual-incidents-unit-hub', 'wanderers-library-hub', 'welcome-to-delta-t', 'wilson-s-wildlife-solutions-hub', 'wonder-world']
+>>> sorted([k for (k,v) in has_listpages.items() if v["embeds_content"] is True])
+['and-have-fun', 'antimemetics-division-hub', 'apas', 'cat-in-a-box', 'djkaktus-s-proposal-iii', 'foundations', 'in-shadow', 'jack-ike-s-proposal-ii', 'jim-north-s-proposal', 'land-of-honey', 'only-once-away-my-son', 'prehistoric-artillery-strike', 'psul-001', 'samsara', 'scp-1173', 'scp-1496', 'scp-1893', 'scp-194', 'scp-1964-ex', 'scp-2', 'scp-2000-b-the-lonely-cowboy', 'scp-2111', 'scp-2117', 'scp-2237', 'scp-2343', 'scp-2641', 'scp-2998', 'scp-3002', 'scp-3020', 'scp-3059', 'scp-3145', 'scp-3272', 'scp-3306', 'scp-3623', 'scp-3890', 'scp-3916', 'scp-4000', 'scp-4011', 'scp-4028', 'scp-4069', 'scp-4071', 'scp-4127', 'scp-4134', 'scp-4163', 'scp-4182', 'scp-4224', 'scp-4260', 'scp-4338', 'scp-4417', 'scp-4447', 'scp-4450', 'scp-4485', 'scp-4558', 'scp-4568', 'scp-4673', 'scp-4698', 'scp-4706', 'scp-4742', 'scp-4870', 'scp-4884', 'scp-4892', 'scp-4930', 'scp-4932', 'scp-4939', 'scp-4945', 'scp-4947', 'scp-5018', 'scp-5039', 'scp-5045', 'scp-5050', 'scp-5055', 'scp-5099', 'scp-5111', 'scp-5121', 'scp-5128', 'scp-5153', 'scp-5296', 'scp-5300', 'scp-5400', 'scp-5423', 'scp-5500', 'scp-5552', 'scp-5579', 'scp-5817', 'scp-5931', 'scp-5999', 'scp-es-100', 'scp-wow-j', 'sky-sermon-hub', 'taboo', 'the-moons-stellar-companion', 'three-farewells', 'trilobastards', 'vend-a-friend']
+
+
+INCLUDE TYPES NOT 

@@ -62,7 +62,7 @@ class TestListpages(unittest.TestCase):
                 "limit": "1",
                 "order": "created_at",
                 "offset": "@URL|0",
-                "embeds_content": True
+                "include_types": ["content"]
             }
         ],
         [
@@ -74,7 +74,7 @@ class TestListpages(unittest.TestCase):
                 "limit": "1",
                 "order": "random",
                 "offset": None,
-                "embeds_content": True
+                "include_types": ["content"]
             }
         ],
         [
@@ -86,7 +86,7 @@ class TestListpages(unittest.TestCase):
                 "limit": "1",
                 "order": "random",
                 "offset": None,
-                "embeds_content": True
+                "include_types": ["content"]
             }
         ],
         [
@@ -98,25 +98,41 @@ class TestListpages(unittest.TestCase):
                 "limit": "1",
                 "order": "random",
                 "offset": None,
-                "embeds_content": True
+                "include_types": ["content"]
             }
         ],
         [
-            "No content embeds",
-            '[[ module listpages   limit = "1"    order = "random"  category="fragme manet"\n\n]]%%list%%[[/module]]',
+            "List embeds",
+            '[[ module listpages   limit = "1"    order = "random"  category="fragme manet"\n\n]]%%title%%[[/module]]',
             {
                 "category": "fragme manet",
                 "parent": None,
                 "limit": "1",
                 "order": "random",
                 "offset": None,
-                "embeds_content": False
+                "include_types": ["title"]
+            }
+        ],
+        [
+            "list and content embeds",
+            '[[ module listpages   limit = "1"    order = "random"  category="fragme manet"\n\n]]%%title%%%%content%%[[/module]]',
+            {
+                "category": "fragme manet",
+                "parent": None,
+                "limit": "1",
+                "order": "random",
+                "offset": None,
+                "include_types": ["content", "title"]
             }
         ]
     ])
-    def test_get_listpages_params(self, reason, expected_content, expected_params):
-        # Arrange and Act
-        actual_params = process.listpage_gimmicks.get_listpages_params(expected_content)
+    def test_get_listpages_params(self, reason, expected_content, expected_results):
+        # Arrange
+        expected_params = ["category", "parent", "limit", "order", "offset"]
+        expected_include_types = ["content", "title"]
+
+        # Act
+        actual_results = process.listpage_gimmicks.get_listpages_params(expected_content, params=expected_params, include_types=expected_include_types)
 
         # Assert
-        self.assertEqual(expected_params, actual_params)
+        self.assertEqual(expected_results, actual_results)

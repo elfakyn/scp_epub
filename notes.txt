@@ -22,13 +22,14 @@ PAGE EDGE CASES:
 	* pages with blank or very short HTML
 
 Handling listpages:
-* create mapping between parents and child fragments
-* extract listpages parameters, and whether it includes content or not
-* based on listpages parameters:
-	* if category is fragment and parent is ".":
+[DONE] * create mapping between parents and child fragments
+[DONE] * extract listpages parameters, and whether it includes content or not
+[NEXT] * based on listpages parameters:
+	* if category is fragment and parent is "." and embeds content:
 		* if there is ordering, order based on ordering rule, otherwise order based on creation time.
-		* embed based on limit and offset
-	* ignore everything else because fuck it, but LOG what was ignored and why to see what we're looking at
+		* return embed IDs in order based on limit and offset. ignore URL offset and use default
+	* ignore everything else because fuck it, but LOG what was ignored and why to see what we're looking at. this means ignoring non-content listpages but we'll see how many this is.
+* if embeds content: embed the returned IDs directly into the json of the page (we're ignoring actual list generation here)
 
 COMPONENTS:
 

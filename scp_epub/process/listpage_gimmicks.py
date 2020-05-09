@@ -1,5 +1,7 @@
 import re
 
+import constants.process
+
 def get_page_fragment_mapping(fragment_list):
     mapping = {}
     for fragment in fragment_list:
@@ -12,7 +14,7 @@ def get_page_fragment_mapping(fragment_list):
 
     return mapping
 
-def get_listpages_params(content):
+def get_listpages_params(content, params = constants.process.LISTPAGES_PARAMS, include_types=constants.process.LISTPAGES_INCLUDE_TYPES):
     module_content = re.search(
         '\[\[\s*module\s*listpages([^[\]]*)\]\]((?:[^[]|\[\[(?!\/module\]\]))*)\[\[\s*\/module\s*\]\]',
         content,
@@ -22,15 +24,15 @@ def get_listpages_params(content):
         return None
 
     else:
-        params = {}
-        if re.search("%%content%%", module_content.group(2), flags=re.S | re.M | re.I) is not None:
-            params["embeds_content"] = True
-        else:
-            params["embeds_content"] = False
-        for param in ["limit", "order", "parent", "category", "offset"]:
+        results = {}
+        results["include_types"] = []
+        for include_type in include_types:
+            if re.search(f'%%{include_type}%%', module_content.group(2), flags=re.S | re.M | re.I) is not None:
+                results["include_types"].append(include_type)
+        for param in params:
             match = re.search(f'{param}\s*=\s*"([^"]*)"', module_content.group(1), flags=re.S | re.M | re.I)
             if match is None:
-                params[param] = None
+                results[param] = None
             else:
-                params[param] = match.group(1)
-        return params
+                results[param] = match.group(1)
+        return results

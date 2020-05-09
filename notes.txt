@@ -44,10 +44,9 @@ COMPONENTS:
 
 1. SELECT AND PRE-PROCESS PAGES
 	[DONE] * FILTER LIST OF PAGES: ONLY USE tagged 'scp', 'tale', or 'hub'.
-	* HANDLE LISTPAGES
 	* HANDLE SUBSTITUTION CASES (some pages need to be substituted with noninteractive versions that exist as fragments):
-		* scp-3125
-		* should we substitute scp-4000?
+		* scp-3125 is replaced by its unencrypted fragment
+	* HANDLE LISTPAGES
 
 2. PRETTIFY SINGLE PAGE
 	* empty divs: delete
@@ -72,39 +71,42 @@ COMPONENTS:
 		* this will nuke some gimmicks such as pages using the CountPages module
 		* test for discarded pages: not too many
 
-4. ARRANGE BOOK (use this for TOC), USE THIS ORDER.
-	* FOREWORD ON DIGITAL EDITION
-	* TOC
-	* INTRO
-	* HUBS
-		* SCPS BY SERIES
-			* (no toc) SERIES 1 scps, SERIES 2 scps...
-			* (no toc) SERIES 1 tales, SERIES 2 tales, ...
-		* all other hubs alphabetically
-			* (no toc) list here
-	* SCP SERIES 1
-		* 1-100
-			* (no toc) 1
-			* (no toc) 2
+4. ARRANGE BOOK:
+	* ORDER FOR TOC (check if files also need to be ordered):
+		* FOREWORD ON DIGITAL EDITION
+		* TOC
+		* INTRO
+		* HUBS
+			* SCPS BY SERIES
+				* (no toc) SERIES 1 scps, SERIES 2 scps...
+				* (no toc) SERIES 1 tales, SERIES 2 tales, ...
+			* all other hubs alphabetically
+				* (no toc) list here
+		* SCP SERIES 1
+			* 1-100
+				* (no toc) 1
+				* (no toc) 2
+				* ...
+			* 101-200
 			* ...
-		* 101-200
-		* ...
-	* SCP SERIES 2
-	* SCP SERIES ...
-	* TALES
-		* TALES 0-9
-		* TALES A
-			* (no toc): tales go here
-		* TALES B
-		* ...
-	* EXTRA CONTENT
-		* (no toc) listpages appends go here
-	* INDICES:
-		* Index of hubs
-		* Index of SCPs
-		* Index of Tales
-		* Index of Extra Content
-	* CREDITS
+		* SCP SERIES 2
+		* SCP SERIES ...
+		* TALES
+			* TALES 0-9
+			* TALES A
+				* (no toc): tales go here
+			* TALES B
+			* ...
+		* EXTRA CONTENT
+			* (no toc) listpages appends go here
+		* INDICES:
+			* Index of hubs
+			* Index of SCPs
+			* Index of Tales
+			* Index of Extra Content
+		* CREDITS
+	* PERFORM SPECIAL CASES:
+		* SWAP "SCP-4000" and "Taboo"
 
 5. add book metadata, 
 	* title, authors etc.

@@ -21,12 +21,20 @@ PAGE EDGE CASES:
 Handling listpages:
 [DONE] * create mapping between parents and child fragments
 [DONE] * extract listpages parameters, and whether it includes content or not
-[NEXT] * based on listpages parameters:
-	* if category is fragment and parent is "." and embeds content:
-		* if there is ordering, order based on ordering rule, otherwise order based on creation time.
-		* return embed IDs in order based on limit and offset. ignore URL offset and use default
-	* ignore everything else because fuck it, but LOG what was ignored and why to see what we're looking at. this means ignoring non-content listpages but we'll see how many this is.
-* if embeds content: embed the returned IDs directly into the json of the page (we're ignoring actual list generation here)
+[NEXT] * listpages query (allows for limit, ordering, filtering etc. or some subset of those)
+* process listpages query on all pages:
+	* one master list all_pages_and_fragments
+	* one working list current_pages
+	* go through current_pages one by one:
+		* execute the listpages query on all_pages_and_fragments
+		* append found pages to the end of pages (IN-PLACE) if they're not already in there.
+			* newly appended: set $.scp_epub_extra_properties.is_append = True
+				* scp_epub_extra_properties is pulled in a constant
+			* this will cause it to recurse into newly found pages if there's nested ListPages
+		* save the fullname and title in $.scp_epub_extra_properties.listpages = [{fullname: ..., title: ...}]
+			* or empty list / None
+	* return current_pages
+
 
 COMPONENTS:
 
@@ -36,14 +44,12 @@ COMPONENTS:
 
 1. SELECT AND PRE-PROCESS PAGES
 	[DONE] * FILTER LIST OF PAGES: ONLY USE tagged 'scp', 'tale', or 'hub'.
-	* ADD PROPERTY: pages with ListPages that embed full contents of fragments, add an "embeds" key with value an array of embedded content pages in order.
-		* this won't cover all gimmicks but should get most of them
-		* log these pages
-	* ADD PROPERTY: "embeds" for edge cases (keep manual mapping of edge case into embeds):
+	* HANDLE LISTPAGES
+	* HANDLE SUBSTITUTION CASES (some pages need to be substituted with noninteractive versions that exist as fragments):
 		* scp-3125
-	* ~~ADD FRAGMENTS FROM ABOVE TO LIST OF PAGES~~. no reason to do this: fragment children are embedded wholesale
+		* should we substitute scp-4000?
 
-2. PRETTIFY PAGES
+2. PRETTIFY SINGLE PAGE
 	* empty divs: delete
 		* specifically the div that aligns to right, eff that div
     * rating box: delete
@@ -56,16 +62,17 @@ COMPONENTS:
 	* links: make local links redirect to correct page (/whatever -> whatever.xhtml), all other links deleted
 	* how in the fuck to deal with interactive pages?
 		* IGNORE ALL INTERACTIVITY
-	* ADD NEW STUFF:
-		* title add at beginning as <p> block, give specific class for CSS
+	* ADD NEW STUFF (should this be in post-process?):
+		* title add at beginning (as <p> block, give specific class for CSS?)
+		* listpages links at the end (as <p> blocks with title and properly linked?)
 	* ALLOW FOR ERRORS: some pages are completely blank or have fucked up html.
 
 3. POST-PROCESS PAGES
-	* DISCARD pages that BOTH do not have content AND do not have embeds
+	* DISCARD pages that do not have content or listpages
 		* this will nuke some gimmicks such as pages using the CountPages module
-		* log discarded pages7
+		* test for discarded pages: not too many
 
-4. ARRANGE BOOK (use this for TOC), USE THIS ORDER. NOTE: if a page contains embeds, add corresponding pages immediately after the parent page. Individual pages do not have an entry in the TOC.
+4. ARRANGE BOOK (use this for TOC), USE THIS ORDER.
 	* FOREWORD ON DIGITAL EDITION
 	* TOC
 	* INTRO
@@ -83,14 +90,23 @@ COMPONENTS:
 		* 101-200
 		* ...
 	* SCP SERIES 2
-	* TALES 0-9
-	* TALES A
-		* (no toc): tales go here
-	* TALES B
-	* ...
-	* ALPHABETICAL INDEX (make sure numbers are numeric not lexicographical)
+	* SCP SERIES ...
+	* TALES
+		* TALES 0-9
+		* TALES A
+			* (no toc): tales go here
+		* TALES B
+		* ...
+	* EXTRA CONTENT
+		* (no toc) listpages appends go here
+	* INDICES:
+		* Index of hubs
+		* Index of SCPs
+		* Index of Tales
+		* Index of Extra Content
 	* CREDITS
-3. add book metadata, 
+
+5. add book metadata, 
 	* title, authors etc.
 	* cover photo
 	* CSS

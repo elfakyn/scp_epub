@@ -27,9 +27,7 @@ RATE_LIMIT_WEB_PERIOD = 5
 
 ALLOWED_TAGS = ['scp', 'tale', 'hub']
 
-EDGE_CASES_DOWNLOAD_DIFFERENT_PAGE = {
-    'scp-3125': {
-        'host': 'http://scpsandbox2.wdfiles.com',
-        'page': 'local--html/scp-3125-unencrypted/19a551ea86bc6d2bd95b6e4cc40758497b7a00e0-11702915221798099076/scpsandbox2.wikidot.com/'
-    }
-}
+EDGE_CASES_DIR = os.path.join(os.path.dirname(__file__), '../../edge_cases')
+EDGE_CASES = [
+    'scp-3125'
+]

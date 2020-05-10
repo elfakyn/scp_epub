@@ -46,7 +46,8 @@ def get_page_data(*, site, page, bypass_cache=False):
 @limits(calls=constants.download.RATE_LIMIT_WEB_CALLS, period=constants.download.RATE_LIMIT_WEB_PERIOD)
 def get_single_web_page(*, host, path, bypass_cache=False):
     web_page = requests.get(f'{host}/{path}')
-    web_page.raise_for_status()
+    if web_page.status_code > 200:
+        return ''
     return web_page.content.decode("utf-8")
 
 def get_multiple_page_data(*, site, pages, bypass_cache=False):

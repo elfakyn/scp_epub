@@ -5,13 +5,13 @@ import os
 BASE_PATH = os.path.join(os.path.dirname(__file__), '../../build')
 DB_PATH = os.path.join(BASE_PATH, 'database')
 PAGES_DIR = 'pages'
-HTML_DIR = 'html'
+HTML_DIR = 'web'
 PAGE_LIST_DIR = 'lists'
 
 ########################
 # scraping
 SITE_NAME = 'scp-wiki'
-SITE_HOST = 'http://scp-wiki.net'
+SITE_HOST = 'http://scp-wiki.net/printer--friendly'
 PAGE_CATEGORY = '_default'
 FRAGMENT_CATEGORY = 'fragment'
 

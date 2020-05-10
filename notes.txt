@@ -21,15 +21,12 @@ PAGE EDGE CASES:
 
 COMPONENTS:
 
-[DONE] 0. download all pages
+[DONE] 1. download all pages
 	[DONE] * downloader with cache support
 	[DONE] * FILTER LIST OF PAGES: ONLY USE tagged 'scp', 'tale', or 'hub'.
+	[DONE] * wget and attach html of pages -- this will cause correct rendering as seen on the site.
 	* HANDLE SUBSTITUTION CASES (some pages need to be substituted with noninteractive versions that exist as fragments):
 		* scp-3125 is replaced by its unencrypted fragment
-
-1. SELECT AND PRE-PROCESS PAGES
-
-
 
 2. PRETTIFY SINGLE PAGE
 	* empty divs: delete
@@ -46,7 +43,6 @@ COMPONENTS:
 		* IGNORE ALL INTERACTIVITY
 	* ADD NEW STUFF (should this be in post-process?):
 		* title add at beginning (as <p> block, give specific class for CSS?)
-		* listpages links at the end (as <p> blocks with title and properly linked?)
 	* ALLOW FOR ERRORS: some pages are completely blank or have fucked up html.
 
 3. ARRANGE BOOK:
@@ -69,33 +65,32 @@ COMPONENTS:
 			* ...
 		* SCP SERIES 2
 		* SCP SERIES ...
+		* ALL OTHER SCPs (supplements?)
 		* TALES
 			* TALES 0-9
 			* TALES A
 				* (no toc): tales go here
 			* TALES B
 			* ...
-		* EXTRA CONTENT
-			* (no toc) listpages appends go here
+			* TALES Z
+			* Remaining tales
 		* INDICES:
 			* Index of hubs
 			* Index of SCPs
 			* Index of Tales
-			* Index of Extra Content
 		* CREDITS
-	* PERFORM SPECIAL CASES:
-		* SWAP "SCP-4000" and "Taboo"
 
-5. add book metadata, 
+4. add book metadata, 
 	* title, authors etc.
 	* cover photo
 	* CSS
 		* fix weird right align if not already fixed
 
+5. render
+
 ===================
 Long-term: 
  * add support for images
- * better support for ListPages and other interactive content.
  * option for smaller books
  
  ===============================

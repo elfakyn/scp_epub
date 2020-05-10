@@ -2,3 +2,4 @@ ratelimit
 lxml
 ebooklib
 parameterized
+requests

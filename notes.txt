@@ -16,37 +16,20 @@ For local links:
 PAGE EDGE CASES:
 	* scp-3125: has weird obfuscated text content on part of it. But there's a noninteractive bit.
 	* scp-4004, scp-3723¸ scp-4672, scp-3193, experiment-log-914-hub etc.: use ListPages to display current date. 
-	* 
-
-Handling listpages:
-[DONE] * create mapping between parents and child fragments
-[DONE] * extract listpages parameters, and whether it includes content or not
-[NEXT] * listpages query (allows for limit, ordering, filtering etc. or some subset of those)
-* process listpages query on all pages:
-	* one master list all_pages_and_fragments
-	* one working list current_pages
-	* go through current_pages one by one:
-		* execute the listpages query on all_pages_and_fragments
-		* append found pages to the end of pages (IN-PLACE) if they're not already in there.
-			* newly appended: set $.scp_epub_extra_properties.is_append = True
-				* scp_epub_extra_properties is pulled in a constant
-			* this will cause it to recurse into newly found pages if there's nested ListPages
-		* save the fullname and title in $.scp_epub_extra_properties.listpages = [{fullname: ..., title: ...}]
-			* or empty list / None
-	* return current_pages
+	* scp-4000: needs to be swapped with "taboo" during arrange
 
 
 COMPONENTS:
 
 [DONE] 0. download all pages
 	[DONE] * downloader with cache support
-	[DONE] * also download fragments
-
-1. SELECT AND PRE-PROCESS PAGES
 	[DONE] * FILTER LIST OF PAGES: ONLY USE tagged 'scp', 'tale', or 'hub'.
 	* HANDLE SUBSTITUTION CASES (some pages need to be substituted with noninteractive versions that exist as fragments):
 		* scp-3125 is replaced by its unencrypted fragment
-	* HANDLE LISTPAGES
+
+1. SELECT AND PRE-PROCESS PAGES
+
+
 
 2. PRETTIFY SINGLE PAGE
 	* empty divs: delete
@@ -66,12 +49,7 @@ COMPONENTS:
 		* listpages links at the end (as <p> blocks with title and properly linked?)
 	* ALLOW FOR ERRORS: some pages are completely blank or have fucked up html.
 
-3. POST-PROCESS PAGES
-	* DISCARD pages that do not have content or listpages
-		* this will nuke some gimmicks such as pages using the CountPages module
-		* test for discarded pages: not too many
-
-4. ARRANGE BOOK:
+3. ARRANGE BOOK:
 	* ORDER FOR TOC (check if files also need to be ordered):
 		* FOREWORD ON DIGITAL EDITION
 		* TOC
@@ -128,4 +106,7 @@ Long-term:
 ['and-have-fun', 'antimemetics-division-hub', 'apas', 'cat-in-a-box', 'djkaktus-s-proposal-iii', 'foundations', 'in-shadow', 'jack-ike-s-proposal-ii', 'jim-north-s-proposal', 'land-of-honey', 'only-once-away-my-son', 'prehistoric-artillery-strike', 'psul-001', 'samsara', 'scp-1173', 'scp-1496', 'scp-1893', 'scp-194', 'scp-1964-ex', 'scp-2', 'scp-2000-b-the-lonely-cowboy', 'scp-2111', 'scp-2117', 'scp-2237', 'scp-2343', 'scp-2641', 'scp-2998', 'scp-3002', 'scp-3020', 'scp-3059', 'scp-3145', 'scp-3272', 'scp-3306', 'scp-3623', 'scp-3890', 'scp-3916', 'scp-4000', 'scp-4011', 'scp-4028', 'scp-4069', 'scp-4071', 'scp-4127', 'scp-4134', 'scp-4163', 'scp-4182', 'scp-4224', 'scp-4260', 'scp-4338', 'scp-4417', 'scp-4447', 'scp-4450', 'scp-4485', 'scp-4558', 'scp-4568', 'scp-4673', 'scp-4698', 'scp-4706', 'scp-4742', 'scp-4870', 'scp-4884', 'scp-4892', 'scp-4930', 'scp-4932', 'scp-4939', 'scp-4945', 'scp-4947', 'scp-5018', 'scp-5039', 'scp-5045', 'scp-5050', 'scp-5055', 'scp-5099', 'scp-5111', 'scp-5121', 'scp-5128', 'scp-5153', 'scp-5296', 'scp-5300', 'scp-5400', 'scp-5423', 'scp-5500', 'scp-5552', 'scp-5579', 'scp-5817', 'scp-5931', 'scp-5999', 'scp-es-100', 'scp-wow-j', 'sky-sermon-hub', 'taboo', 'the-moons-stellar-companion', 'three-farewells', 'trilobastards', 'vend-a-friend']
 
 
-INCLUDE TYPES NOT 
+
+JSONPATH
+
+$..[?(@.limit == "1" && @.include_types == "content" && @.category != "fragment")]~

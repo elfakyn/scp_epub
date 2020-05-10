@@ -5,7 +5,7 @@ import process.process_list
 import constants.process
 
 class TestPreProcess(unittest.TestCase):
-    @unittest.mock.patch('process.process_list.process.filter')
+    @unittest.mock.patch('process.process_list.download.filter')
     def test_pre_process(self, mock_filter):
         # Arrange
         expected_pages = unittest.mock.MagicMock()

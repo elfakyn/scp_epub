@@ -1,4 +1,6 @@
-ALLOWED_TAGS = ['scp', 'tale', 'hub']
+ADDITIONAL_DATA_KEY = 'scp_epub_additional_data'
 
-LISTPAGES_PARAMS = ["limit", "order", "parent", "category", "offset", "name", "tags"]
-LISTPAGES_INCLUDE_TYPES = ["content", "title", "title_linked"]
+WEB_HTML_KEY = 'web_html'
+WEB_STATUS_CODE_KEY = 'web_status_code'
+
+PAGE_PATH_KEY = 'fullname'

@@ -1,6 +1,6 @@
 import unittest
 
-import process.filter
+import download.filter
 
 class TestFilterPages(unittest.TestCase):
     def test_filter_tags_no_rule(self):
@@ -26,7 +26,7 @@ class TestFilterPages(unittest.TestCase):
         expected_tag_filter = None
 
         # Act
-        actual_filtered_pages = process.filter.filter_tags(expected_pages)
+        actual_filtered_pages = download.filter.filter_tags(expected_pages)
 
         # Assert
         self.assertEqual(expected_filtered_pages, actual_filtered_pages)
@@ -52,7 +52,7 @@ class TestFilterPages(unittest.TestCase):
         expected_include_tags = ['scp', 'tale']
 
         # Act
-        actual_filtered_pages = process.filter.filter_tags(expected_pages, include_tags=expected_include_tags)
+        actual_filtered_pages = download.filter.filter_tags(expected_pages, include_tags=expected_include_tags)
 
         # Assert
         self.assertEqual(expected_filtered_pages, actual_filtered_pages)

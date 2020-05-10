@@ -1,7 +1,9 @@
 import xmlrpc.client
 import os
 import json
+import requests
 from ratelimit import limits, sleep_and_retry
+
 
 import constants.download
 from download import cache
@@ -39,6 +41,13 @@ def get_page_data(*, site, page, bypass_cache=False):
     })
     return page_data
 
+@cache.file_cache(constants.download.HTML_DIR, name_based_on_argument="path", filetype='html')
+@sleep_and_retry
+@limits(calls=constants.download.RATE_LIMIT_WEB_CALLS, period=constants.download.RATE_LIMIT_WEB_PERIOD)
+def get_single_web_page(*, host, path, bypass_cache=False):
+    web_page = requests.get(f'{host}/{path}')
+    web_page.raise_for_status()
+    return web_page.content.decode("utf-8")
 
 def get_multiple_page_data(*, site, pages, bypass_cache=False):
     return [get_page_data(site=site, page=page, bypass_cache=bypass_cache) for page in pages]

@@ -25,10 +25,12 @@ COMPONENTS:
 	[DONE] * downloader with cache support
 	[DONE] * FILTER LIST OF PAGES: ONLY USE tagged 'scp', 'tale', or 'hub'.
 	[DONE] * wget and attach html of pages -- this will cause correct rendering as seen on the site.
-	* HANDLE SUBSTITUTION CASES (some pages need to be substituted with noninteractive versions that exist as fragments):
-		* scp-3125 is replaced by its unencrypted fragment
+	[NEXT] * Just manually create the html for scp-3125 and pop it in the thing.
 
 2. PRETTIFY SINGLE PAGE
+	* NOTE:
+		* ALLOW FOR ERRORS: some pages are completely blank or have fucked up html.
+		* ALLOW FOR WHATEVER SCP-3125's HTML is.
 	* empty divs: delete
 		* specifically the div that aligns to right, eff that div
     * rating box: delete
@@ -43,7 +45,7 @@ COMPONENTS:
 		* IGNORE ALL INTERACTIVITY
 	* ADD NEW STUFF (should this be in post-process?):
 		* title add at beginning (as <p> block, give specific class for CSS?)
-	* ALLOW FOR ERRORS: some pages are completely blank or have fucked up html.
+
 
 3. ARRANGE BOOK:
 	* ORDER FOR TOC (check if files also need to be ordered):

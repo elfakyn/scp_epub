@@ -1,7 +1,6 @@
 ADDITIONAL_DATA_KEY = 'scp_epub_additional_data'
 
 WEB_HTML_KEY = 'web_html'
-WEB_STATUS_CODE_KEY = 'web_status_code'
 
 PAGE_PATH_KEY = 'fullname'
 EDGE_CASE_KEY = 'substitute_html'
@@ -23,3 +22,10 @@ CLASSES_TO_REMOVE = [
 TAGS_TO_REMOVE = [
     'img'
 ]
+
+COLLAPSIBLE_BLOCK_CLASS = 'collapsible-block'
+COLLAPSIBLE_BLOCK_LINK_CLASS = 'collapsible-block-link'
+COLLAPSIBLE_BLOCK_CONTENT_CLASS = 'collapsible-block-content'
+
+COLLAPSIBLE_CLASS_NEW = 'collapsible'
+COLLAPSIBLE_TITLE_CLASS_NEW = 'collapsible-title'

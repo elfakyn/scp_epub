@@ -8,6 +8,9 @@ Elements we definitely don't want:
 * class = footer-wikiwalk-nav
 
 
+PRETTIFY PAGE (what pyscp does):
+
+
 For local links:
 * WIKIDOT DOCS: the site-unix-name consists of only alphanumeric characters (0..9, 'a'..'z') and ('-')
 * 
@@ -23,20 +26,18 @@ COMPONENTS:
 	[DONE] * Just manually create the html for scp-3125 and pop it in the thing.
 
 2. PRETTIFY SINGLE PAGE
-	* NOTE:
-		* ALLOW FOR ERRORS: some pages are completely blank or have fucked up html.
-	* empty divs: delete
-		* specifically the div that aligns to right, eff that div
-    [DONE] * rating box: delete
-	[DONE] * navigation footer: delete
-	[DONE] * images: delete
-	* yui-navset: delete yui-nav, unwrap, prettify table, give specific class for CSS
-	* collapsible block: link becomes title which is added as a text, content gets unwrapped, give specific class for CSS
-	* footnotes: there's footnoteref and footnote-footer, make something nice and ebook friendly, give specific class for CSS
-	* block quotes: give it a specific class for CSS
-	* links: make local links redirect to correct page (/whatever -> whatever.xhtml), all other links deleted
-	* ADD NEW STUFF (should this be in post-process?):
-		* title add at beginning (as <p> block, give specific class for CSS?)
+* NOTE:
+	* ALLOW FOR ERRORS: some pages are completely blank or have fucked up html.
+	[??] * empty divs: delete
+* WHAT PYSCP DOES (MAKE COMPATIBLE):
+	[DONE] * remove widget box
+	* yui-navset
+	[DONE] * collapsible-block
+	* footnoteref, footnote footer: BREAK COMPATIBILITY, MAKE NICE FOR EPUB
+	[DONE] * blockquote
+	* links
+	[DONE] * images
+	* title
 
 
 3. ARRANGE BOOK:

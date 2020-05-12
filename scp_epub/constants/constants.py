@@ -68,3 +68,6 @@ COLLAPSIBLE_BLOCK_CONTENT_CLASS = 'collapsible-block-content'
 
 COLLAPSIBLE_CLASS_NEW = 'collapsible'
 COLLAPSIBLE_TITLE_CLASS_NEW = 'collapsible-title'
+
+BLOCKQUOTE_TAG = 'blockquote'
+BLOCKQUOTE_CLASS_NEW = 'quote'

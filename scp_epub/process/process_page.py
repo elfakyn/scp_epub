@@ -8,21 +8,21 @@ def get_page_content(page_html, page_content_id=constants.PAGE_CONTENT_ID):
     return html.find(id=page_content_id)
 
 
-def remove_by_class(content, classes_to_remove=constants.CLASSES_TO_REMOVE):
+def remove_classes(content, classes_to_remove=constants.CLASSES_TO_REMOVE):
     for class_to_remove in classes_to_remove:
         for element in content(class_=class_to_remove):
             element.decompose()
 
     return content
 
-def remove_by_tag(content, tags_to_remove=constants.TAGS_TO_REMOVE):
+def remove_tags(content, tags_to_remove=constants.TAGS_TO_REMOVE):
     for tag_to_remove in tags_to_remove:
         for element in content(tag_to_remove):
             element.decompose()
 
     return content
 
-def unwrap_collapsible_block(content):
+def unwrap_collapsible_blocks(content):
     for element in content(class_=constants.COLLAPSIBLE_BLOCK_CLASS):
         element.attrs = {'class': constants.COLLAPSIBLE_CLASS_NEW}
 
@@ -34,5 +34,12 @@ def unwrap_collapsible_block(content):
         element.append(collapsible_title)
         for item in collapsible_content.contents:
             element.append(item)
+
+    return content
+
+def divify_blockquotes(content):
+    for element in content(constants.BLOCKQUOTE_TAG):
+        element.name = 'div'
+        element.attrs = {'class': constants.BLOCKQUOTE_CLASS_NEW}
 
     return content

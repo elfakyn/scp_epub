@@ -66,7 +66,7 @@ class TestProcessPage(unittest.TestCase):
         expected_content = self.create_soup(expected_html_string)
 
         # Act
-        actual_output = process.process_page.remove_by_class(expected_content, classes_to_remove=expected_classses_to_remove)
+        actual_output = process.process_page.remove_classes(expected_content, classes_to_remove=expected_classses_to_remove)
 
         # Assert
         self.assertEqual(expected_output_string, str(actual_output))
@@ -102,7 +102,7 @@ class TestProcessPage(unittest.TestCase):
         expected_content = self.create_soup(expected_html_string)
 
         # Act
-        actual_output = process.process_page.remove_by_tag(expected_content, tags_to_remove=expected_tags_to_remove)
+        actual_output = process.process_page.remove_tags(expected_content, tags_to_remove=expected_tags_to_remove)
 
         # Assert
         self.assertEqual(expected_output_string, str(actual_output))
@@ -114,12 +114,29 @@ class TestProcessPage(unittest.TestCase):
             '''outside<div class="collapsible"><p class="collapsible-title">&gt; Show details</p><ul><li><strong>Pathogenicity:</strong> Severe skin colonisation around sebaceous glands. Modification of skin pH to levels that become toxic to skin cells. Massive inflammation and immune cell infiltration. Eventual breakdown of skin structure leading to sepsis.</li><li><strong>Transmission:</strong> Transmitted by skin-to-skin contact. Can remain active on inorganic surfaces for up to five hours.</li><li><strong>Lethality:</strong> Approximately 40% mortality rate. Runs its course in 2-6 weeks. Very visible symptoms within 5-10 hours; contagious within 2-5 hours.</li><li><strong>Handling:</strong> As soon as visible symptoms form, victims must be quarantined. Deceased victims should be incinerated.</li></ul></div>'''
         ],
     ])
-    def test_unwrap_collapsible_block(self, reason, expected_html_string, expected_output_string):
+    def test_unwrap_collapsible_blocks(self, reason, expected_html_string, expected_output_string):
         # Arrange
         expected_content = self.create_soup(expected_html_string)
 
         # Act
-        actual_output = process.process_page.unwrap_collapsible_block(expected_content)
+        actual_output = process.process_page.unwrap_collapsible_blocks(expected_content)
+
+        # Assert
+        self.assertEqual(expected_output_string, str(actual_output))
+
+    @parameterized.expand([
+        [
+            'simple',
+            '''outside<blockquote><p>I love peace. I'd kill to preserve it</p></blockquote>''',
+            '''outside<div class="quote"><p>I love peace. I'd kill to preserve it</p></div>'''
+        ],
+    ])
+    def test_divify_blockquotes(self, reason, expected_html_string, expected_output_string):
+        # Arrange
+        expected_content = self.create_soup(expected_html_string)
+
+        # Act
+        actual_output = process.process_page.divify_blockquotes(expected_content)
 
         # Assert
         self.assertEqual(expected_output_string, str(actual_output))

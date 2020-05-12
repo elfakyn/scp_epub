@@ -3,3 +3,4 @@ lxml
 ebooklib
 parameterized
 requests
+bs4

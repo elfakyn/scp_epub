@@ -3,7 +3,7 @@ from parameterized import parameterized
 import bs4
 
 import process.process_page
-import constants.process
+from constants import constants
 
 class TestProcessPage(unittest.TestCase):
     def setUp(self):

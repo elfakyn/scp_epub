@@ -13,14 +13,10 @@ def remove_classes(content, classes_to_remove=constants.CLASSES_TO_REMOVE):
         for element in content(class_=class_to_remove):
             element.decompose()
 
-    return content
-
 def remove_tags(content, tags_to_remove=constants.TAGS_TO_REMOVE):
     for tag_to_remove in tags_to_remove:
         for element in content(tag_to_remove):
             element.decompose()
-
-    return content
 
 def unwrap_collapsible_blocks(content):
     for element in content(class_=constants.COLLAPSIBLE_BLOCK_CLASS):
@@ -35,11 +31,7 @@ def unwrap_collapsible_blocks(content):
         for item in collapsible_content.contents:
             element.append(item)
 
-    return content
-
 def divify_blockquotes(content):
     for element in content(constants.BLOCKQUOTE_TAG):
         element.name = 'div'
         element.attrs = {'class': constants.BLOCKQUOTE_CLASS_NEW}
-
-    return content

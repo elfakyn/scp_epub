@@ -34,6 +34,14 @@ class TestProcessPage(unittest.TestCase):
         # Assert
         self.assertEqual(expected_output_string, str(actual_output))
 
+
+class TestProcessContentFunctions(unittest.TestCase):
+    def setUp(self):
+        self.maxDiff = None
+
+    def create_soup(self, html):
+        return bs4.BeautifulSoup(html, "html.parser")
+
     @parameterized.expand([
         [
             'nothing to remove',
@@ -64,12 +72,14 @@ class TestProcessPage(unittest.TestCase):
         ]
 
         expected_content = self.create_soup(expected_html_string)
+        expected_output = None
 
         # Act
         actual_output = process.process_page.remove_classes(expected_content, classes_to_remove=expected_classses_to_remove)
 
         # Assert
-        self.assertEqual(expected_output_string, str(actual_output))
+        self.assertEqual(expected_output_string, str(expected_content))
+        self.assertEqual(expected_output, actual_output)
 
     @parameterized.expand([
         [
@@ -100,12 +110,14 @@ class TestProcessPage(unittest.TestCase):
         ]
 
         expected_content = self.create_soup(expected_html_string)
+        expected_output = None
 
         # Act
         actual_output = process.process_page.remove_tags(expected_content, tags_to_remove=expected_tags_to_remove)
 
         # Assert
-        self.assertEqual(expected_output_string, str(actual_output))
+        self.assertEqual(expected_output_string, str(expected_content))
+        self.assertEqual(expected_output, actual_output)
 
     @parameterized.expand([
         [
@@ -117,12 +129,14 @@ class TestProcessPage(unittest.TestCase):
     def test_unwrap_collapsible_blocks(self, reason, expected_html_string, expected_output_string):
         # Arrange
         expected_content = self.create_soup(expected_html_string)
+        expected_output = None
 
         # Act
         actual_output = process.process_page.unwrap_collapsible_blocks(expected_content)
 
         # Assert
-        self.assertEqual(expected_output_string, str(actual_output))
+        self.assertEqual(expected_output_string, str(expected_content))
+        self.assertEqual(expected_output, actual_output)
 
     @parameterized.expand([
         [
@@ -134,9 +148,11 @@ class TestProcessPage(unittest.TestCase):
     def test_divify_blockquotes(self, reason, expected_html_string, expected_output_string):
         # Arrange
         expected_content = self.create_soup(expected_html_string)
+        expected_output = None
 
         # Act
         actual_output = process.process_page.divify_blockquotes(expected_content)
 
         # Assert
-        self.assertEqual(expected_output_string, str(actual_output))
+        self.assertEqual(expected_output_string, str(expected_content))
+        self.assertEqual(expected_output, actual_output)

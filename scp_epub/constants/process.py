@@ -9,3 +9,17 @@ EDGE_CASE_KEY = 'substitute_html'
 BS4_FORMAT = 'lxml'
 
 PAGE_CONTENT_ID = 'page-content'
+
+CLASSES_TO_REMOVE = [
+    'heritage-rating-module',
+    'heritage-emblem',
+    'page-rate-widget-box',
+    'scp-image-block',
+    'image',
+    'scp-image-caption',
+    'footer-wikiwalk-nav'
+]
+
+TAGS_TO_REMOVE = [
+    'img'
+]

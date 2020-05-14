@@ -33,11 +33,11 @@ COMPONENTS:
 	[DONE] * remove widget box
 	[DONE] * yui-navset
 	[DONE] * collapsible-block
-	* footnoteref, footnote footer: BREAK COMPATIBILITY, MAKE NICE FOR EPUB
+	* footnoteref, footnote footer: BREAK COMPATIBILITY WITH PYSCP, MAKE NICE FOR EPUB
 	[DONE] * blockquote
-	* links
+	[DONE] * links
 	[DONE] * images
-	* title
+	[DONE] * title
 
 
 3. ARRANGE BOOK:

@@ -83,3 +83,6 @@ LINK_TAG = 'a'
 HREF_PROPERTY = 'href'
 LINK_CLASS_NEW = 'link'
 LINK_EXTENSION = '.xhtml'
+
+PAGE_TITLE_TAG = 'p'
+PAGE_TITLE_CLASS = 'title'

@@ -267,3 +267,29 @@ class TestProcessContentFunctions(unittest.TestCase):
         # Assert
         self.assertEqual(expected_output_string, str(expected_content))
         self.assertEqual(expected_output, actual_output)
+
+    @parameterized.expand([
+        [
+            'simple add title',
+            '''asdf''',
+            '''<p class="title">Hi there!</p>asdf'''
+        ],
+        [
+            'some other tags',
+            '''<div class="foo">asdf</div>''',
+            '''<p class="title">Hi there!</p><div class="foo">asdf</div>'''
+        ]
+    ])
+    def test_add_title(self, reason, expected_html_string, expected_output_string):
+        # Arrange
+        expected_title = 'Hi there!'
+
+        expected_content = self.create_soup(expected_html_string)
+        expected_output = None
+
+        # Act
+        actual_output = process.process_page.add_title(expected_content, expected_title)
+
+        # Assert
+        self.assertEqual(expected_output_string, str(expected_content))
+        self.assertEqual(expected_output, actual_output)

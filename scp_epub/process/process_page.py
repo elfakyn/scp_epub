@@ -67,3 +67,8 @@ def fix_links(content, url_allow_list = None):
         else:
             element.unwrap()
             continue
+
+def add_title(content, page_title):
+    title_new = bs4.BeautifulSoup('', constants.BS4_FORMAT).new_tag(constants.PAGE_TITLE_TAG, **{'class': constants.PAGE_TITLE_CLASS})
+    title_new.string = page_title
+    content.insert(0, title_new)

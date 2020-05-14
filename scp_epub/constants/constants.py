@@ -71,3 +71,10 @@ COLLAPSIBLE_TITLE_CLASS_NEW = 'collapsible-title'
 
 BLOCKQUOTE_TAG = 'blockquote'
 BLOCKQUOTE_CLASS_NEW = 'quote'
+
+YUI_NAVSET_CLASS = 'yui-navset'
+YUI_NAVSET_CLASS_NEW = 'tabview'
+YUI_NAVSET_TAB_CLASS = 'yui-nav'
+YUI_NAVSET_TAB_CLASS_NEW = 'tabview-tab'
+YUI_NAVSET_TAB_TITLE_IDENTIFIER = 'em'
+YUI_NAVSET_TAB_TITLE_CLASS_NEW = 'tab-title'

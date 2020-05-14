@@ -156,3 +156,22 @@ class TestProcessContentFunctions(unittest.TestCase):
         # Assert
         self.assertEqual(expected_output_string, str(expected_content))
         self.assertEqual(expected_output, actual_output)
+
+    @parameterized.expand([
+        [
+            'two with nested div',
+            '''<div id="wiki-tabview-03edd57ee60acc9ffdcd1050bfe0a7c2" class="yui-navset"><ul class="yui-nav"><li class="selected"><a href="javascript:;"><em>Effect 1509-1</em></a></li><li><a href="javascript:;"><em>Effect 1509-2</em></a></li></ul><div class="yui-content"><div id="wiki-tab-0-0"><div class="inner-div" style="width:300px;"><p>A specimen.</p></div><p>Effect 1509-1 typically.</p></div><div id="wiki-tab-0-1" style="display:none"><p>Effect SCP-1509-2 occurs.</p></div></div></div>''',
+            '''<div class="tabview"><div class="tabview-tab"><p class="tab-title">Effect 1509-1</p><div class="inner-div" style="width:300px;"><p>A specimen.</p></div><p>Effect 1509-1 typically.</p></div><div class="tabview-tab"><p class="tab-title">Effect 1509-2</p><p>Effect SCP-1509-2 occurs.</p></div></div>'''
+        ],
+    ])
+    def test_unwrap_navset(self, reason, expected_html_string, expected_output_string):
+        # Arrange
+        expected_content = self.create_soup(expected_html_string)
+        expected_output = None
+
+        # Act
+        actual_output = process.process_page.unwrap_yui_navset(expected_content)
+
+        # Assert
+        self.assertEqual(expected_output_string, str(expected_content))
+        self.assertEqual(expected_output, actual_output)

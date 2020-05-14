@@ -2,6 +2,10 @@
 
 Creates an epub from the scp wiki
 
+## Credits
+
+The page HTML parsing/manipulation logic is mostly taken from a different ebook builder, https://github.com/anqxyr/pyscp_ebooks and is designed to be (mostly) backwards compatible with it.
+
 ## Setup
 
 You need the following environment variables:

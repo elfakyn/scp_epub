@@ -28,7 +28,7 @@ COMPONENTS:
 2. PRETTIFY SINGLE PAGE
 * NOTE:
 	* ALLOW FOR ERRORS: some pages are completely blank or have fucked up html.
-	[??] * empty divs: delete
+	[??] * delete the div that aligns right and is at the very beginning of every page ( should we do this? what if there's a page that doesn't have that div but has another one instead with actual content)
 * WHAT PYSCP DOES (MAKE COMPATIBLE):
 	[DONE] * remove widget box
 	* yui-navset

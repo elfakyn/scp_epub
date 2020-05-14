@@ -16,7 +16,6 @@ SITE_NAME = 'scp-wiki'
 SITE_HOST = 'http://scp-wiki.net'
 SITE_DOWNLOAD_HOST = 'http://scp-wiki.net/printer--friendly'
 PAGE_CATEGORY = '_default'
-FRAGMENT_CATEGORY = 'fragment'
 
 API_KEY = 'WIKIDOT_API_KEY'
 CLIENT_NAME = 'scp-epub'

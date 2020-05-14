@@ -2,17 +2,29 @@
 
 Creates an epub from the scp wiki
 
-## Credits
+## Usage
 
-The page HTML parsing/manipulation logic is mostly taken from a different ebook builder, https://github.com/anqxyr/pyscp_ebooks and is designed to be (mostly) backwards compatible with it.
-
-## Setup
+### Setup
 
 You need the following environment variables:
 
 * `WIKIDOT_API_KEY`: your *read-only* wikidot api key
 
-## JSON format
+### How to run the tool
+
+### How the tool works
+
+Look in the file `constants/constants.py`. The wiki downloads all pages with the category `PAGE_CATEGORY` if they have one of the tags `ALLOWED_TAGS`. Each page is downloaded twice: once via the API to get the metadata and the unprocessed format, and once via a web request to the printer-friendly page to get a nicely formatted web page.
+
+Some pages have really weird formatting, such as SCP-3125. These are `EDGE_CASES` and are instead sourced directly from this repository.
+
+The downloaded pages (as well as the list of pages) are cached locally. Unless specified with `bypass_cache=True`, these pages are not downloaded again.
+
+The downloaded web pages are then passed through a set of processing steps (`process/process_page.py`). These turn the scp-wiki html into an epub-friendly html. We parse links, handle collapsed blocks, remove images etc. The page HTML parsing/manipulation logic is mostly taken from a different ebook builder, https://github.com/anqxyr/pyscp_ebooks and is designed to be mostly backwards compatible with it.
+
+## Format reference
+
+### JSON format
 
 * `page_list.json` is an array of wiki page names. Each wiki page name is globally unique. Wikidot wikis are non-hierarchical.
 * `pages/<page-name>.json` is of the following structure:

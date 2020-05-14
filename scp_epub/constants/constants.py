@@ -85,6 +85,7 @@ HREF_ATTRIBUTE = 'href'
 ID_ATTRIBUTE = 'id'
 EPUB_TYPE_ATTRIBUTE = 'epub:type'
 ONCLICK_ATTRIBUTE = 'onclick'
+CLASS_ATTRIBUTE = 'class'
 
 LINK_CLASS_NEW = 'link'
 LINK_EXTENSION = '.xhtml'
@@ -95,4 +96,7 @@ PAGE_TITLE_CLASS = 'page-title'
 FOOTNOTEREF_TAG = 'sup'
 FOOTNOTEREF_CLASS = 'footnoteref'
 
+FOOTNOTE_CLASS = 'footnote-footer'
+
 EPUB_TYPE_FOOTNOTEREF = 'noteref'
+EPUB_TYPE_FOOTNOTE = 'footnote'

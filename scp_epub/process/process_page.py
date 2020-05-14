@@ -80,10 +80,29 @@ def fix_footnotes(content):
         footnote_href_result = re.search("WIKIDOT\.page\.utils\.scrollToReference\('([a-zA-Z0-9-_]+)'\)", link.attrs[constants.ONCLICK_ATTRIBUTE])
         footnote_href = footnote_href_result[1] if footnote_href_result else ''
 
-        attributes_new = {
+        link_attributes_new = {
             constants.ID_ATTRIBUTE: link.attrs[constants.ID_ATTRIBUTE],
             constants.HREF_ATTRIBUTE: '#' + footnote_href,
             constants.EPUB_TYPE_ATTRIBUTE: constants.EPUB_TYPE_FOOTNOTEREF
         }
 
-        link.attrs = attributes_new
+        link.attrs = link_attributes_new
+
+    for footnote in content(class_=constants.FOOTNOTE_CLASS):
+        link = footnote.find(constants.LINK_TAG)
+
+        footnoteref_href_result = re.search("WIKIDOT\.page\.utils\.scrollToReference\('([a-zA-Z0-9-_]+)'\)", link.attrs[constants.ONCLICK_ATTRIBUTE])
+        footnoteref_href = footnoteref_href_result[1] if footnoteref_href_result else ''
+
+        footnote_attributes_new = {
+            constants.CLASS_ATTRIBUTE: footnote.attrs[constants.CLASS_ATTRIBUTE],
+            constants.EPUB_TYPE_ATTRIBUTE: constants.EPUB_TYPE_FOOTNOTE,
+            constants.ID_ATTRIBUTE: footnote.attrs[constants.ID_ATTRIBUTE]
+        }
+
+        link_attributes_new = {
+            constants.HREF_ATTRIBUTE: '#' + footnoteref_href
+        }
+
+        footnote.attrs = footnote_attributes_new
+        link.attrs = link_attributes_new

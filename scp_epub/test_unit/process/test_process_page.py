@@ -300,6 +300,16 @@ class TestProcessContentFunctions(unittest.TestCase):
             '''<sup class="footnoteref"><a id="footnoteref-1"href="javascript:;" class="footnoteref"onclick="WIKIDOT.page.utils.scrollToReference('footnote-1')">1</a></sup>''',
             '''<sup class="footnoteref"><a epub:type="noteref" href="#footnote-1" id="footnoteref-1">1</a></sup>'''
         ],
+        [
+            'just the footnote',
+            '''<div class="footnote-footer" id="footnote-1"><a href="javascript:;"onclick="WIKIDOT.page.utils.scrollToReference('footnoteref-1')">1</a>. Even Grandma!</div>''',
+            '''<div class="footnote-footer" epub:type="footnote" id="footnote-1"><a href="#footnoteref-1">1</a>. Even Grandma!</div>'''
+        ],
+        [
+            'noterefs and footnotes',
+            '''''',
+            ''''''
+        ],
     ])
     def test_fix_footnotes(self, reason, expected_html_string, expected_output_string):
         # Arrange

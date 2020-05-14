@@ -27,22 +27,26 @@ COMPONENTS:
 
 2. PRETTIFY SINGLE PAGE
 * NOTE:
-	* ALLOW FOR ERRORS: some pages are completely blank or have fucked up html.
-	[??] * delete the div that aligns right and is at the very beginning of every page ( should we do this? what if there's a page that doesn't have that div but has another one instead with actual content)
+	[NO, UNLESS NECESSARY] * delete the div that aligns right and is at the very beginning of every page ( should we do this? what if there's a page that doesn't have that div but has another one instead with actual content)
 * WHAT PYSCP DOES (MAKE COMPATIBLE):
 	[DONE] * remove widget box
 	[DONE] * yui-navset
 	[DONE] * collapsible-block
-	* footnoteref, footnote footer: BREAK COMPATIBILITY WITH PYSCP, MAKE NICE FOR EPUB
+	[DONE] * footnoteref, footnote footer: BREAK COMPATIBILITY WITH PYSCP, MAKE NICE FOR EPUB
 	[DONE] * blockquote
 	[DONE] * links
 	[DONE] * images
 	[DONE] * title
+* Put them all together to parse a whole page
+	* Unit test that all functions are called
+	* Error handling: e.g. each item in its own try-catch with logging of errors
+		* Platform test: parse LITERALLY ALL THE SCP PAGES and test that none fail, or <N fail.
+	* I want some sort of test that the output of the combined parsers makes sense. Even if just a regression test.
 
 
 3. ARRANGE BOOK:
 	* ORDER FOR TOC (check if files also need to be ordered):
-		* FOREWORD ON DIGITAL EDITION
+		* FOREWORD ON EBOOK EDITION
 		* TOC
 		* INTRO
 		* HUBS

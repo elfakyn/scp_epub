@@ -1,4 +1,5 @@
 import bs4
+import re
 
 from constants import constants
 
@@ -47,3 +48,22 @@ def unwrap_yui_navset(content):
             title_new = bs4.BeautifulSoup('', constants.BS4_FORMAT).new_tag('p', **{'class': constants.YUI_NAVSET_TAB_TITLE_CLASS_NEW})
             title_new.string = title
             tab.insert(0, title_new)
+
+def fix_links(content, url_allow_list = None):
+    for element in content(constants.LINK_TAG):
+        if constants.HREF_PROPERTY not in element.attrs:
+            continue
+
+        link = element.attrs[constants.HREF_PROPERTY]
+        local_link_result = re.search(f'^({constants.SITE_HOST})?/([a-z0-9-]+)$', link)
+        if local_link_result is None:
+            element.unwrap()
+            continue
+
+        relative_link = local_link_result.group(2)
+
+        if url_allow_list is None or relative_link in url_allow_list:
+            element.attrs['href'] = relative_link + constants.LINK_EXTENSION
+        else:
+            element.unwrap()
+            continue

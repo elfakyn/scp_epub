@@ -31,7 +31,7 @@ COMPONENTS:
 	[??] * delete the div that aligns right and is at the very beginning of every page ( should we do this? what if there's a page that doesn't have that div but has another one instead with actual content)
 * WHAT PYSCP DOES (MAKE COMPATIBLE):
 	[DONE] * remove widget box
-	* yui-navset
+	[DONE] * yui-navset
 	[DONE] * collapsible-block
 	* footnoteref, footnote footer: BREAK COMPATIBILITY, MAKE NICE FOR EPUB
 	[DONE] * blockquote
@@ -86,5 +86,5 @@ COMPONENTS:
 ===================
 Long-term: 
  * add support for images
- * option for smaller books
+ * option for smaller books, selections of stuff
  

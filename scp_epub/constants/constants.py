@@ -13,7 +13,8 @@ CHARSET = 'utf-8'
 ########################
 # scraping
 SITE_NAME = 'scp-wiki'
-SITE_HOST = 'http://scp-wiki.net/printer--friendly'
+SITE_HOST = 'http://scp-wiki.net'
+SITE_DOWNLOAD_HOST = 'http://scp-wiki.net/printer--friendly'
 PAGE_CATEGORY = '_default'
 FRAGMENT_CATEGORY = 'fragment'
 
@@ -78,3 +79,8 @@ YUI_NAVSET_TAB_CLASS = 'yui-nav'
 YUI_NAVSET_TAB_CLASS_NEW = 'tabview-tab'
 YUI_NAVSET_TAB_TITLE_IDENTIFIER = 'em'
 YUI_NAVSET_TAB_TITLE_CLASS_NEW = 'tab-title'
+
+LINK_TAG = 'a'
+HREF_PROPERTY = 'href'
+LINK_CLASS_NEW = 'link'
+LINK_EXTENSION = '.xhtml'

@@ -25,7 +25,7 @@ def get_scp_wiki(bypass_cache_list=False, bypass_cache_pages=False, bypass_cache
                 page[constants.ADDITIONAL_DATA_KEY][constants.EDGE_CASE_KEY] = True
         else:
             web_html = download.wikidot.get_single_web_page(
-                host = constants.SITE_HOST,
+                host = constants.SITE_DOWNLOAD_HOST,
                 path = page[constants.PAGE_PATH_KEY],
                 bypass_cache = bypass_cache_web
             )

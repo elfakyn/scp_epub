@@ -175,3 +175,95 @@ class TestProcessContentFunctions(unittest.TestCase):
         # Assert
         self.assertEqual(expected_output_string, str(expected_content))
         self.assertEqual(expected_output, actual_output)
+
+    @parameterized.expand([
+        [
+            'no links',
+            '''asdf''',
+            '''asdf'''
+        ],
+        [
+            'non-href anchors',
+            '''asdf<a>asdf</a>asdf<a name="asdf">asdf</a>''',
+            '''asdf<a>asdf</a>asdf<a name="asdf">asdf</a>'''
+        ],
+        [
+            'expanded internal link',
+            '''<p>This is by <a href="http://scp-wiki.net/scp-3281">Autonomic (AARS821)</a> RAISA. <strong>AAR</strong></p>''',
+            '''<p>This is by <a href="scp-3281.xhtml">Autonomic (AARS821)</a> RAISA. <strong>AAR</strong></p>'''
+        ],
+        [
+            'other internal link',
+            '''<p>This is by <a href="http://scp-wiki.net/scp-1234">Autonomic (AARS821)</a> RAISA. <strong>AAR</strong></p>''',
+            '''<p>This is by <a href="scp-1234.xhtml">Autonomic (AARS821)</a> RAISA. <strong>AAR</strong></p>'''
+        ],
+        [
+            'implicit internal link',
+            '''<p>This is by <a href="/scp-3281">Autonomic (AARS821)</a> RAISA. <strong>AAR</strong></p>''',
+            '''<p>This is by <a href="scp-3281.xhtml">Autonomic (AARS821)</a> RAISA. <strong>AAR</strong></p>'''
+        ],
+        [
+            'external link',
+            '''<p>This is by <a href="http://wikipedia.org/scp-3281">Autonomic (AARS821)</a> RAISA. <strong>AAR</strong></p>''',
+            '''<p>This is by Autonomic (AARS821) RAISA. <strong>AAR</strong></p>'''
+        ],
+        [
+            'multiple links',
+            '''<p>This is by <a href="/scp-3281">Autonomic (AARS821)</a> RAISA. <strong>AAR</strong></p>asdf<p>This is by <a href="http://scp-wiki.net/scp-3281">Autonomic (AARS821)</a> RAISA. <strong>AAR</strong></p><p>This is by <a href="http://wikipedia.org/scp-3281">Autonomic (AARS821)</a> RAISA. <strong>AAR</strong></p>''',
+            '''<p>This is by <a href="scp-3281.xhtml">Autonomic (AARS821)</a> RAISA. <strong>AAR</strong></p>asdf<p>This is by <a href="scp-3281.xhtml">Autonomic (AARS821)</a> RAISA. <strong>AAR</strong></p><p>This is by Autonomic (AARS821) RAISA. <strong>AAR</strong></p>'''
+        ],
+        [
+            'not in book',
+            '''<a href="http://scp-wiki.net/scp-11111">asdf</a>''',
+            '''asdf'''
+        ],
+        [
+            'not in book, implicit',
+            '''<a href="/scp-11111">asdf</a>''',
+            '''asdf'''
+        ],
+    ])
+    def test_fix_links(self, reason, expected_html_string, expected_output_string):
+        # Arrange
+        expected_url_allow_list = ['scp-3281', 'scp-1234']
+
+        expected_content = self.create_soup(expected_html_string)
+        expected_output = None
+
+        # Act
+        actual_output = process.process_page.fix_links(expected_content, url_allow_list=expected_url_allow_list)
+
+        # Assert
+        self.assertEqual(expected_output_string, str(expected_content))
+        self.assertEqual(expected_output, actual_output)
+
+    @parameterized.expand([
+        [
+            'no links',
+            '''asdf''',
+            '''asdf'''
+        ],
+        [
+            'non-href anchors',
+            '''asdf<a>asdf</a>asdf<a name="asdf">asdf</a>''',
+            '''asdf<a>asdf</a>asdf<a name="asdf">asdf</a>'''
+        ],
+        [
+            'not in book, implicit',
+            '''<a href="/scp-11111">asdf</a>''',
+            '''<a href="scp-11111.xhtml">asdf</a>'''
+        ],
+    ])
+    def test_fix_links_no_whitelist(self, reason, expected_html_string, expected_output_string):
+        # Arrange
+        expected_url_allow_list = None
+
+        expected_content = self.create_soup(expected_html_string)
+        expected_output = None
+
+        # Act
+        actual_output = process.process_page.fix_links(expected_content, url_allow_list=expected_url_allow_list)
+
+        # Assert
+        self.assertEqual(expected_output_string, str(expected_content))
+        self.assertEqual(expected_output, actual_output)

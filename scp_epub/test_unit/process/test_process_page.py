@@ -272,12 +272,12 @@ class TestProcessContentFunctions(unittest.TestCase):
         [
             'simple add title',
             '''asdf''',
-            '''<p class="title">Hi there!</p>asdf'''
+            '''<p class="page-title">Hi there!</p>asdf'''
         ],
         [
             'some other tags',
             '''<div class="foo">asdf</div>''',
-            '''<p class="title">Hi there!</p><div class="foo">asdf</div>'''
+            '''<p class="page-title">Hi there!</p><div class="foo">asdf</div>'''
         ]
     ])
     def test_add_title(self, reason, expected_html_string, expected_output_string):
@@ -289,6 +289,25 @@ class TestProcessContentFunctions(unittest.TestCase):
 
         # Act
         actual_output = process.process_page.add_title(expected_content, expected_title)
+
+        # Assert
+        self.assertEqual(expected_output_string, str(expected_content))
+        self.assertEqual(expected_output, actual_output)
+
+    @parameterized.expand([
+        [
+            'just the noteref',
+            '''<sup class="footnoteref"><a id="footnoteref-1"href="javascript:;" class="footnoteref"onclick="WIKIDOT.page.utils.scrollToReference('footnote-1')">1</a></sup>''',
+            '''<sup class="footnoteref"><a epub:type="noteref" href="#footnote-1" id="footnoteref-1">1</a></sup>'''
+        ],
+    ])
+    def test_fix_footnotes(self, reason, expected_html_string, expected_output_string):
+        # Arrange
+        expected_content = self.create_soup(expected_html_string)
+        expected_output = None
+
+        # Act
+        actual_output = process.process_page.fix_footnotes(expected_content)
 
         # Assert
         self.assertEqual(expected_output_string, str(expected_content))

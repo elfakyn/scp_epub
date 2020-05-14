@@ -51,10 +51,10 @@ def unwrap_yui_navset(content):
 
 def fix_links(content, url_allow_list = None):
     for element in content(constants.LINK_TAG):
-        if constants.HREF_PROPERTY not in element.attrs:
+        if constants.HREF_ATTRIBUTE not in element.attrs:
             continue
 
-        link = element.attrs[constants.HREF_PROPERTY]
+        link = element.attrs[constants.HREF_ATTRIBUTE]
         local_link_result = re.search(f'^({constants.SITE_HOST})?/([a-z0-9-]+)$', link)
         if local_link_result is None:
             element.unwrap()
@@ -72,3 +72,18 @@ def add_title(content, page_title):
     title_new = bs4.BeautifulSoup('', constants.BS4_FORMAT).new_tag(constants.PAGE_TITLE_TAG, **{'class': constants.PAGE_TITLE_CLASS})
     title_new.string = page_title
     content.insert(0, title_new)
+
+def fix_footnotes(content):
+    for footnoteref in content(constants.FOOTNOTEREF_TAG, class_=constants.FOOTNOTEREF_CLASS):
+        link = footnoteref.find(constants.LINK_TAG)
+
+        footnote_href_result = re.search("WIKIDOT\.page\.utils\.scrollToReference\('([a-zA-Z0-9-_]+)'\)", link.attrs[constants.ONCLICK_ATTRIBUTE])
+        footnote_href = footnote_href_result[1] if footnote_href_result else ''
+
+        attributes_new = {
+            constants.ID_ATTRIBUTE: link.attrs[constants.ID_ATTRIBUTE],
+            constants.HREF_ATTRIBUTE: '#' + footnote_href,
+            constants.EPUB_TYPE_ATTRIBUTE: constants.EPUB_TYPE_FOOTNOTEREF
+        }
+
+        link.attrs = attributes_new

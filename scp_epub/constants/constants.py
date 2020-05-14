@@ -80,9 +80,19 @@ YUI_NAVSET_TAB_TITLE_IDENTIFIER = 'em'
 YUI_NAVSET_TAB_TITLE_CLASS_NEW = 'tab-title'
 
 LINK_TAG = 'a'
-HREF_PROPERTY = 'href'
+
+HREF_ATTRIBUTE = 'href'
+ID_ATTRIBUTE = 'id'
+EPUB_TYPE_ATTRIBUTE = 'epub:type'
+ONCLICK_ATTRIBUTE = 'onclick'
+
 LINK_CLASS_NEW = 'link'
 LINK_EXTENSION = '.xhtml'
 
 PAGE_TITLE_TAG = 'p'
-PAGE_TITLE_CLASS = 'title'
+PAGE_TITLE_CLASS = 'page-title'
+
+FOOTNOTEREF_TAG = 'sup'
+FOOTNOTEREF_CLASS = 'footnoteref'
+
+EPUB_TYPE_FOOTNOTEREF = 'noteref'

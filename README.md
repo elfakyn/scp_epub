@@ -44,7 +44,7 @@ There are extensive unit tests in test_unit/process for each processing step tha
 
 ## Format reference
 
-### JSON format
+### Wikidot page API JSON format
 
 * `page_list.json` is an array of wiki page names. Each wiki page name is globally unique. Wikidot wikis are non-hierarchical.
 * `pages/<page-name>.json` is of the following structure:

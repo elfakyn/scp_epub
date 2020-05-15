@@ -40,6 +40,7 @@ EDGE_CASES = [
 ADDITIONAL_DATA_KEY = 'scp_epub_additional_data'
 
 WEB_HTML_KEY = 'web_html'
+EPUB_HTML_KEY = 'epub_html'
 
 PAGE_PATH_KEY = 'fullname'
 EDGE_CASE_KEY = 'substitute_html'

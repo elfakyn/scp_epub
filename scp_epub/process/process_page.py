@@ -3,6 +3,9 @@ import re
 
 from constants import constants
 
+def process_page(page, web_html):
+    return NotImplemented
+
 def get_page_content(page_html, page_content_id=constants.PAGE_CONTENT_ID):
     html = bs4.BeautifulSoup(page_html, constants.BS4_FORMAT)
 

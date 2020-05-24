@@ -19,7 +19,7 @@ def get_scp_wiki(bypass_cache_list=False, bypass_cache_pages=False, bypass_cache
             page[constants.ADDITIONAL_DATA_KEY] = {}
 
         if page[constants.PAGE_PATH_KEY] in constants.EDGE_CASES:
-            with open(os.path.join(constants.EDGE_CASES_DIR, f'{page[constants.PAGE_PATH_KEY]}.html'), 'r') as target_file:
+            with open(os.path.join(constants.EDGE_CASES_DIR, f'{page[constants.PAGE_PATH_KEY]}.html'), 'r', encoding=constants.ENCODING) as target_file:
                 web_html = target_file.read()
 
                 page[constants.ADDITIONAL_DATA_KEY][constants.EDGE_CASE_KEY] = True

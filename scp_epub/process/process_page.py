@@ -3,8 +3,24 @@ import re
 
 from constants import constants
 
-def process_page(page, web_html):
-    return NotImplemented
+def process_page_html(web_html, page_title, url_allow_list=None):
+    content = get_page_content(web_html)
+
+    remove_classes(content)
+    remove_tags(content)
+
+    unwrap_collapsible_blocks(content)
+    unwrap_yui_navset(content)
+
+    divify_blockquotes(content)
+
+    fix_footnotes(content)
+    fix_links(content, url_allow_list)
+
+    add_title(content, page_title)
+
+    return str(content)
+
 
 def get_page_content(page_html, page_content_id=constants.PAGE_CONTENT_ID):
     html = bs4.BeautifulSoup(page_html, constants.BS4_FORMAT)
@@ -58,6 +74,10 @@ def fix_links(content, url_allow_list = None):
             continue
 
         link = element.attrs[constants.HREF_ATTRIBUTE]
+
+        if link.startswith('#'):
+            continue
+
         local_link_result = re.search(f'^({constants.SITE_HOST})?/([a-z0-9-]+)$', link)
         if local_link_result is None:
             element.unwrap()

@@ -8,7 +8,7 @@ PAGES_DIR = 'pages'
 HTML_DIR = 'web'
 PAGE_LIST_DIR = 'lists'
 
-CHARSET = 'utf-8'
+ENCODING = 'utf-8'
 
 ########################
 # scraping

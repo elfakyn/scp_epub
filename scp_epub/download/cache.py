@@ -19,13 +19,13 @@ def file_cache(relative_path, name_based_on_argument, filetype='json'):
             if ('bypass_cache' in kwargs and kwargs['bypass_cache']) or not (os.path.exists(cache_file) and os.path.isfile(cache_file)):
                 contents = func(*args, **kwargs)
                 os.makedirs(os.path.dirname(cache_file), exist_ok=True)
-                with open(cache_file, 'w') as target_file:
+                with open(cache_file, 'w', encoding=constants.ENCODING) as target_file:
                     if filetype == 'json':
                         json.dump(contents, target_file, indent=2)
                     else:
                         target_file.write(contents)
             else:
-                with open(cache_file, 'r') as target_file:
+                with open(cache_file, 'r', encoding=constants.ENCODING) as target_file:
                     if filetype == 'json':
                         contents = json.load(target_file)
                     else:

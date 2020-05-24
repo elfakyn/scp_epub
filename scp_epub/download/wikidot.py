@@ -48,7 +48,7 @@ def get_single_web_page(*, host, path, bypass_cache=False):
     web_page = requests.get(f'{host}/{path}')
     if web_page.status_code > 200:
         return ''
-    return web_page.content.decode(constants.CHARSET)
+    return web_page.content.decode(constants.ENCODING)
 
 def get_multiple_page_data(*, site, pages, bypass_cache=False):
     return [get_page_data(site=site, page=page, bypass_cache=bypass_cache) for page in pages]

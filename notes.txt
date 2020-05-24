@@ -13,7 +13,7 @@ PRETTIFY PAGE (what pyscp does):
 
 For local links:
 * WIKIDOT DOCS: the site-unix-name consists of only alphanumeric characters (0..9, 'a'..'z') and ('-')
-* 
+*
 * todo: test for it
 
 
@@ -38,10 +38,14 @@ COMPONENTS:
 	[DONE] * images
 	[DONE] * title
 * Put them all together to parse a whole page
-	* Unit test that all functions are called
+	[DONE] * Component test that correctly parses whole web html files
 	* Error handling: e.g. each item in its own try-catch with logging of errors
+		* If any parsing step errors out, continue without executing that step.
+		* How to make each step atomic? Do we want each step to be atomic? What happens if it fails right in the middle?
+		* Log errors verbosely, exactly what failed and how
 		* Platform test: parse LITERALLY ALL THE SCP PAGES and test that none fail, or <N fail.
-	* I want some sort of test that the output of the combined parsers makes sense. Even if just a regression test.
+	[DONE] * I want some sort of test that the output of the combined parsers makes sense. Even if just a regression test.
+* Wrapper function that returns the converted html along with any metadata needed by the assembly function.
 
 
 3. ARRANGE BOOK:
@@ -79,7 +83,7 @@ COMPONENTS:
 			* Index of Tales
 		* CREDITS
 
-4. add book metadata, 
+4. add book metadata,
 	* title, authors etc.
 	* cover photo
 	* CSS
@@ -88,7 +92,6 @@ COMPONENTS:
 5. render
 
 ===================
-Long-term: 
+Long-term:
  * add support for images
  * option for smaller books, selections of stuff
- 

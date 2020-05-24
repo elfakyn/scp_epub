@@ -19,7 +19,7 @@ class TestProcessPage(unittest.TestCase):
     def test_process_page(self):
         # Arrange
         expected_url_allow_list = None
-        expected_page_title = 'SCP-173'
+        expected_page_title = 'SCP-1257'
         expected_web_html_file = 'scp-1257.html'
         expected_processed_html_file = 'scp-1257_converted.html'
 

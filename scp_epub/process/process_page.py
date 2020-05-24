@@ -48,7 +48,8 @@ def unwrap_collapsible_blocks(content):
 
         element.clear()
         element.append(collapsible_title)
-        for item in collapsible_content.contents:
+
+        for item in collapsible_content.contents[:]:
             element.append(item)
 
 def divify_blockquotes(content):

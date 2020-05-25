@@ -18,8 +18,8 @@ class TestProcessPage(unittest.TestCase):
         expected_url_allow_list = None
 
         expected_fullname = "personal-log-of-iceberg"
-        expected_title = "Personal Log of █████ \"Iceberg\" ████"
-        expected_title_shown = "Personal Log of █████ \"Iceberg\" ████"
+        expected_title = "Not Title Shown: Personal Log of █████ \"Iceberg\" ████"
+        expected_title_shown = "Title Shown: Personal Log of █████ \"Iceberg\" ████"
         expected_created_at = "2008-10-16T21:06:01+00:00"
         expected_created_by = "unknown"
         expected_tags = [
@@ -81,8 +81,8 @@ class TestProcessPage(unittest.TestCase):
         expected_url_allow_list = None
 
         expected_fullname = "personal-log-of-iceberg"
-        expected_title = "Personal Log of █████ \"Iceberg\" ████"
-        expected_title_shown = "Personal Log of █████ \"Iceberg\" ████"
+        expected_title = "Not Title Shown: Personal Log of █████ \"Iceberg\" ████"
+        expected_title_shown = "Title Shown: Personal Log of █████ \"Iceberg\" ████"
         expected_created_at = "2008-10-16T21:06:01+00:00"
         expected_created_by = "unknown"
         expected_tags = [
@@ -137,6 +137,128 @@ class TestProcessPage(unittest.TestCase):
         # Assert
         mock_process_page_html.assert_called_once_with(expected_substitute_html, expected_processed_title, url_allow_list=expected_url_allow_list)
         self.assertEqual(expected_processed_page, actual_processed_page)
+
+    @unittest.mock.patch('process.process_page.process_page_html')
+    def test_process_page_no_title_shown(self, mock_process_page_html):
+        # Arrange
+        expected_url_allow_list = None
+
+        expected_fullname = "personal-log-of-iceberg"
+        expected_title = "Not Title Shown: Personal Log of █████ \"Iceberg\" ████"
+        expected_title_shown = None
+        expected_created_at = "2008-10-16T21:06:01+00:00"
+        expected_created_by = "unknown"
+        expected_tags = [
+            "doctor-kondraki",
+            "doctor-iceberg",
+            "doctor-gears",
+            "tale"
+        ]
+        expected_web_html = "<html>blablabla</html>"
+        expected_substitute_html = None
+        expected_processed_html = "<div>processed html</div>"
+
+        expected_processed_title = expected_title
+
+        mock_process_page_html.return_value = expected_processed_html
+
+        expected_page = {
+            "fullname": expected_fullname,
+            "created_at": expected_created_at,
+            "created_by": expected_created_by,
+            "updated_at": "2019-09-15T01:08:04+00:00",
+            "updated_by": "Elogee FishTruck",
+            "title": expected_title,
+            "title_shown": expected_title_shown,
+            "parent_fullname": None,
+            "tags": expected_tags,
+            "rating": 38,
+            "revisions": 36,
+            "parent_title": None,
+            "content": "",
+            "children": 0,
+            "comments": 5,
+            "commented_at": "2015-09-16T18:15:32+00:00",
+            "commented_by": "Decibelles",
+            "scp_epub_additional_data": {
+                "web_html": expected_web_html
+            }
+        }
+
+        expected_processed_page = {
+            "name": expected_fullname,
+            "title": expected_processed_title,
+            "created_by": expected_created_by,
+            "created_at": expected_created_at,
+            "tags": expected_tags,
+            "html": expected_processed_html,
+        }
+
+        # Act
+        actual_processed_page = process.process_page.process_page(expected_page, url_allow_list=expected_url_allow_list)
+
+        # Assert
+        mock_process_page_html.assert_called_once_with(expected_web_html, expected_processed_title, url_allow_list=expected_url_allow_list)
+        self.assertEqual(expected_processed_page, actual_processed_page)
+
+    @unittest.mock.patch('process.process_page.process_page_html')
+    def test_process_page_missing_fields(self, mock_process_page_html):
+        # Arrange
+        expected_url_allow_list = None
+
+        expected_fullname = "personal-log-of-iceberg"
+        expected_title = None
+        expected_title_shown = None
+        expected_created_at = None
+        expected_created_by = None
+        expected_tags = None
+        expected_web_html = "<html>blablabla</html>"
+        expected_substitute_html = None
+        expected_processed_html = "<div>processed html</div>"
+
+        expected_processed_title = constants.EMPTY_TITLE
+
+        mock_process_page_html.return_value = expected_processed_html
+
+        expected_page = {
+            "fullname": expected_fullname,
+            "created_at": expected_created_at,
+            "created_by": expected_created_by,
+            "updated_at": "2019-09-15T01:08:04+00:00",
+            "updated_by": "Elogee FishTruck",
+            "title": expected_title,
+            "title_shown": expected_title_shown,
+            "parent_fullname": None,
+            "tags": expected_tags,
+            "rating": 38,
+            "revisions": 36,
+            "parent_title": None,
+            "content": "",
+            "children": 0,
+            "comments": 5,
+            "commented_at": "2015-09-16T18:15:32+00:00",
+            "commented_by": "Decibelles",
+            "scp_epub_additional_data": {
+                "web_html": expected_web_html
+            }
+        }
+
+        expected_processed_page = {
+            "name": expected_fullname,
+            "title": expected_processed_title,
+            "created_by": constants.EMPTY_AUTHOR,
+            "created_at": constants.EMPTY_TIMESTAMP,
+            "tags": [],
+            "html": expected_processed_html,
+        }
+
+        # Act
+        actual_processed_page = process.process_page.process_page(expected_page, url_allow_list=expected_url_allow_list)
+
+        # Assert
+        mock_process_page_html.assert_called_once_with(expected_web_html, expected_processed_title, url_allow_list=expected_url_allow_list)
+        self.assertEqual(expected_processed_page, actual_processed_page)
+
 
 class TestGetPageContent(unittest.TestCase):
     def setUp(self):

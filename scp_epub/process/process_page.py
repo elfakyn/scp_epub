@@ -11,19 +11,19 @@ def process_page(page, url_allow_list = None):
     else:
         title = constants.EMPTY_TITLE
 
-    if constants.WEB_HTML_KEY in page[constants.ADDITIONAL_DATA_KEY]:
-        html = page[constants.ADDITIONAL_DATA_KEY][constants.WEB_HTML_KEY]
-    else:
-        html = page[constants.ADDITIONAL_DATA_KEY][constants.EDGE_CASE_KEY]
+    html = page[constants.ADDITIONAL_DATA_KEY][constants.WEB_HTML_KEY] if constants.WEB_HTML_KEY in page[constants.ADDITIONAL_DATA_KEY] else page[constants.ADDITIONAL_DATA_KEY][constants.EDGE_CASE_KEY]
+    tags = page[constants.TAGS_KEY] if page[constants.TAGS_KEY] is not None else []
+    author = page[constants.CREATED_BY_KEY] if page[constants.CREATED_BY_KEY] is not None else constants.EMPTY_AUTHOR
+    creation_date = page[constants.CREATED_AT_KEY] if page[constants.CREATED_AT_KEY] is not None else constants.EMPTY_TIMESTAMP
 
     processed_html = process_page_html(html, title, url_allow_list=url_allow_list)
 
     return {
         constants.PROCESSED_NAME_KEY: page[constants.PAGE_PATH_KEY],
         constants.PROCESSED_TITLE_KEY: title,
-        constants.CREATED_AT_KEY: page[constants.PROCESSED_CREATION_DATE_KEY],
-        constants.CREATED_BY_KEY: page[constants.PROCESSED_AUTHOR_KEY],
-        constants.TAGS_KEY: page[constants.PROCESSED_TAGS_KEY],
+        constants.PROCESSED_CREATION_DATE_KEY: creation_date,
+        constants.PROCESSED_AUTHOR_KEY: author,
+        constants.PROCESSED_TAGS_KEY: tags,
         constants.PROCESSED_HTML_KEY: processed_html
     }
 

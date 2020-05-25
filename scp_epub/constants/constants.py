@@ -56,6 +56,7 @@ PROCESSED_HTML_KEY = 'html'
 
 EMPTY_TITLE = '███████████'
 EMPTY_AUTHOR = 'Unknown'
+EMPTY_TIMESTAMP = 'Unknown'
 
 
 BS4_FORMAT = 'lxml'

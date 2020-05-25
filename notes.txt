@@ -1,21 +1,24 @@
-- refactor to pkgutil.get_data
-- bs4
+* Put them all together to parse a whole page
+	[DONE] * Component test that correctly parses whole web html files
+	* Error handling: e.g. each item in its own try-catch with logging of errors
+		* If any parsing step errors out, continue without executing that step?
+		* How to make each step atomic? Do we want each step to be atomic? What happens if it fails right in the middle?
+		* Log errors verbosely, exactly what failed and how
+	[DONE] * I want some sort of test that the output of the combined parsers makes sense. Even if just a regression test.
+* Wrapper function that returns the converted html along with any metadata needed by the assembly function.
+	* Platform test: parse LITERALLY ALL THE SCP PAGES and test that none fail, or <N fail.
+
+Test cases for wrapper:
+[DONE] * normal
+* title shown is None: use title
+* everything is None:
+	* both title and title shown are None
+	* created_by is None
+	* created_at is None
+[DONE] * it's an edge case (has scp_epub_additional_data.substitute_html)
 
 
-Elements we definitely don't want:
-* class = page-rate-widget-box
-* class = heritage-rating-module (this one aligns to right, nope)
-* class = footer-wikiwalk-nav
-
-
-PRETTIFY PAGE (what pyscp does):
-
-
-For local links:
-* WIKIDOT DOCS: the site-unix-name consists of only alphanumeric characters (0..9, 'a'..'z') and ('-')
-*
-* todo: test for it
-
+==============================================
 
 COMPONENTS:
 
@@ -40,13 +43,12 @@ COMPONENTS:
 * Put them all together to parse a whole page
 	[DONE] * Component test that correctly parses whole web html files
 	* Error handling: e.g. each item in its own try-catch with logging of errors
-		* If any parsing step errors out, continue without executing that step.
+		* If any parsing step errors out, continue without executing that step?
 		* How to make each step atomic? Do we want each step to be atomic? What happens if it fails right in the middle?
 		* Log errors verbosely, exactly what failed and how
-		* Platform test: parse LITERALLY ALL THE SCP PAGES and test that none fail, or <N fail.
 	[DONE] * I want some sort of test that the output of the combined parsers makes sense. Even if just a regression test.
 * Wrapper function that returns the converted html along with any metadata needed by the assembly function.
-
+	* Platform test: parse LITERALLY ALL THE SCP PAGES and test that none fail, or <N fail.
 
 3. ARRANGE BOOK:
 	* ORDER FOR TOC (check if files also need to be ordered):

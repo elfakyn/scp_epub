@@ -37,13 +37,26 @@ EDGE_CASES = [
 ######################
 # process
 
-ADDITIONAL_DATA_KEY = 'scp_epub_additional_data'
-
-WEB_HTML_KEY = 'web_html'
-EPUB_HTML_KEY = 'epub_html'
-
 PAGE_PATH_KEY = 'fullname'
+TITLE_SHOWN_KEY = 'title_shown'
+TITLE_KEY = 'title'
+CREATED_BY_KEY = 'created_by'
+CREATED_AT_KEY = 'created_at'
+TAGS_KEY = 'tags'
+ADDITIONAL_DATA_KEY = 'scp_epub_additional_data'
+WEB_HTML_KEY = 'web_html'
 EDGE_CASE_KEY = 'substitute_html'
+
+PROCESSED_NAME_KEY = 'name'
+PROCESSED_TITLE_KEY = 'title'
+PROCESSED_AUTHOR_KEY = 'created_by'
+PROCESSED_CREATION_DATE_KEY = 'created_at'
+PROCESSED_TAGS_KEY = 'tags'
+PROCESSED_HTML_KEY = 'html'
+
+EMPTY_TITLE = '███████████'
+EMPTY_AUTHOR = 'Unknown'
+
 
 BS4_FORMAT = 'lxml'
 

@@ -3,6 +3,30 @@ import re
 
 from constants import constants
 
+def process_page(page, url_allow_list = None):
+    if page[constants.TITLE_SHOWN_KEY] is not None:
+        title = page[constants.TITLE_SHOWN_KEY]
+    elif page[constants.TITLE_KEY] is not None:
+        title = page[constants.TITLE_KEY]
+    else:
+        title = constants.EMPTY_TITLE
+
+    if constants.WEB_HTML_KEY in page[constants.ADDITIONAL_DATA_KEY]:
+        html = page[constants.ADDITIONAL_DATA_KEY][constants.WEB_HTML_KEY]
+    else:
+        html = page[constants.ADDITIONAL_DATA_KEY][constants.EDGE_CASE_KEY]
+
+    processed_html = process_page_html(html, title, url_allow_list=url_allow_list)
+
+    return {
+        constants.PROCESSED_NAME_KEY: page[constants.PAGE_PATH_KEY],
+        constants.PROCESSED_TITLE_KEY: title,
+        constants.CREATED_AT_KEY: page[constants.PROCESSED_CREATION_DATE_KEY],
+        constants.CREATED_BY_KEY: page[constants.PROCESSED_AUTHOR_KEY],
+        constants.TAGS_KEY: page[constants.PROCESSED_TAGS_KEY],
+        constants.PROCESSED_HTML_KEY: processed_html
+    }
+
 def process_page_html(web_html, page_title, url_allow_list=None):
     content = get_page_content(web_html)
 
@@ -87,7 +111,7 @@ def fix_links(content, url_allow_list = None):
         relative_link = local_link_result.group(2)
 
         if url_allow_list is None or relative_link in url_allow_list:
-            element.attrs['href'] = relative_link + constants.LINK_EXTENSION
+            element.attrs['href'] = get_filename(relative_link)
         else:
             element.unwrap()
             continue
@@ -130,3 +154,6 @@ def fix_footnotes(content):
 
         footnote.attrs = footnote_attributes_new
         link.attrs = link_attributes_new
+
+def get_filename(name):
+    return name + constants.LINK_EXTENSION

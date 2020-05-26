@@ -357,7 +357,7 @@
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "natural_sort_by_title": true
         },
         {
           "toc_entry": "Tales B",
@@ -365,7 +365,7 @@
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "natural_sort_by_title": true
         },
         {
           "toc_entry": "Tales C",
@@ -373,7 +373,7 @@
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "natural_sort_by_title": true
         },
         {
           "toc_entry": "Tales D",
@@ -381,7 +381,7 @@
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "natural_sort_by_title": true
         },
         {
           "toc_entry": "Tales E",
@@ -389,7 +389,7 @@
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "natural_sort_by_title": true
         },
         {
           "toc_entry": "Tales F",
@@ -397,7 +397,7 @@
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "natural_sort_by_title": true
         },
         {
           "toc_entry": "Tales G",
@@ -405,7 +405,7 @@
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "natural_sort_by_title": true
         },
         {
           "toc_entry": "Tales H",
@@ -413,7 +413,7 @@
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "natural_sort_by_title": true
         },
         {
           "toc_entry": "Tales I",
@@ -421,7 +421,7 @@
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "natural_sort_by_title": true
         },
         {
           "toc_entry": "Tales J",
@@ -429,7 +429,7 @@
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "natural_sort_by_title": true
         },
         {
           "toc_entry": "Tales K",
@@ -437,7 +437,7 @@
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "natural_sort_by_title": true
         },
         {
           "toc_entry": "Tales L",
@@ -445,7 +445,7 @@
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "natural_sort_by_title": true
         },
         {
           "toc_entry": "Tales M",
@@ -453,7 +453,7 @@
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "natural_sort_by_title": true
         },
         {
           "toc_entry": "Tales N",
@@ -461,7 +461,7 @@
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "natural_sort_by_title": true
         },
         {
           "toc_entry": "Tales O",
@@ -469,7 +469,7 @@
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "natural_sort_by_title": true
         },
         {
           "toc_entry": "Tales P",
@@ -477,7 +477,7 @@
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "natural_sort_by_title": true
         },
         {
           "toc_entry": "Tales Q",
@@ -485,7 +485,7 @@
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "natural_sort_by_title": true
         },
         {
           "toc_entry": "Tales R",
@@ -493,7 +493,7 @@
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "natural_sort_by_title": true
         },
         {
           "toc_entry": "Tales S",
@@ -501,7 +501,7 @@
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "natural_sort_by_title": true
         },
         {
           "toc_entry": "Tales T",
@@ -509,7 +509,7 @@
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "natural_sort_by_title": true
         },
         {
           "toc_entry": "Tales U",
@@ -517,7 +517,7 @@
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "natural_sort_by_title": true
         },
         {
           "toc_entry": "Tales V",
@@ -525,7 +525,7 @@
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "natural_sort_by_title": true
         },
         {
           "toc_entry": "Tales W",
@@ -533,7 +533,7 @@
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "natural_sort_by_title": true
         },
         {
           "toc_entry": "Tales X",
@@ -541,7 +541,7 @@
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "natural_sort_by_title": true
         },
         {
           "toc_entry": "Tales Y",
@@ -549,7 +549,7 @@
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "natural_sort_by_title": true
         },
         {
           "toc_entry": "Tales Z",
@@ -557,14 +557,14 @@
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "natural_sort_by_title": true
         },
         {
           "toc_entry": "Other Tales",
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "natural_sort_by_title": true
         }
       ]
     },
@@ -577,7 +577,7 @@
           "tags_all": [
             "hub"
           ],
-          "sort_by": "title"
+          "natural_sort_by_title": true
         },
         {
           "toc_entry": "Index of SCPs",
@@ -585,7 +585,7 @@
           "tags_all": [
             "scp"
           ],
-          "sort_by": "title"
+          "natural_sort_by_title": true
         },
         {
           "toc_entry": "Index of Tales",
@@ -593,17 +593,16 @@
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "natural_sort_by_title": true
         },
         {
           "toc_entry": "Complete Index Sorted by Title",
           "special": "index",
-          "sort_by": "title"
+          "natural_sort_by_title": true
         },
         {
           "toc_entry": "Complete Index Sorted by URL",
-          "special": "index",
-          "sort_by": "name"
+          "special": "index"
         }
       ]
     }

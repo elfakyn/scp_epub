@@ -31,7 +31,7 @@ TASKS:
 [DONE] * Book definition for complete collection
 * Dynamically generate pages:
 	* Section Titles
-	* Indices and credits generator (based on tags)
+	* Index and credits generator
 * TOC generator: creates a TOC & spine (page order) from a list of pages & a book definition
 	* If page has a valid parent (parent which is in page list):
 		* Exclude it from normal TOC building and put it immediately after parent page
@@ -51,13 +51,14 @@ TASKS:
 ==============================================
 
 TOC GENERATOR:
-* default sort: "name" ASC
+* default sort: "name" ASC ordinary sort
+* natural title sort: "title" ASC natural sort
 
 INDICES AND CREDITS GENERATOR:
-* Internal link
+* Title (with internal link)
 * Author
 * Created at
-* Link to website entry
+* Link to website entry (explicit: scp-wiki.net/blablabla)
 
 ===================
 Long-term:

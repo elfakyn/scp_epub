@@ -80,3 +80,16 @@ There are extensive unit tests in test_unit/process for each processing step tha
   "commented_by": "ZELYNER"
 }
 ```
+
+### Ebook builder JSON format
+
+```json
+  {
+    "name": "scp-055",
+    "title": "SCP-055 Title Thing",
+    "created_by": "Author name",
+    "created_at": "2020-20-20T20:20:20+20:20",
+    "tags": ["list", "of", "tags"],
+    "html": "EPUB FRIENDLY PAGE HTML HERE",
+  }
+```

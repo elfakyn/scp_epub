@@ -42,6 +42,7 @@ TASKS:
 	* Ebook metadata
 	* CSS
 	* Cover image
+		* Contact SunnyClockwork
 * Write book file
 
 4. Fully automated end-to-end builder

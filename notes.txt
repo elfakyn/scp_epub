@@ -1,6 +1,6 @@
 ==============================================
 
-COMPONENTS:
+TASKS:
 
 [DONE] 1. download all pages
 	[DONE] * downloader with cache support
@@ -8,9 +8,8 @@ COMPONENTS:
 	[DONE] * wget and attach html of pages -- this will cause correct rendering as seen on the site.
 	[DONE] * Just manually create the html for scp-3125 and pop it in the thing.
 
-2. PRETTIFY SINGLE PAGE
-* NOTE:
-	[NO, UNLESS NECESSARY] * delete the div that aligns right and is at the very beginning of every page ( should we do this? what if there's a page that doesn't have that div but has another one instead with actual content)
+[DONE] 2. PRETTIFY SINGLE PAGE
+[CANCELLED] * delete the div that aligns right and is at the very beginning of every page ( should we do this? what if there's a page that doesn't have that div but has another one instead with actual content)
 [DONE] * WHAT PYSCP DOES (MAKE COMPATIBLE):
 	[DONE] * remove widget box
 	[DONE] * yui-navset
@@ -29,30 +28,39 @@ COMPONENTS:
 	[DONE] * Platform test: parse LITERALLY ALL THE SCP PAGES and test that none fail, or <N fail.
 
 3. CREATE BOOK
+[DONE] * Book definition for complete collection
 * Dynamically generate pages:
 	* Section Titles
-	* Indices and credits generator (based on tags):
-		* Internal link
-		* Author
-		* Created at
-		* Link to website entry
-[DONE] * Book definition for complete collection
+	* Indices and credits generator (based on tags)
 * TOC generator: creates a TOC & spine (page order) from a list of pages & a book definition
-	* Pages are consumed in order and appear only once
-	* Discards all pages not in TOC
+	* If page has a valid parent (parent which is in page list):
+		* Exclude it from normal TOC building and put it immediately after parent page
+		[NEXT] * Add parent key to builder json
+	* Pages are consumed when first included and appear only once
+	* Discard all pages that don't make it in the spine
 * Add metadata:
 	* Ebook metadata
 	* CSS
 	* Cover image
-* Generate book file
-	* End-to-end platform test
+* Write book file
+
+4. Fully automated end-to-end builder
+
+5. Complete documentation on code and project
 
 ==============================================
 
 TOC GENERATOR:
 * default sort: "name" ASC
 
+INDICES AND CREDITS GENERATOR:
+* Internal link
+* Author
+* Created at
+* Link to website entry
+
 ===================
 Long-term:
- * add support for images
- * option for smaller books, selections of stuff
+* add support for images
+* more book definitions
+* rewrite downloader / cacher to be tested and not a complete janky mess

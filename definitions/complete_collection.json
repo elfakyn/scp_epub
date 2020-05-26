@@ -3,7 +3,8 @@
     "download_tags": [
       "scp",
       "tale",
-      "hub"
+      "hub",
+      "supplement"
     ],
     "edge_cases": [
       "scp-3125"
@@ -11,8 +12,10 @@
   },
   "meta": {
     "title": "SCP Foundation — The Complete Collection",
-    "author": "Various Authors",
-    "epub_author": "github.com/elfakyn/scp_epub",
+    "authors": [
+      "Various Authors",
+      "github.com/elfakyn/scp_epub"
+    ],
     "identifier": "f2c8fbad-0cb0-4ae7-93c7-3a634a7e540e",
     "language": "en"
   },

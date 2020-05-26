@@ -2,6 +2,12 @@
 
 Creates an epub from the scp wiki
 
+## This is a work in progress with no current ETA
+
+You can track the progress in notes.txt
+
+Once this is finished, better documentation will be included here, as well as step-by-step instructions on how to use.
+
 ## Usage
 
 ### Setup

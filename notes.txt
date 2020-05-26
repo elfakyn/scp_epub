@@ -1,12 +1,3 @@
-
-
-Steps:
-	* get page name list (for url_allow_list)
-	* iterate over all pages
-		* collect results in a list
-		* collect errors in a list
-
-
 ==============================================
 
 COMPONENTS:
@@ -37,54 +28,29 @@ COMPONENTS:
 		[DONE] * Log errors verbosely, exactly what failed and how
 	[DONE] * Platform test: parse LITERALLY ALL THE SCP PAGES and test that none fail, or <N fail.
 
-3. Create metadata:
-* CSS file
-* Cover image
-
-4. Dynamically generated pages
-* Title page
-* Indices and credits generator
-
-5. ARRANGE BOOK (ARRANGE GENERATOR):
-	* ORDER FOR TOC (check if files also need to be ordered):
-		* TITLE PAGE etc.
-		* HUBS
-			* SCPS BY SERIES
-				* (no toc) SERIES 1 scps, SERIES 2 scps...
-				* (no toc) SERIES 1 tales, SERIES 2 tales, ...
-			* all other hubs alphabetically
-				* (no toc) list here
-		* SCP SERIES 1
-			* 1-100
-				* (no toc) 1
-				* (no toc) 2
-				* ...
-			* 101-200
-			* ...
-		* SCP SERIES 2
-		* SCP SERIES ...
-		* ALL OTHER SCPs (supplements?)
-		* TALES
-			* TALES 0-9
-			* TALES A
-				* (no toc): tales go here
-			* TALES B
-			* ...
-			* TALES Z
-			* Remaining tales
-		* INDICES AND CREDITS:
-			* Index of hubs (with author credits)
-			* Index of SCPs (with author credits)
-			* Index of Tales (with author credits)
-			* Index of everything else (with author credits)
-
-4. add book metadata,
-	* title, authors etc.
-	* cover photo
+3. CREATE BOOK
+* Dynamically generate pages:
+	* Section Titles
+	* Indices and credits generator (based on tags):
+		* Internal link
+		* Author
+		* Created at
+		* Link to website entry
+[DONE] * Book definition for complete collection
+* TOC generator: creates a TOC & spine (page order) from a list of pages & a book definition
+	* Pages are consumed in order and appear only once
+	* Discards all pages not in TOC
+* Add metadata:
+	* Ebook metadata
 	* CSS
-		* fix weird right align if not already fixed
+	* Cover image
+* Generate book file
+	* End-to-end platform test
 
-5. render
+==============================================
+
+TOC GENERATOR:
+* default sort: "name" ASC
 
 ===================
 Long-term:

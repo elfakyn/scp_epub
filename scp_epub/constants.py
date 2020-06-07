@@ -1,14 +1,23 @@
 import os
 
+ENCODING = 'utf-8'
+
 ########################
-# caching
+# AWS
+S3_BASE_PATH = 'scp_epub/'
+
+USE_AWS_VARIABLE = 'SCP_EPUB_USE_AWS'
+S3_BUCKET_VARIABLE = 'SCP_EPUB_S3_BUCKET'
+API_KEY_SECRET_VARIABLE = 'SCP_EPUB_API_KEY_SECRET'
+
+
+########################
+# local caching
 BASE_PATH = os.path.join(os.path.dirname(__file__), '../../build')
 DB_PATH = os.path.join(BASE_PATH, 'database')
 PAGES_DIR = 'pages'
 HTML_DIR = 'web'
 PAGE_LIST_DIR = 'lists'
-
-ENCODING = 'utf-8'
 
 ########################
 # scraping

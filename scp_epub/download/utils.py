@@ -1,3 +1,4 @@
+import re
 
 
 def filter_tags(pages, include_tags=None):
@@ -10,3 +11,6 @@ def filter_tags(pages, include_tags=None):
         ]
 
     return pages
+
+def normalize_string(raw_string):
+    return re.sub('[^a-z0-9\-]', '_', raw_string)

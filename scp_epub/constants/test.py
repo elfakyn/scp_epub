@@ -1,1 +1,0 @@
-TEST_COMPONENT_PROCESS_PAGE_CASES_DIR = 'test_process_page_cases'

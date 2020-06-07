@@ -35,17 +35,20 @@ TASKS:
 * TOC generator: creates a TOC & spine (page order) from a list of pages & a book definition
 	* If page has a valid parent (parent which is in page list):
 		* Exclude it from normal TOC building and put it immediately after parent page
-		[NEXT] * Add parent key to builder json
+		* Add parent key to builder json
 	* Pages are consumed when first included and appear only once
 	* Discard all pages that don't make it in the spine
 * Add metadata:
 	* Ebook metadata
 	* CSS
 	* Cover image
-		* Contact SunnyClockwork
+		* Contact SunnyClockwork or make own artwork
 * Write book file
 
 4. Fully automated end-to-end builder
+[NEXT] * Rewrite downloader to use s3 caching and AWSSM secrets
+	* Use smart caching -- get last edited information
+* Terraform infrastructure
 
 5. Complete documentation on code and project
 

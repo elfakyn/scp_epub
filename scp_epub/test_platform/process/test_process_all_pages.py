@@ -9,8 +9,6 @@ import io
 
 import download.download_scp
 import process.assemble
-import constants.constants
-import constants.test
 
 class TestProcessAllPages(unittest.TestCase):
     def setUp(self):
@@ -20,7 +18,20 @@ class TestProcessAllPages(unittest.TestCase):
         # Arrange
         expected_max_failures = 0
         expected_failures = []
-        expected_pages = download.download_scp.get_scp_wiki()
+        expected_definition = {
+            "download": {
+                "download_tags": [
+                    "scp",
+                    "tale",
+                    "hub",
+                    "supplement"
+                ],
+                "edge_cases": [
+                    "scp-3125"
+                ]
+            },
+        }
+        expected_pages = download.get_wiki.get_pages_from_book_definition(expected_definition)
 
         # Act
         actual_processed_pages, actual_failures = process.assemble.process_all_pages(expected_pages)

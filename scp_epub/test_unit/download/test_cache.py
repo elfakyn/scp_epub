@@ -1,20 +1,19 @@
 import unittest
-from parameterized import parameterized
+import os
 
 import download.cache
+import constants
 
-NORMALIZATION_TEST_CASES = [
-    ["fragment:three-farewells-aktus", "fragment_three-farewells-aktus"],
-    ["scp-3125", "scp-3125"]
-]
-
-class TestNormalizeString(unittest.TestCase):
-    @parameterized.expand(NORMALIZATION_TEST_CASES)
-    def test_normalize_string(self, expected_raw_string, expected_normalized_string):
+class TestGetCachedContentsLocally(unittest.TestCase):
+    @unittest.mock.patch('download.aws.retrieve_from_s3')
+    def test_get_cached_contents_aws(self, mock_retrieve_from_s3):
         # Arrange
+        os.environ[constants.
+        expected_filetype = 'json'
+        expected_relative_path = 'contents/'
 
         # Act
-        actual_normalized_string = download.cache.normalize_string(expected_raw_string)
+        actual_contents = download.cache.get_cached_contents(expected_relative_path, filetype=expected_filetype)
 
         # Assert
-        self.assertEqual(expected_normalized_string, actual_normalized_string)
+        mock_retrieve_from_s3.assert_called_with(expected_relative_path, expected_filetype)

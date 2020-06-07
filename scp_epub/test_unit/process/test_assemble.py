@@ -8,8 +8,7 @@ import os
 import io
 
 import process.assemble
-import constants.constants
-import constants.test
+import constants
 
 class TestProcessAllPages(unittest.TestCase):
     @unittest.mock.patch('process.process_page.process_page')
@@ -24,7 +23,7 @@ class TestProcessAllPages(unittest.TestCase):
 
         expected_pages = [
             {
-                constants.constants.PAGE_PATH_KEY: page_name
+                constants.PAGE_PATH_KEY: page_name
             }
             for page_name in expected_page_names
         ]
@@ -32,7 +31,7 @@ class TestProcessAllPages(unittest.TestCase):
         expected_calls = [
             unittest.mock.call(
                 {
-                    constants.constants.PAGE_PATH_KEY: page_name
+                    constants.PAGE_PATH_KEY: page_name
                 },
                 url_allow_list = expected_page_names
             )
@@ -60,7 +59,7 @@ class TestProcessAllPages(unittest.TestCase):
 
         expected_pages = [
             {
-                constants.constants.PAGE_PATH_KEY: page_name
+                constants.PAGE_PATH_KEY: page_name
             }
             for page_name in expected_page_names
         ]
@@ -68,7 +67,7 @@ class TestProcessAllPages(unittest.TestCase):
         expected_calls = [
             unittest.mock.call(
                 {
-                    constants.constants.PAGE_PATH_KEY: page_name
+                    constants.PAGE_PATH_KEY: page_name
                 },
                 url_allow_list=expected_page_names
             )

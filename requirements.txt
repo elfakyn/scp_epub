@@ -4,3 +4,4 @@ ebooklib
 parameterized
 requests
 bs4
+boto3

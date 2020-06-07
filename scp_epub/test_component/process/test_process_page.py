@@ -27,10 +27,10 @@ class TestProcessPage(unittest.TestCase):
     def test_process_page(self, expected_page_title, expected_web_html_file, expected_processed_html_file, expected_url_allow_list):
         # Arrange
 
-        with open(os.path.join(os.path.dirname(__file__), constants.test.TEST_COMPONENT_PROCESS_PAGE_CASES_DIR, expected_web_html_file), 'r', encoding=constants.constants.ENCODING) as target_file:
+        with open(os.path.join(os.path.dirname(__file__), TEST_COMPONENT_PROCESS_PAGE_CASES_DIR, expected_web_html_file), 'r', encoding=constants.ENCODING) as target_file:
             expected_web_html = target_file.read()
 
-        with open(os.path.join(os.path.dirname(__file__), constants.test.TEST_COMPONENT_PROCESS_PAGE_CASES_DIR, expected_processed_html_file), 'r', encoding=constants.constants.ENCODING) as target_file:
+        with open(os.path.join(os.path.dirname(__file__), TEST_COMPONENT_PROCESS_PAGE_CASES_DIR, expected_processed_html_file), 'r', encoding=constants.ENCODING) as target_file:
             expected_processed_html = target_file.read()
 
         # Act

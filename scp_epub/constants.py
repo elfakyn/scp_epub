@@ -3,48 +3,47 @@ import os
 ENCODING = 'utf-8'
 
 ########################
-# AWS
-S3_BASE_PATH = 'scp_epub/'
-
+# AWS Execution
 USE_AWS_VARIABLE = 'SCP_EPUB_USE_AWS'
+USE_AWS_TRUE = 'TRUE'
+S3_CACHE_BASE_PATH = 'cache/'
 S3_BUCKET_VARIABLE = 'SCP_EPUB_S3_BUCKET'
 API_KEY_SECRET_VARIABLE = 'SCP_EPUB_API_KEY_SECRET'
 
+########################
+# Local execution
+
+LOCAL_CACHE_BASE_PATH = os.path.join(os.path.dirname(__file__), '../../build/cache')
+API_KEY_VARIABLE = 'SCP_EPUB_WIKIDOT_API_KEY'
 
 ########################
-# local caching
-BASE_PATH = os.path.join(os.path.dirname(__file__), '../../build')
-DB_PATH = os.path.join(BASE_PATH, 'database')
-PAGES_DIR = 'pages'
-HTML_DIR = 'web'
-PAGE_LIST_DIR = 'lists'
+# Caching paths
+
+CACHE_DEFAULT_FILETYPE = 'json'
+PAGES_DIR = 'pages/'
+HTML_DIR = 'web/'
+PAGE_LIST_DIR = 'lists/'
 
 ########################
-# scraping
+# Scraping
 SITE_NAME = 'scp-wiki'
 SITE_HOST = 'http://scp-wiki.net'
 SITE_DOWNLOAD_HOST = 'http://scp-wiki.net/printer--friendly'
 PAGE_CATEGORY = '_default'
 
-API_KEY = 'WIKIDOT_API_KEY'
 CLIENT_NAME = 'scp-epub'
 
-# Actual rate limit is 240 calls per 60 seconds, we're being conservative
+# Wikidot rate limit is 240 calls per 60 seconds, we're being conservative
 RATE_LIMIT_CALLS = 60
 RATE_LIMIT_PERIOD = 30
 
 RATE_LIMIT_WEB_CALLS = 10
 RATE_LIMIT_WEB_PERIOD = 5
 
-ALLOWED_TAGS = ['scp', 'tale', 'hub']
-
 EDGE_CASES_DIR = os.path.join(os.path.dirname(__file__), '../../edge_cases')
-EDGE_CASES = [
-    'scp-3125'
-]
 
 ######################
-# process
+# Processing pages
 
 PAGE_PATH_KEY = 'fullname'
 TITLE_SHOWN_KEY = 'title_shown'

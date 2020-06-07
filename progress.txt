@@ -2,11 +2,8 @@
 
 TASKS:
 
-[DONE] 1. download all pages
-	[DONE] * downloader with cache support
-	[DONE] * FILTER LIST OF PAGES: ONLY USE tagged 'scp', 'tale', or 'hub'.
-	[DONE] * wget and attach html of pages -- this will cause correct rendering as seen on the site.
-	[DONE] * Just manually create the html for scp-3125 and pop it in the thing.
+[IN PROGRESS] 1. download all pages
+[IN PROGRESS] * Rewrite downloader to not be a complete janky mess and allow for s3 caching.
 
 [DONE] 2. PRETTIFY SINGLE PAGE
 [CANCELLED] * delete the div that aligns right and is at the very beginning of every page ( should we do this? what if there's a page that doesn't have that div but has another one instead with actual content)
@@ -46,8 +43,6 @@ TASKS:
 * Write book file
 
 4. Fully automated end-to-end builder
-[NEXT] * Rewrite downloader to use s3 caching and AWSSM secrets
-	* Use smart caching -- get last edited information
 * Terraform infrastructure
 
 5. Complete documentation on code and project
@@ -68,4 +63,3 @@ INDICES AND CREDITS GENERATOR:
 Long-term:
 * add support for images
 * more book definitions
-* rewrite downloader / cacher to be tested and not a complete janky mess

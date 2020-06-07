@@ -8,7 +8,7 @@ import os
 import io
 
 import process.process_page
-import constants
+from constants import constants
 
 TEST_COMPONENT_PROCESS_PAGE_CASES_DIR = 'test_process_page_cases'
 

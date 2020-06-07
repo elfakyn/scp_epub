@@ -1,7 +1,7 @@
 import bs4
 import re
 
-import constants
+from constants import constants
 import process.process_page
 
 def process_all_pages(pages):

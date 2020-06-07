@@ -1,7 +1,7 @@
 import bs4
 import re
 
-import constants
+from constants import constants
 
 def process_page(page, url_allow_list = None):
     if page[constants.TITLE_SHOWN_KEY] is not None:

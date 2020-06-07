@@ -123,3 +123,8 @@ FOOTNOTE_CLASS = 'footnote-footer'
 
 EPUB_TYPE_FOOTNOTEREF = 'noteref'
 EPUB_TYPE_FOOTNOTE = 'footnote'
+
+######################
+# Assembling pages
+
+DEFAULT_BASED_ON = 'name'

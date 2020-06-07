@@ -23,11 +23,11 @@
       "children": [
         {
           "toc_entry": "SCPs by Series",
-          "name_regex": "^scp-series(-\\d+)?$"
+          "regex": "^scp-series(-\\d+)?$"
         },
         {
           "toc_entry": "SCP Tales by Series",
-          "name_regex": "^scp-series(-\\d+)?-tales-edition$"
+          "regex": "^scp-series(-\\d+)?-tales-edition$"
         },
         {
           "toc_entry": "Hubs",
@@ -42,43 +42,43 @@
       "children": [
         {
           "toc_entry": "000 to 099",
-          "name_regex": "^scp-0\\d\\d$"
+          "regex": "^scp-0\\d\\d$"
         },
         {
           "toc_entry": "100 to 199",
-          "name_regex": "^scp-1\\d\\d$"
+          "regex": "^scp-1\\d\\d$"
         },
         {
           "toc_entry": "200 to 299",
-          "name_regex": "^scp-2\\d\\d$"
+          "regex": "^scp-2\\d\\d$"
         },
         {
           "toc_entry": "300 to 399",
-          "name_regex": "^scp-3\\d\\d$"
+          "regex": "^scp-3\\d\\d$"
         },
         {
           "toc_entry": "400 to 499",
-          "name_regex": "^scp-4\\d\\d$"
+          "regex": "^scp-4\\d\\d$"
         },
         {
           "toc_entry": "500 to 599",
-          "name_regex": "^scp-5\\d\\d$"
+          "regex": "^scp-5\\d\\d$"
         },
         {
           "toc_entry": "600 to 699",
-          "name_regex": "^scp-6\\d\\d$"
+          "regex": "^scp-6\\d\\d$"
         },
         {
           "toc_entry": "700 to 799",
-          "name_regex": "^scp-7\\d\\d$"
+          "regex": "^scp-7\\d\\d$"
         },
         {
           "toc_entry": "800 to 899",
-          "name_regex": "^scp-8\\d\\d$"
+          "regex": "^scp-8\\d\\d$"
         },
         {
           "toc_entry": "900 to 999",
-          "name_regex": "^scp-9\\d\\d$"
+          "regex": "^scp-9\\d\\d$"
         }
       ]
     },
@@ -87,43 +87,43 @@
       "children": [
         {
           "toc_entry": "1000 to 1099",
-          "name_regex": "^scp-10\\d\\d$"
+          "regex": "^scp-10\\d\\d$"
         },
         {
           "toc_entry": "1100 to 1199",
-          "name_regex": "^scp-11\\d\\d$"
+          "regex": "^scp-11\\d\\d$"
         },
         {
           "toc_entry": "1200 to 1299",
-          "name_regex": "^scp-12\\d\\d$"
+          "regex": "^scp-12\\d\\d$"
         },
         {
           "toc_entry": "1300 to 1399",
-          "name_regex": "^scp-13\\d\\d$"
+          "regex": "^scp-13\\d\\d$"
         },
         {
           "toc_entry": "1400 to 1499",
-          "name_regex": "^scp-14\\d\\d$"
+          "regex": "^scp-14\\d\\d$"
         },
         {
           "toc_entry": "1500 to 1599",
-          "name_regex": "^scp-15\\d\\d$"
+          "regex": "^scp-15\\d\\d$"
         },
         {
           "toc_entry": "1600 to 1699",
-          "name_regex": "^scp-16\\d\\d$"
+          "regex": "^scp-16\\d\\d$"
         },
         {
           "toc_entry": "1700 to 1799",
-          "name_regex": "^scp-17\\d\\d$"
+          "regex": "^scp-17\\d\\d$"
         },
         {
           "toc_entry": "1800 to 1899",
-          "name_regex": "^scp-18\\d\\d$"
+          "regex": "^scp-18\\d\\d$"
         },
         {
           "toc_entry": "1900 to 1999",
-          "name_regex": "^scp-19\\d\\d$"
+          "regex": "^scp-19\\d\\d$"
         }
       ]
     },
@@ -132,43 +132,43 @@
       "children": [
         {
           "toc_entry": "2000 to 2099",
-          "name_regex": "^scp-20\\d\\d$"
+          "regex": "^scp-20\\d\\d$"
         },
         {
           "toc_entry": "2100 to 2199",
-          "name_regex": "^scp-21\\d\\d$"
+          "regex": "^scp-21\\d\\d$"
         },
         {
           "toc_entry": "2200 to 2299",
-          "name_regex": "^scp-22\\d\\d$"
+          "regex": "^scp-22\\d\\d$"
         },
         {
           "toc_entry": "2300 to 2399",
-          "name_regex": "^scp-23\\d\\d$"
+          "regex": "^scp-23\\d\\d$"
         },
         {
           "toc_entry": "2400 to 2499",
-          "name_regex": "^scp-24\\d\\d$"
+          "regex": "^scp-24\\d\\d$"
         },
         {
           "toc_entry": "2500 to 2599",
-          "name_regex": "^scp-25\\d\\d$"
+          "regex": "^scp-25\\d\\d$"
         },
         {
           "toc_entry": "2600 to 2699",
-          "name_regex": "^scp-26\\d\\d$"
+          "regex": "^scp-26\\d\\d$"
         },
         {
           "toc_entry": "2700 to 2799",
-          "name_regex": "^scp-27\\d\\d$"
+          "regex": "^scp-27\\d\\d$"
         },
         {
           "toc_entry": "2800 to 2899",
-          "name_regex": "^scp-28\\d\\d$"
+          "regex": "^scp-28\\d\\d$"
         },
         {
           "toc_entry": "2900 to 2999",
-          "name_regex": "^scp-29\\d\\d$"
+          "regex": "^scp-29\\d\\d$"
         }
       ]
     },
@@ -177,43 +177,43 @@
       "children": [
         {
           "toc_entry": "3000 to 3099",
-          "name_regex": "^scp-30\\d\\d$"
+          "regex": "^scp-30\\d\\d$"
         },
         {
           "toc_entry": "3100 to 3199",
-          "name_regex": "^scp-31\\d\\d$"
+          "regex": "^scp-31\\d\\d$"
         },
         {
           "toc_entry": "3200 to 3299",
-          "name_regex": "^scp-32\\d\\d$"
+          "regex": "^scp-32\\d\\d$"
         },
         {
           "toc_entry": "3300 to 3399",
-          "name_regex": "^scp-33\\d\\d$"
+          "regex": "^scp-33\\d\\d$"
         },
         {
           "toc_entry": "3400 to 3499",
-          "name_regex": "^scp-34\\d\\d$"
+          "regex": "^scp-34\\d\\d$"
         },
         {
           "toc_entry": "3500 to 3599",
-          "name_regex": "^scp-35\\d\\d$"
+          "regex": "^scp-35\\d\\d$"
         },
         {
           "toc_entry": "3600 to 3699",
-          "name_regex": "^scp-36\\d\\d$"
+          "regex": "^scp-36\\d\\d$"
         },
         {
           "toc_entry": "3700 to 3799",
-          "name_regex": "^scp-37\\d\\d$"
+          "regex": "^scp-37\\d\\d$"
         },
         {
           "toc_entry": "3800 to 3899",
-          "name_regex": "^scp-38\\d\\d$"
+          "regex": "^scp-38\\d\\d$"
         },
         {
           "toc_entry": "3900 to 3999",
-          "name_regex": "^scp-39\\d\\d$"
+          "regex": "^scp-39\\d\\d$"
         }
       ]
     },
@@ -222,43 +222,43 @@
       "children": [
         {
           "toc_entry": "4000 to 4099",
-          "name_regex": "^scp-40\\d\\d$"
+          "regex": "^scp-40\\d\\d$"
         },
         {
           "toc_entry": "4100 to 4199",
-          "name_regex": "^scp-41\\d\\d$"
+          "regex": "^scp-41\\d\\d$"
         },
         {
           "toc_entry": "4200 to 4299",
-          "name_regex": "^scp-42\\d\\d$"
+          "regex": "^scp-42\\d\\d$"
         },
         {
           "toc_entry": "4300 to 4399",
-          "name_regex": "^scp-43\\d\\d$"
+          "regex": "^scp-43\\d\\d$"
         },
         {
           "toc_entry": "4400 to 4499",
-          "name_regex": "^scp-44\\d\\d$"
+          "regex": "^scp-44\\d\\d$"
         },
         {
           "toc_entry": "4500 to 4599",
-          "name_regex": "^scp-45\\d\\d$"
+          "regex": "^scp-45\\d\\d$"
         },
         {
           "toc_entry": "4600 to 4699",
-          "name_regex": "^scp-46\\d\\d$"
+          "regex": "^scp-46\\d\\d$"
         },
         {
           "toc_entry": "4700 to 4799",
-          "name_regex": "^scp-47\\d\\d$"
+          "regex": "^scp-47\\d\\d$"
         },
         {
           "toc_entry": "4800 to 4899",
-          "name_regex": "^scp-48\\d\\d$"
+          "regex": "^scp-48\\d\\d$"
         },
         {
           "toc_entry": "4900 to 4999",
-          "name_regex": "^scp-49\\d\\d$"
+          "regex": "^scp-49\\d\\d$"
         }
       ]
     },
@@ -267,43 +267,43 @@
       "children": [
         {
           "toc_entry": "5000 to 5099",
-          "name_regex": "^scp-50\\d\\d$"
+          "regex": "^scp-50\\d\\d$"
         },
         {
           "toc_entry": "5100 to 5199",
-          "name_regex": "^scp-51\\d\\d$"
+          "regex": "^scp-51\\d\\d$"
         },
         {
           "toc_entry": "5200 to 5299",
-          "name_regex": "^scp-52\\d\\d$"
+          "regex": "^scp-52\\d\\d$"
         },
         {
           "toc_entry": "5300 to 5399",
-          "name_regex": "^scp-53\\d\\d$"
+          "regex": "^scp-53\\d\\d$"
         },
         {
           "toc_entry": "5400 to 5499",
-          "name_regex": "^scp-54\\d\\d$"
+          "regex": "^scp-54\\d\\d$"
         },
         {
           "toc_entry": "5500 to 5599",
-          "name_regex": "^scp-55\\d\\d$"
+          "regex": "^scp-55\\d\\d$"
         },
         {
           "toc_entry": "5600 to 5699",
-          "name_regex": "^scp-56\\d\\d$"
+          "regex": "^scp-56\\d\\d$"
         },
         {
           "toc_entry": "5700 to 5799",
-          "name_regex": "^scp-57\\d\\d$"
+          "regex": "^scp-57\\d\\d$"
         },
         {
           "toc_entry": "5800 to 5899",
-          "name_regex": "^scp-58\\d\\d$"
+          "regex": "^scp-58\\d\\d$"
         },
         {
           "toc_entry": "5900 to 5999",
-          "name_regex": "^scp-59\\d\\d$"
+          "regex": "^scp-59\\d\\d$"
         }
       ]
     },
@@ -351,218 +351,218 @@
       "children": [
         {
           "toc_entry": "Tales A",
-          "title_regex": "^a",
+          "regex": "^a",
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "based_on": "title"
         },
         {
           "toc_entry": "Tales B",
-          "title_regex": "^b",
+          "regex": "^b",
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "based_on": "title"
         },
         {
           "toc_entry": "Tales C",
-          "title_regex": "^c",
+          "regex": "^c",
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "based_on": "title"
         },
         {
           "toc_entry": "Tales D",
-          "title_regex": "^d",
+          "regex": "^d",
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "based_on": "title"
         },
         {
           "toc_entry": "Tales E",
-          "title_regex": "^e",
+          "regex": "^e",
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "based_on": "title"
         },
         {
           "toc_entry": "Tales F",
-          "title_regex": "^f",
+          "regex": "^f",
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "based_on": "title"
         },
         {
           "toc_entry": "Tales G",
-          "title_regex": "^g",
+          "regex": "^g",
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "based_on": "title"
         },
         {
           "toc_entry": "Tales H",
-          "title_regex": "^h",
+          "regex": "^h",
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "based_on": "title"
         },
         {
           "toc_entry": "Tales I",
-          "title_regex": "^i",
+          "regex": "^i",
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "based_on": "title"
         },
         {
           "toc_entry": "Tales J",
-          "title_regex": "^j",
+          "regex": "^j",
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "based_on": "title"
         },
         {
           "toc_entry": "Tales K",
-          "title_regex": "^k",
+          "regex": "^k",
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "based_on": "title"
         },
         {
           "toc_entry": "Tales L",
-          "title_regex": "^l",
+          "regex": "^l",
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "based_on": "title"
         },
         {
           "toc_entry": "Tales M",
-          "title_regex": "^m",
+          "regex": "^m",
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "based_on": "title"
         },
         {
           "toc_entry": "Tales N",
-          "title_regex": "^n",
+          "regex": "^n",
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "based_on": "title"
         },
         {
           "toc_entry": "Tales O",
-          "title_regex": "^o",
+          "regex": "^o",
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "based_on": "title"
         },
         {
           "toc_entry": "Tales P",
-          "title_regex": "^p",
+          "regex": "^p",
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "based_on": "title"
         },
         {
           "toc_entry": "Tales Q",
-          "title_regex": "^q",
+          "regex": "^q",
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "based_on": "title"
         },
         {
           "toc_entry": "Tales R",
-          "title_regex": "^r",
+          "regex": "^r",
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "based_on": "title"
         },
         {
           "toc_entry": "Tales S",
-          "title_regex": "^s",
+          "regex": "^s",
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "based_on": "title"
         },
         {
           "toc_entry": "Tales T",
-          "title_regex": "^t",
+          "regex": "^t",
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "based_on": "title"
         },
         {
           "toc_entry": "Tales U",
-          "title_regex": "^u",
+          "regex": "^u",
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "based_on": "title"
         },
         {
           "toc_entry": "Tales V",
-          "title_regex": "^v",
+          "regex": "^v",
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "based_on": "title"
         },
         {
           "toc_entry": "Tales W",
-          "title_regex": "^w",
+          "regex": "^w",
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "based_on": "title"
         },
         {
           "toc_entry": "Tales X",
-          "title_regex": "^x",
+          "regex": "^x",
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "based_on": "title"
         },
         {
           "toc_entry": "Tales Y",
-          "title_regex": "^y",
+          "regex": "^y",
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "based_on": "title"
         },
         {
           "toc_entry": "Tales Z",
-          "title_regex": "^z",
+          "regex": "^z",
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "based_on": "title"
         },
         {
           "toc_entry": "Other Tales",
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "based_on": "title"
         }
       ]
     },
@@ -575,7 +575,7 @@
           "tags_all": [
             "hub"
           ],
-          "sort_by": "title"
+          "based_on": "title"
         },
         {
           "toc_entry": "Index of SCPs",
@@ -583,7 +583,7 @@
           "tags_all": [
             "scp"
           ],
-          "sort_by": "title"
+          "based_on": "title"
         },
         {
           "toc_entry": "Index of Tales",
@@ -591,12 +591,12 @@
           "tags_all": [
             "tale"
           ],
-          "sort_by": "title"
+          "based_on": "title"
         },
         {
           "toc_entry": "Complete Index Sorted by Title",
           "special": "index",
-          "sort_by": "title"
+          "based_on": "title"
         },
         {
           "toc_entry": "Complete Index Sorted by URL",

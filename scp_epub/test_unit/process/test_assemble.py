@@ -8,7 +8,7 @@ import os
 import io
 
 import process.assemble
-import constants
+from constants import constants
 
 class TestProcessAllPages(unittest.TestCase):
     @unittest.mock.patch('process.process_page.process_page')

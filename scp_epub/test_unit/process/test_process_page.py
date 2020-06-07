@@ -6,7 +6,7 @@ import bs4
 import json
 
 import process.process_page
-import constants
+from constants import constants
 
 class TestProcessPage(unittest.TestCase):
     def setUp(self):

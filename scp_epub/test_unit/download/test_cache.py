@@ -102,3 +102,27 @@ class TestRetrieveFromLocalCache(unittest.TestCase):
         # Assert
         self.assertEqual(expected_contents, actual_contents)
         mock_open.assert_called_once_with(expected_cache_file, expected_open_type, encoding=expected_encoding)
+
+
+class TestStoreInLocalCache(unittest.TestCase):
+    @unittest.mock.patch('os.makedirs')
+    @unittest.mock.patch('builtins.open')
+    def test_store_in_local_cache(self, mock_open, mock_makedirs):
+        # Arrange
+        expected_relative_path = 'foo/bar'
+        expected_item = 'scp-123'
+        expected_filetype = 'json'
+        expected_cache_dir = os.path.join(constants.LOCAL_CACHE_BASE_PATH, expected_relative_path)
+        expected_cache_file = os.path.join(constants.LOCAL_CACHE_BASE_PATH, expected_relative_path, expected_item + '.' + expected_filetype)
+        expected_encoding = constants.ENCODING
+        expected_exist_ok = True
+        expected_open_type = 'w'
+        expected_contents = 'contents'
+
+        # Act
+        actual_contents = download.cache.store_in_local_cache(expected_contents, expected_relative_path, expected_item, expected_filetype)
+
+        # Assert
+        mock_makedirs.assert_called_once_with(expected_cache_dir, exist_ok=expected_exist_ok)
+        mock_open.assert_called_once_with(expected_cache_file, expected_open_type, encoding=expected_encoding)
+        mock_open.return_value.__enter__.return_value.write.assert_called_once_with(expected_contents)

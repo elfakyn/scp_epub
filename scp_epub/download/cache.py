@@ -27,8 +27,14 @@ def retrieve_from_local_cache(relative_path, item, filetype):
     except FileNotFoundError:
         return None
 
-def store_in_s3_cache(relative_path, item, filetype):
+def store_in_s3_cache(contents, relative_path, item, filetype):
     return NotImplemented
 
-def store_in_local_cache(relative_path, item, filetype):
-    return NotImplemented
+def store_in_local_cache(contents, relative_path, item, filetype):
+    filename = item + '.' + filetype
+    file_dir = os.path.join(constants.LOCAL_CACHE_BASE_PATH, relative_path)
+    file_location = os.path.join(file_dir, filename)
+
+    os.makedirs(file_dir, exist_ok=True)
+    with open(file_location, 'w', encoding=constants.ENCODING) as local_file:
+        local_file.write(contents)

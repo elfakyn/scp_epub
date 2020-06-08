@@ -13,8 +13,20 @@ def get_cached_contents(relative_path, item, filetype=constants.CACHE_DEFAULT_FI
     else:
         return content_string
 
-def retrieve_from_s3_cache(relative_path, item, filetype):
-    return NotImplemented
+
+def set_cached_contents(contents, relative_path, item, filetype=constants.CACHE_DEFAULT_FILETYPE):
+    if filetype == 'json':
+        content_string = json.dumps(contents)
+    else:
+        content_string = contents
+
+    if os.getenv(constants.USE_AWS_VARIABLE) == constants.USE_AWS_TRUE:
+        store_in_s3_cache(content_string, relative_path, item, filetype)
+    else:
+        store_in_local_cache(content_string, relative_path, item, filetype)
+
+
+
 
 def retrieve_from_local_cache(relative_path, item, filetype):
     try:
@@ -27,8 +39,6 @@ def retrieve_from_local_cache(relative_path, item, filetype):
     except FileNotFoundError:
         return None
 
-def store_in_s3_cache(contents, relative_path, item, filetype):
-    return NotImplemented
 
 def store_in_local_cache(contents, relative_path, item, filetype):
     filename = item + '.' + filetype
@@ -38,3 +48,11 @@ def store_in_local_cache(contents, relative_path, item, filetype):
     os.makedirs(file_dir, exist_ok=True)
     with open(file_location, 'w', encoding=constants.ENCODING) as local_file:
         local_file.write(contents)
+
+
+def retrieve_from_s3_cache(relative_path, item, filetype):
+    return NotImplemented
+
+
+def store_in_s3_cache(contents, relative_path, item, filetype):
+    return NotImplemented

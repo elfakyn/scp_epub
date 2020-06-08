@@ -17,7 +17,15 @@ def retrieve_from_s3_cache(relative_path, item, filetype):
     return NotImplemented
 
 def retrieve_from_local_cache(relative_path, item, filetype):
-    return NotImplemented
+    try:
+        filename = item + '.' + filetype
+        file_location = os.path.join(constants.LOCAL_CACHE_BASE_PATH, relative_path, filename)
+        with open(file_location, 'r', encoding=constants.ENCODING) as local_file:
+            contents = local_file.read()
+
+        return contents
+    except FileNotFoundError:
+        return None
 
 def store_in_s3_cache(relative_path, item, filetype):
     return NotImplemented

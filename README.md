@@ -39,7 +39,7 @@ This project uses 3 types of tests:
 
 * Unit tests, located in [test_unit](/scp_epub/test_unit). These tests are small scale, usually function-level.
 * Component tests, located in [test_component](/scp_epub/test_component). These tests test the behavior of an entire component such as the entire html parser as a whole.
-* Platform tests, located in [test_platform](/scp_epub/test_platform). Platform tests test the tool, or big parts of the tool, end-to-end. **These tests actually do things, such as download files, hit the API, write to disk, access cloud infrastructure etc. They are extremely resource intensive and may take upwards of 30 minutes to run.**
+* Platform tests, located in [test_platform](/scp_epub/test_platform). Platform tests test the tool, or big parts of the tool, end-to-end. **These tests actually do things, such as download files, hit the API, write to disk, access cloud infrastructure etc. They are extremely resource intensive and may take several hours to run.**
 
 To run tests:
 
@@ -53,7 +53,7 @@ To run tests:
 The tool loads configuration information in three ways:
 
 * If the tool is deployed on AWS, the tool will load infrastructure information (bucket names, locations of secrets in AWSSM etc.) from environment variables that are defined in [constants.py](/scp_epub/constants.py)
-* The tool also reads configuration from [constants.py](/scp_epub/constants.py). Only edit this if you know what you're doing, this is not meant for the end user
+* The tool also reads configuration directly from [constants.py](/scp_epub/constants.py). This is not end-user-editable
 * Any configuration around building a book is contained in a book definition file in the [definitions directory](/definitions). This is documented separately and is meant to be edited by the end user
 
 ## AWS Infrastructure (this bit isn't implemented yet)

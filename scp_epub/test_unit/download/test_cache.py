@@ -5,6 +5,19 @@ import os
 import download.cache
 from constants import constants
 
+
+class TestUseCache(unittest.TestCase):
+    @unittest.mock.patch('download.cache.cache_wrapper')
+    def test_use_cache(self, mock_cache_wrapper):
+        # Arrange
+
+        # Act
+        actual_contents = download.cache.use_cache(expected_relative_path)(expected_func, )
+
+        # Assert
+
+
+
 class TestGetCachedContents(unittest.TestCase):
     @unittest.mock.patch('json.loads')
     @unittest.mock.patch('download.cache.retrieve_from_s3_cache')
@@ -17,7 +30,7 @@ class TestGetCachedContents(unittest.TestCase):
         expected_item = 'scp-123'
 
         # Act
-        actual_contents = download.cache.get_cached_contents(expected_relative_path, expected_item, filetype=expected_filetype)
+        actual_contents = download.cache.get_cached_contents(expected_relative_path, expected_item, expected_filetype)
 
         # Assert
         self.assertEqual(mock_retrieve_from_local_cache.return_value, actual_contents)
@@ -36,7 +49,7 @@ class TestGetCachedContents(unittest.TestCase):
         expected_item = 'scp-123'
 
         # Act
-        actual_contents = download.cache.get_cached_contents(expected_relative_path, expected_item, filetype=expected_filetype)
+        actual_contents = download.cache.get_cached_contents(expected_relative_path, expected_item, expected_filetype)
 
         # Assert
         self.assertEqual(mock_retrieve_from_s3_cache.return_value, actual_contents)
@@ -56,7 +69,7 @@ class TestGetCachedContents(unittest.TestCase):
         expected_contents = mock_loads.return_value
 
         # Act
-        actual_contents = download.cache.get_cached_contents(expected_relative_path, expected_item, filetype=expected_filetype)
+        actual_contents = download.cache.get_cached_contents(expected_relative_path, expected_item, expected_filetype)
 
         # Assert
         self.assertEqual(expected_contents, actual_contents)
@@ -141,7 +154,7 @@ class TestSetCachedContents(unittest.TestCase):
         expected_contents = 'contents'
 
         # Act
-        download.cache.set_cached_contents(expected_contents, expected_relative_path, expected_item, filetype=expected_filetype)
+        download.cache.set_cached_contents(expected_contents, expected_relative_path, expected_item, expected_filetype)
 
         # Assert
         mock_loads.assert_not_called()
@@ -160,7 +173,7 @@ class TestSetCachedContents(unittest.TestCase):
         expected_contents = 'contents'
 
         # Act
-        download.cache.set_cached_contents(expected_contents, expected_relative_path, expected_item, filetype=expected_filetype)
+        download.cache.set_cached_contents(expected_contents, expected_relative_path, expected_item, expected_filetype)
 
         # Assert
         mock_loads.assert_not_called()
@@ -179,7 +192,7 @@ class TestSetCachedContents(unittest.TestCase):
         expected_contents = {'contents': 'contents'}
 
         # Act
-        download.cache.set_cached_contents(expected_contents, expected_relative_path, expected_item, filetype=expected_filetype)
+        download.cache.set_cached_contents(expected_contents, expected_relative_path, expected_item, expected_filetype)
 
         # Assert
         mock_loads.assert_called_once_with(expected_contents)

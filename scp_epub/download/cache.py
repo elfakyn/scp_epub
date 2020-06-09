@@ -1,8 +1,25 @@
-from constants import constants
-import os
+import functools
 import json
+import os
 
-def get_cached_contents(relative_path, item, filetype=constants.CACHE_DEFAULT_FILETYPE):
+from constants import constants
+import download.utils
+
+
+def use_cache(relative_path, filetype=constants.CACHE_DEFAULT_FILETYPE):
+    def decorator(func):
+        @functools.wrap(func)
+        def wrapper(*args, **kwargs):
+            return NotImplemented
+        return wrapper
+    return decorator
+
+
+def cache_wrapper(relative_path, item, filetype, refresh=False):
+    return NotImplemented
+
+
+def get_cached_contents(relative_path, item, filetype):
     if os.getenv(constants.USE_AWS_VARIABLE) == constants.USE_AWS_TRUE:
         content_string = retrieve_from_s3_cache(relative_path, item, filetype)
     else:
@@ -14,7 +31,7 @@ def get_cached_contents(relative_path, item, filetype=constants.CACHE_DEFAULT_FI
         return content_string
 
 
-def set_cached_contents(contents, relative_path, item, filetype=constants.CACHE_DEFAULT_FILETYPE):
+def set_cached_contents(contents, relative_path, item, filetype):
     if filetype == 'json':
         content_string = json.dumps(contents)
     else:
@@ -24,8 +41,6 @@ def set_cached_contents(contents, relative_path, item, filetype=constants.CACHE_
         store_in_s3_cache(content_string, relative_path, item, filetype)
     else:
         store_in_local_cache(content_string, relative_path, item, filetype)
-
-
 
 
 def retrieve_from_local_cache(relative_path, item, filetype):

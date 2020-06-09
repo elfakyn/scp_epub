@@ -8,15 +8,18 @@ import download.utils
 
 def use_cache(relative_path, filetype=constants.CACHE_DEFAULT_FILETYPE):
     def decorator(func):
-        @functools.wrap(func)
+        @functools.wraps(func)
         def wrapper(*args, **kwargs):
-            return NotImplemented
+            normalized_item = download.utils.normalize_string(args[0])
+            if 'refresh' in kwargs and kwargs['refresh']:
+                return NotImplemented
+            else:
+                cached_contents = get_cached_contents(relative_path, normalized_item, filetype)
+
+            return cached_contents
+
         return wrapper
     return decorator
-
-
-def cache_wrapper(relative_path, item, filetype, refresh=False):
-    return NotImplemented
 
 
 def get_cached_contents(relative_path, item, filetype):

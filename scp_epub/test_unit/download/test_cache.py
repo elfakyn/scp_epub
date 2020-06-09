@@ -7,14 +7,58 @@ from constants import constants
 
 
 class TestUseCache(unittest.TestCase):
-    @unittest.mock.patch('download.cache.cache_wrapper')
-    def test_use_cache(self, mock_cache_wrapper):
+    @unittest.mock.patch('download.utils.normalize_string')
+    @unittest.mock.patch('download.cache.set_cached_contents')
+    @unittest.mock.patch('download.cache.get_cached_contents')
+    def test_use_cache_no_refresh_found_in_cache(self, mock_get_cached_contents, mock_set_cached_contents, mock_normalize_string):
         # Arrange
+        expected_func = unittest.mock.MagicMock()
+        expected_relative_path = 'foo/bar'
+        expected_filetype = 'json'
+        expected_item = 'Tale Of Three Soldiers'
+        expected_refresh = False
+
+        expected_normalized_item = 'tale-of-three-soldiers'
+        expected_contents = 'contents'
+
+        mock_get_cached_contents.return_value = expected_contents
+        mock_normalize_string.return_value = expected_normalized_item
 
         # Act
-        actual_contents = download.cache.use_cache(expected_relative_path)(expected_func, )
+        actual_contents = download.cache.use_cache(expected_relative_path, expected_filetype)(expected_func)(expected_item, refresh=expected_refresh)
 
         # Assert
+        mock_normalize_string.assert_called_once_with(expected_item)
+        mock_get_cached_contents.assert_called_once_with(expected_relative_path, expected_normalized_item, expected_filetype)
+        mock_set_cached_contents.assert_not_called()
+        expected_func.assert_not_called()
+        self.assertEqual(expected_contents, actual_contents)
+
+    @unittest.mock.patch('download.utils.normalize_string')
+    @unittest.mock.patch('download.cache.set_cached_contents')
+    @unittest.mock.patch('download.cache.get_cached_contents')
+    def test_use_cache_implicit_no_refresh_found_in_cache(self, mock_get_cached_contents, mock_set_cached_contents, mock_normalize_string):
+        # Arrange
+        expected_func = unittest.mock.MagicMock()
+        expected_relative_path = 'foo/bar'
+        expected_filetype = 'json'
+        expected_item = 'Tale Of Three Soldiers'
+
+        expected_normalized_item = 'tale-of-three-soldiers'
+        expected_contents = 'contents'
+
+        mock_get_cached_contents.return_value = expected_contents
+        mock_normalize_string.return_value = expected_normalized_item
+
+        # Act
+        actual_contents = download.cache.use_cache(expected_relative_path, expected_filetype)(expected_func)(expected_item)
+
+        # Assert
+        mock_normalize_string.assert_called_once_with(expected_item)
+        mock_get_cached_contents.assert_called_once_with(expected_relative_path, expected_normalized_item, expected_filetype)
+        mock_set_cached_contents.assert_not_called()
+        expected_func.assert_not_called()
+        self.assertEqual(expected_contents, actual_contents)
 
 
 

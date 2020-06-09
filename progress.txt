@@ -1,3 +1,6 @@
+Punchlist:
+* implement linter this is getting ridiculous
+
 ==============================================
 
 TASKS:
@@ -19,7 +22,7 @@ TASKS:
 		* Download page via web
 	* Get entire wiki:
 		* Download list then filter pages based on definition, then download only those pages
-		* Apply edge cases as needed.
+		* Apply edge cases as needed based on the definition file.
 
 [DONE] 2. PRETTIFY SINGLE PAGE
 [CANCELLED] * delete the div that aligns right and is at the very beginning of every page ( should we do this? what if there's a page that doesn't have that div but has another one instead with actual content)
@@ -83,7 +86,7 @@ TASKS:
 
 TOC GENERATOR:
 * always do natural sort, there's no reason to use anything else
-* default sort: "name" ASC ordinary sort
+* default sort: "name" ASC natural sort
 * natural title sort: "title" ASC natural sort
 
 INDICES AND CREDITS GENERATOR:

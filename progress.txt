@@ -2,8 +2,24 @@
 
 TASKS:
 
-[IN PROGRESS] 1. download all pages
-[IN PROGRESS] * Rewrite downloader to not be a complete janky mess.
+1. download all pages
+* Rewrite downloader to not be a complete janky mess.
+	[DONE] * Multiple backends for caching:
+		[DEFERRED] * aws
+		[DONE] * local
+		[DONE] * able to select between them
+	[DONE] * Multiple backends for retrieving the api secret:
+		[DEFERRED] * aws
+		[DONE] * local
+		[DONE] * able to select between them
+	[DONE] * Single instance of wikidot client
+	* Downloads:
+		* Download list
+		* Download page via API
+		* Download page via web
+	* Get entire wiki:
+		* Download list then filter pages based on definition, then download only those pages
+		* Apply edge cases as needed.
 
 [DONE] 2. PRETTIFY SINGLE PAGE
 [CANCELLED] * delete the div that aligns right and is at the very beginning of every page ( should we do this? what if there's a page that doesn't have that div but has another one instead with actual content)
@@ -42,12 +58,24 @@ TASKS:
 		* Contact SunnyClockwork or make own artwork
 * Write book file
 
-4. Fully automated end-to-end builder
-* Entry point to python code that does everything
-* In code:
-	* s3 caching in downloader
-	* aws secrets manager key
-* Terraform infrastructure
+4. Put everything together into one command
+* Run arbitrary definition or all definitions
+* Flag to refresh list, flag to redownload pages
+* Summary of run: pages processed / number of pages in book / number of pages discarded / number of pages that failed processing
+
+5. Fully automated end to end builder:
+* AWS portion of code:
+	* store/retrieve from s3
+	* AWSSM api key
+	* SNS alerting on summary of run
+* Lambda that uploads to MEGA
+* Terraform infrastructure:
+	* main program, containerized monthly runs
+	* s3 event notification to trigger upload to MEGA
+* Supporting infrastructure:
+	* Remote state
+	* RBAC on AWS account, better do it now rather than later when there's actually users and stuff in there.
+	* Alerting infrastructure
 
 5. Complete documentation on code and project
 

@@ -38,40 +38,16 @@ class TestGetApiKey(unittest.TestCase):
         self.assertEqual(expected_api_key, actual_api_key)
 
 class TestWikidotClient(unittest.TestCase):
-    @classmethod
-    def tearDownClass(cls):
-        importlib.reload(download.wikidot_api)
-        return super().tearDownClass()
-
     def setUp(self):
-        importlib.reload(download.wikidot_api)
+        importlib.reload('download.wikidot_api')
 
-    @unittest.mock.patch('download.wikidot_api._create_wikidot_client')
-    def test_get_wikidot_client_only_once(self, mock_create_wikidot_client):
+    @unittest.mock.patch('download.wikidot_api.get_wikidot_client')
+    def test_client_closure(self, mock_get_wikidot_client):
         # Arrange
-        expected_wikidot_client = download.wikidot_api.get_wikidot_client()
+        expected_client = download.wikidot_api.client()
 
         # Act
-        actual_wikidot_client = download.wikidot_api.get_wikidot_client()
+        actual_client = download.wikidot_api.client()
 
         # Assert
-        mock_create_wikidot_client.assert_called_once_with()
-        self.assertIs(expected_wikidot_client, actual_wikidot_client)
-
-    @unittest.mock.patch('xmlrpc.client')
-    @unittest.mock.patch('download.wikidot_api._get_api_key')
-    def test_create_wikidot_client(self, mock_get_api_key, mock_xmlrpc_client):
-        # Arrange
-        expected_api_key = '00000000000000000'
-        expected_endpoint = f'https://{constants.CLIENT_NAME}:{expected_api_key}@{constants.RPC_ENDPOINT}'
-
-        mock_get_api_key.return_value = expected_api_key
-        expected_client = mock_xmlrpc_client.ServerProxy.return_value
-
-        # Act
-        actual_client = download.wikidot_api._create_wikidot_client()
-
-        # Assert
-        mock_get_api_key.assert_called_once_with()
-        mock_xmlrpc_client.ServerProxy.assert_called_once_with(expected_endpoint)
-        self.assertEqual(expected_client, actual_client)
+        self.assertIs(expected_client(), actual_client())

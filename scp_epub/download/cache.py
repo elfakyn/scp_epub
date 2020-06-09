@@ -11,12 +11,18 @@ def use_cache(relative_path, filetype=constants.CACHE_DEFAULT_FILETYPE):
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
             normalized_item = download.utils.normalize_string(args[0])
+
             if 'refresh' in kwargs and kwargs['refresh']:
-                return NotImplemented
+                cached_contents = None
             else:
                 cached_contents = get_cached_contents(relative_path, normalized_item, filetype)
 
-            return cached_contents
+            if cached_contents is not None:
+                return cached_contents
+            else:
+                contents = func(*args, **kwargs)
+                set_cached_contents(contents, relative_path, normalized_item, filetype)
+                return contents
 
         return wrapper
     return decorator

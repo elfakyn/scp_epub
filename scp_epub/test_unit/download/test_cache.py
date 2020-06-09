@@ -141,7 +141,7 @@ class TestUseCache(unittest.TestCase):
 
 class TestGetCachedContents(unittest.TestCase):
     @unittest.mock.patch('json.loads')
-    @unittest.mock.patch('download.cache.retrieve_from_s3_cache')
+    @unittest.mock.patch('download.aws.retrieve_from_s3_cache')
     @unittest.mock.patch('download.cache.retrieve_from_local_cache')
     def test_get_cached_contents_locally(self, mock_retrieve_from_local_cache, mock_retrieve_from_s3_cache, mock_loads):
         # Arrange
@@ -160,7 +160,7 @@ class TestGetCachedContents(unittest.TestCase):
         mock_retrieve_from_local_cache.assert_called_once_with(expected_relative_path, expected_item, expected_filetype)
 
     @unittest.mock.patch('json.loads')
-    @unittest.mock.patch('download.cache.retrieve_from_s3_cache')
+    @unittest.mock.patch('download.aws.retrieve_from_s3_cache')
     @unittest.mock.patch('download.cache.retrieve_from_local_cache')
     def test_get_cached_contents_s3(self, mock_retrieve_from_local_cache, mock_retrieve_from_s3_cache, mock_loads):
         # Arrange
@@ -179,7 +179,7 @@ class TestGetCachedContents(unittest.TestCase):
         mock_retrieve_from_local_cache.assert_not_called()
 
     @unittest.mock.patch('json.loads')
-    @unittest.mock.patch('download.cache.retrieve_from_s3_cache')
+    @unittest.mock.patch('download.aws.retrieve_from_s3_cache')
     @unittest.mock.patch('download.cache.retrieve_from_local_cache')
     def test_get_cached_contents_load_json(self, mock_retrieve_from_local_cache, mock_retrieve_from_s3_cache, mock_loads):
         # Arrange
@@ -264,7 +264,7 @@ class TestStoreInLocalCache(unittest.TestCase):
 
 class TestSetCachedContents(unittest.TestCase):
     @unittest.mock.patch('json.dumps')
-    @unittest.mock.patch('download.cache.store_in_s3_cache')
+    @unittest.mock.patch('download.aws.store_in_s3_cache')
     @unittest.mock.patch('download.cache.store_in_local_cache')
     def test_set_cached_contents_locally(self, mock_store_in_local_cache, mock_store_in_s3_cache, mock_loads):
         # Arrange
@@ -283,7 +283,7 @@ class TestSetCachedContents(unittest.TestCase):
         mock_store_in_local_cache.assert_called_once_with(expected_contents, expected_relative_path, expected_item, expected_filetype)
 
     @unittest.mock.patch('json.dumps')
-    @unittest.mock.patch('download.cache.store_in_s3_cache')
+    @unittest.mock.patch('download.aws.store_in_s3_cache')
     @unittest.mock.patch('download.cache.store_in_local_cache')
     def test_set_cached_contents_s3(self, mock_store_in_local_cache, mock_store_in_s3_cache, mock_loads):
         # Arrange
@@ -302,7 +302,7 @@ class TestSetCachedContents(unittest.TestCase):
         mock_store_in_s3_cache.assert_called_once_with(expected_contents, expected_relative_path, expected_item, expected_filetype)
 
     @unittest.mock.patch('json.dumps')
-    @unittest.mock.patch('download.cache.store_in_s3_cache')
+    @unittest.mock.patch('download.aws.store_in_s3_cache')
     @unittest.mock.patch('download.cache.store_in_local_cache')
     def test_set_cached_contents_load_json(self, mock_store_in_local_cache, mock_store_in_s3_cache, mock_loads):
         # Arrange

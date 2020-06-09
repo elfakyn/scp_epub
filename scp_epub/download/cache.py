@@ -3,6 +3,7 @@ import json
 import os
 
 from constants import constants
+import download.aws
 import download.utils
 
 
@@ -12,7 +13,7 @@ def use_cache(relative_path, filetype=constants.CACHE_DEFAULT_FILETYPE):
         def wrapper(*args, **kwargs):
             normalized_item = download.utils.normalize_string(args[0])
 
-            if 'refresh' in kwargs and kwargs['refresh']:
+            if 'refresh' in kwargs and kwargs['refresh'] is True:
                 cached_contents = None
             else:
                 cached_contents = get_cached_contents(relative_path, normalized_item, filetype)
@@ -30,7 +31,7 @@ def use_cache(relative_path, filetype=constants.CACHE_DEFAULT_FILETYPE):
 
 def get_cached_contents(relative_path, item, filetype):
     if os.getenv(constants.USE_AWS_VARIABLE) == constants.USE_AWS_TRUE:
-        content_string = retrieve_from_s3_cache(relative_path, item, filetype)
+        content_string = download.aws.retrieve_from_s3_cache(relative_path, item, filetype)
     else:
         content_string = retrieve_from_local_cache(relative_path, item, filetype)
 
@@ -47,7 +48,7 @@ def set_cached_contents(contents, relative_path, item, filetype):
         content_string = contents
 
     if os.getenv(constants.USE_AWS_VARIABLE) == constants.USE_AWS_TRUE:
-        store_in_s3_cache(content_string, relative_path, item, filetype)
+        download.aws.store_in_s3_cache(content_string, relative_path, item, filetype)
     else:
         store_in_local_cache(content_string, relative_path, item, filetype)
 
@@ -72,11 +73,3 @@ def store_in_local_cache(contents, relative_path, item, filetype):
     os.makedirs(file_dir, exist_ok=True)
     with open(file_location, 'w', encoding=constants.ENCODING) as local_file:
         local_file.write(contents)
-
-
-def retrieve_from_s3_cache(relative_path, item, filetype):
-    return NotImplemented
-
-
-def store_in_s3_cache(contents, relative_path, item, filetype):
-    return NotImplemented

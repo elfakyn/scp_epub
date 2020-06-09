@@ -8,7 +8,7 @@ USE_AWS_VARIABLE = 'SCP_EPUB_USE_AWS'
 USE_AWS_TRUE = 'TRUE'
 S3_CACHE_BASE_PATH = 'cache/'
 S3_BUCKET_VARIABLE = 'SCP_EPUB_S3_BUCKET'
-API_KEY_SECRET_VARIABLE = 'SCP_EPUB_API_KEY_SECRET'
+API_KEY_SECRETSMANAGER_VARIABLE = 'SCP_EPUB_API_KEY_SECRET'
 
 ########################
 # Local execution
@@ -32,6 +32,7 @@ SITE_DOWNLOAD_HOST = 'http://scp-wiki.net/printer--friendly'
 PAGE_CATEGORY = '_default'
 
 CLIENT_NAME = 'scp-epub'
+RPC_ENDPOINT = 'www.wikidot.com/xml-rpc-api.php'
 
 # Wikidot rate limit is 240 calls per 60 seconds, we're being conservative
 RATE_LIMIT_CALLS = 60

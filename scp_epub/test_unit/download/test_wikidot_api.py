@@ -49,10 +49,10 @@ class TestWikidotClient(unittest.TestCase):
     @unittest.mock.patch('download.wikidot_api._create_wikidot_client')
     def test_get_wikidot_client_only_once(self, mock_create_wikidot_client):
         # Arrange
-        expected_wikidot_client = download.wikidot_api.get_wikidot_client()
+        expected_wikidot_client = download.wikidot_api._get_wikidot_client()
 
         # Act
-        actual_wikidot_client = download.wikidot_api.get_wikidot_client()
+        actual_wikidot_client = download.wikidot_api._get_wikidot_client()
 
         # Assert
         mock_create_wikidot_client.assert_called_once_with()
@@ -75,3 +75,24 @@ class TestWikidotClient(unittest.TestCase):
         mock_get_api_key.assert_called_once_with()
         mock_xmlrpc_client.ServerProxy.assert_called_once_with(expected_endpoint)
         self.assertEqual(expected_client, actual_client)
+
+class TestGetListOfPagesUndecorated(unittest.TestCase):
+    @unittest.mock.patch('download.wikidot_api._get_wikidot_client')
+    def test_get_list_of_pages(self, mock_get_wikidot_client):
+        # Arrange
+        expected_site = constants.SITE_NAME
+        expected_category = constants.PAGE_CATEGORY
+        expected_client = mock_get_wikidot_client.return_value
+        expected_select_call = {
+            'site': expected_site,
+            'categories': [expected_category]
+        }
+        expected_list_of_pages = expected_client.pages.select.return_value
+
+        # Act
+        actual_list_of_pages = download.wikidot_api._get_list_of_pages_undecorated(expected_category)
+
+        # Assert
+        mock_get_wikidot_client.assert_called_once_with()
+        expected_client.pages.select.assert_called_once_with(expected_select_call)
+        self.assertEqual(expected_list_of_pages, actual_list_of_pages)

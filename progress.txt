@@ -16,8 +16,8 @@ TASKS:
 		[DONE] * local
 		[DONE] * able to select between them
 	[DONE] * Single instance of wikidot client
-	* Downloads:
-		* Download list
+	[IN PROGRESS] * Downloads:
+		[DONE] * Download list
 		* Download page via API
 		* Download page via web
 	* Get entire wiki:
@@ -45,15 +45,14 @@ TASKS:
 
 3. CREATE BOOK
 [DONE] * Book definition for complete collection
-* Dynamically generate pages:
-	* Section Titles
-	* Index and credits generator
+* Dynamically generate Section Titles
 * TOC generator: creates a TOC & spine (page order) from a list of pages & a book definition
 	* If page has a valid parent (parent which is in page list):
 		* Exclude it from normal TOC building and put it immediately after parent page
 		* Add parent key to builder json
 	* Pages are consumed when first included and appear only once
 	* Discard all pages that don't make it in the spine
+	* Index with credits at the very end (sorted by Title)
 * Add metadata:
 	* Ebook metadata
 	* CSS

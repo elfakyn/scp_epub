@@ -39,7 +39,18 @@ def _get_list_of_pages_undecorated(category, **kwargs):
 
 
 def _get_page_data_undecorated(page, **kwargs):
-    return NotImplemented
+    client = _get_wikidot_client()
+    page_data = client.pages.get_one({
+        'site': constants.SITE_NAME,
+        'page': page
+    })
+    return page_data
 
 def _get_page_direct_web_download_undecorated(page, **kwargs):
     return NotImplemented
+
+def get_list_of_pages(*args, **kwargs):
+    return _get_list_of_pages_undecorated(*args, **kwargs)
+
+def get_page_data(*args, **kwargs):
+    return _get_page_data_undecorated(*args, **kwargs)

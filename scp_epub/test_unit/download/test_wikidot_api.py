@@ -96,3 +96,25 @@ class TestGetListOfPagesUndecorated(unittest.TestCase):
         mock_get_wikidot_client.assert_called_once_with()
         expected_client.pages.select.assert_called_once_with(expected_select_call)
         self.assertEqual(expected_list_of_pages, actual_list_of_pages)
+
+
+class TestGetPageDataUndecorated(unittest.TestCase):
+    @unittest.mock.patch('download.wikidot_api._get_wikidot_client')
+    def test_get_page_data(self, mock_get_wikidot_client):
+        # Arrange
+        expected_site = constants.SITE_NAME
+        expected_page = 'scp-1337'
+        expected_client = mock_get_wikidot_client.return_value
+        expected_get_one_call = {
+            'site': expected_site,
+            'page': expected_page
+        }
+        expected_page_data = expected_client.pages.get_one.return_value
+
+        # Act
+        actual_page_data = download.wikidot_api._get_page_data_undecorated(expected_page)
+
+        # Assert
+        mock_get_wikidot_client.assert_called_once_with()
+        expected_client.pages.get_one.assert_called_once_with(expected_get_one_call)
+        self.assertEqual(expected_page_data, actual_page_data)

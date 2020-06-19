@@ -19,10 +19,12 @@ API_KEY_VARIABLE = 'SCP_EPUB_WIKIDOT_API_KEY'
 ########################
 # Caching paths
 
-CACHE_DEFAULT_FILETYPE = 'json'
-PAGES_DIR = 'pages/'
-HTML_DIR = 'web/'
-PAGE_LIST_DIR = 'lists/'
+CACHE_FILETYPE_JSON = 'json'
+CACHE_FILETYPE_HTML = 'html'
+CACHE_DEFAULT_FILETYPE = CACHE_FILETYPE_JSON
+CACHE_PAGES_DIR = 'pages/'
+CACHE_HTML_DIR = 'web/'
+CACHE_PAGE_LIST_DIR = 'lists/'
 
 ########################
 # Scraping

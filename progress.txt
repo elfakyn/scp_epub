@@ -16,13 +16,17 @@ TASKS:
 		[DONE] * local
 		[DONE] * able to select between them
 	[DONE] * Single instance of wikidot client
-	[IN PROGRESS] * Downloads:
+	[DONE] * Downloads:
 		[DONE] * Download list
-		* Download page via API
-		* Download page via web
+		[DONE] * Download page via API
+		[DONE] * Download page via web
 	* Get entire wiki:
-		* Download list then filter pages based on definition, then download only those pages
-		* Apply edge cases as needed based on the definition file.
+		* Download list then filter pages based on definitions, download only those pages
+		* Download complete page:
+			* API entry
+			* Web download
+			* Apply edge case if applicable
+	* Platform test for download
 
 [DONE] 2. PRETTIFY SINGLE PAGE
 [CANCELLED] * delete the div that aligns right and is at the very beginning of every page ( should we do this? what if there's a page that doesn't have that div but has another one instead with actual content)

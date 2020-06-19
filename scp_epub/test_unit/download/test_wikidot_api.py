@@ -105,16 +105,62 @@ class TestGetPageDataUndecorated(unittest.TestCase):
         expected_site = constants.SITE_NAME
         expected_page = 'scp-1337'
         expected_client = mock_get_wikidot_client.return_value
-        expected_get_one_call = {
+        expected_get_meta_call = {
             'site': expected_site,
             'page': expected_page
         }
-        expected_page_data = expected_client.pages.get_one.return_value
+        expected_page_data = expected_client.pages.get_meta.return_value
 
         # Act
-        actual_page_data = download.wikidot_api._get_page_data_undecorated(expected_page)
+        actual_page_data = download.wikidot_api._get_page_metadata_undecorated(expected_page)
 
         # Assert
         mock_get_wikidot_client.assert_called_once_with()
-        expected_client.pages.get_one.assert_called_once_with(expected_get_one_call)
+        expected_client.pages.get_meta.assert_called_once_with(expected_get_meta_call)
         self.assertEqual(expected_page_data, actual_page_data)
+
+
+class TestGetWebPageUndecorated(unittest.TestCase):
+    @unittest.mock.patch('requests.get')
+    def test_get_web_page_no_error(self, mock_requests_get):
+        # Arrange
+        expected_encoding = constants.ENCODING
+        expected_host = constants.SITE_DOWNLOAD_HOST
+        expected_page = 'scp-1337'
+        expected_url = f'{expected_host}/{expected_page}'
+        expected_status_code = 200
+
+        expected_web_page = mock_requests_get.return_value
+        expected_web_page.status_code = expected_status_code
+
+        expected_web_page_content = expected_web_page.content.decode.return_value
+
+        # Act
+        actual_web_page_content = download.wikidot_api._get_web_page_undecorated(expected_page)
+
+        # Assert
+        mock_requests_get.assert_called_once_with(expected_url)
+        expected_web_page.content.decode.assert_called_once_with(expected_encoding)
+        self.assertEqual(expected_web_page_content, actual_web_page_content)
+
+    @unittest.mock.patch('requests.get')
+    def test_get_web_page_not_found(self, mock_requests_get):
+        # Arrange
+        expected_encoding = constants.ENCODING
+        expected_host = constants.SITE_DOWNLOAD_HOST
+        expected_page = 'scp-1337'
+        expected_url = f'{expected_host}/{expected_page}'
+        expected_status_code = 404
+
+        expected_web_page = mock_requests_get.return_value
+        expected_web_page.status_code = expected_status_code
+
+        expected_web_page_content = None
+
+        # Act
+        actual_web_page_content = download.wikidot_api._get_web_page_undecorated(expected_page)
+
+        # Assert
+        mock_requests_get.assert_called_once_with(expected_url)
+        expected_web_page.content.decode.assert_not_called()
+        self.assertEqual(expected_web_page_content, actual_web_page_content)

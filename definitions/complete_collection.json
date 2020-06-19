@@ -1,6 +1,6 @@
 {
   "download": {
-    "download_tags": [
+    "tags_to_download": [
       "scp",
       "tale",
       "hub",
@@ -567,42 +567,8 @@
       ]
     },
     {
-      "toc_entry": "Indices and Credits",
-      "children": [
-        {
-          "toc_entry": "Index of Hubs",
-          "special": "index",
-          "tags_all": [
-            "hub"
-          ],
-          "based_on": "title"
-        },
-        {
-          "toc_entry": "Index of SCPs",
-          "special": "index",
-          "tags_all": [
-            "scp"
-          ],
-          "based_on": "title"
-        },
-        {
-          "toc_entry": "Index of Tales",
-          "special": "index",
-          "tags_all": [
-            "tale"
-          ],
-          "based_on": "title"
-        },
-        {
-          "toc_entry": "Complete Index Sorted by Title",
-          "special": "index",
-          "based_on": "title"
-        },
-        {
-          "toc_entry": "Complete Index Sorted by URL",
-          "special": "index"
-        }
-      ]
+      "toc_entry": "Index",
+      "special": "index"
     }
   ]
 }

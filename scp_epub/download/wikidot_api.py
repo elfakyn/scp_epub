@@ -1,14 +1,17 @@
 
 import json
 import os
+from ratelimit import limits, sleep_and_retry
 import requests
 import xmlrpc.client
 
 import download.aws
+from download import cache
 from constants import constants
 
 
 _wikidot_client = None
+
 
 def _create_wikidot_client():
     api_key = _get_api_key()
@@ -29,6 +32,7 @@ def _get_wikidot_client():
 
     return _wikidot_client
 
+
 def _get_list_of_pages_undecorated(category, **kwargs):
     client = _get_wikidot_client()
     list_of_pages = client.pages.select({
@@ -38,19 +42,38 @@ def _get_list_of_pages_undecorated(category, **kwargs):
     return list_of_pages
 
 
-def _get_page_data_undecorated(page, **kwargs):
+def _get_page_metadata_undecorated(page, **kwargs):
     client = _get_wikidot_client()
-    page_data = client.pages.get_one({
+    page_data = client.pages.get_meta({
         'site': constants.SITE_NAME,
         'page': page
     })
     return page_data
 
-def _get_page_direct_web_download_undecorated(page, **kwargs):
-    return NotImplemented
 
+def _get_web_page_undecorated(page, **kwargs):
+    web_page = requests.get(f'{constants.SITE_DOWNLOAD_HOST}/{page}')
+    if web_page.status_code > 200:
+        return None
+    return web_page.content.decode(constants.ENCODING)
+
+
+@cache.use_cache(constants.CACHE_PAGE_LIST_DIR, filetype=constants.CACHE_FILETYPE_JSON)
+@sleep_and_retry
+@limits(calls=constants.RATE_LIMIT_CALLS, period=constants.RATE_LIMIT_PERIOD)
 def get_list_of_pages(*args, **kwargs):
     return _get_list_of_pages_undecorated(*args, **kwargs)
 
-def get_page_data(*args, **kwargs):
-    return _get_page_data_undecorated(*args, **kwargs)
+
+@cache.use_cache(constants.CACHE_PAGE_LIST_DIR, filetype=constants.CACHE_FILETYPE_JSON)
+@sleep_and_retry
+@limits(calls=constants.RATE_LIMIT_CALLS, period=constants.RATE_LIMIT_PERIOD)
+def get_page_metadata(*args, **kwargs):
+    return _get_page_metadata_undecorated(*args, **kwargs)
+
+
+@cache.use_cache(constants.CACHE_PAGE_LIST_DIR, filetype=constants.CACHE_FILETYPE_HTML)
+@sleep_and_retry
+@limits(calls=constants.RATE_LIMIT_WEB_CALLS, period=constants.RATE_LIMIT_WEB_PERIOD)
+def get_web_page(*args, **kwargs):
+    return _get_web_page_undecorated(*args, **kwargs)

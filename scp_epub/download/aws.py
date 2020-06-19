@@ -1,5 +1,6 @@
 import boto3
 
+
 def get_api_key_from_secretsmanager():
     return NotImplemented
 

@@ -6,6 +6,7 @@ import unittest.mock
 import download.wikidot_api
 from constants import constants
 
+
 class TestGetApiKey(unittest.TestCase):
     @unittest.mock.patch('download.aws.get_api_key_from_secretsmanager')
     def test_get_api_key_locally(self, mock_get_api_key_from_secretsmanager):
@@ -36,6 +37,7 @@ class TestGetApiKey(unittest.TestCase):
         # Assert
         mock_get_api_key_from_secretsmanager.assert_called_once_with()
         self.assertEqual(expected_api_key, actual_api_key)
+
 
 class TestWikidotClient(unittest.TestCase):
     @classmethod
@@ -75,6 +77,7 @@ class TestWikidotClient(unittest.TestCase):
         mock_get_api_key.assert_called_once_with()
         mock_xmlrpc_client.ServerProxy.assert_called_once_with(expected_endpoint)
         self.assertEqual(expected_client, actual_client)
+
 
 class TestGetListOfPagesUndecorated(unittest.TestCase):
     @unittest.mock.patch('download.wikidot_api._get_wikidot_client')

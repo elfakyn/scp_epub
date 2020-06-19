@@ -198,6 +198,7 @@ class TestGetCachedContents(unittest.TestCase):
         mock_retrieve_from_s3_cache.assert_called_once_with(expected_relative_path, expected_item, expected_filetype)
         mock_retrieve_from_local_cache.assert_not_called()
 
+
 class TestRetrieveFromLocalCache(unittest.TestCase):
     @unittest.mock.patch('builtins.open')
     def test_retrieve_from_local_cache(self, mock_open):

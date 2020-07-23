@@ -107,7 +107,7 @@ class TestGetCompletePage(unittest.TestCase):
 
     @unittest.mock.patch('download.wikidot_api.get_web_page')
     @unittest.mock.patch('download.wikidot_api.get_page_metadata')
-    def test_get_complete_page_refresh(self, mock_get_page_metadata, mock_get_web_page):
+    def test_get_complete_page_edge_case(self, mock_get_page_metadata, mock_get_web_page):
         # Arrange
         expected_page_name = 'a-funny-tale'
 

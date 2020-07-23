@@ -10,6 +10,7 @@ import io
 import process.assemble
 from constants import constants
 
+
 class TestProcessAllPages(unittest.TestCase):
     @unittest.mock.patch('process.process_page.process_page')
     def test_process_all_pages(self, mock_process_page):
@@ -17,7 +18,6 @@ class TestProcessAllPages(unittest.TestCase):
         expected_page_names = ['a-1', 'b-2']
         expected_processed_pages = ['result 1', 'result 2']
         expected_failures = []
-
 
         mock_process_page.side_effect = expected_processed_pages
 
@@ -33,7 +33,7 @@ class TestProcessAllPages(unittest.TestCase):
                 {
                     constants.PAGE_PATH_KEY: page_name
                 },
-                url_allow_list = expected_page_names
+                url_allow_list=expected_page_names
             )
             for page_name in expected_page_names
         ]

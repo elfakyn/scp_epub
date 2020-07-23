@@ -8,7 +8,9 @@ import download.get_wiki
 
 
 DOWNLOAD_PAGE_TEST_CASES_REGULAR = [
-    ['scp-123']
+    ['scp-123'],
+    ['scp-4000'],
+    ['scp-173']
 ]
 
 DOWNLOAD_PAGE_TEST_CASES_EDGE_CASES = [

@@ -42,3 +42,4 @@ class TestDownloadPage(unittest.TestCase):
 
         # Assert
         self.assertEqual(expected_page, actual_page)
+        self.assertEqual(expected_page_name, actual_page[constants.PAGE_PATH_KEY])

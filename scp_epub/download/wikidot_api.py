@@ -46,9 +46,9 @@ def _get_page_metadata_undecorated(page, **kwargs):
     client = _get_wikidot_client()
     page_data = client.pages.get_meta({
         'site': constants.SITE_NAME,
-        'page': page
+        'pages': [page]
     })
-    return page_data
+    return page_data[page]
 
 
 def _get_web_page_undecorated(page, **kwargs):
@@ -65,14 +65,14 @@ def get_list_of_pages(*args, **kwargs):
     return _get_list_of_pages_undecorated(*args, **kwargs)
 
 
-@cache.use_cache(constants.CACHE_PAGE_LIST_DIR, filetype=constants.CACHE_FILETYPE_JSON)
+@cache.use_cache(constants.CACHE_PAGES_DIR, filetype=constants.CACHE_FILETYPE_JSON)
 @sleep_and_retry
 @limits(calls=constants.RATE_LIMIT_CALLS, period=constants.RATE_LIMIT_PERIOD)
 def get_page_metadata(*args, **kwargs):
     return _get_page_metadata_undecorated(*args, **kwargs)
 
 
-@cache.use_cache(constants.CACHE_PAGE_LIST_DIR, filetype=constants.CACHE_FILETYPE_HTML)
+@cache.use_cache(constants.CACHE_HTML_DIR, filetype=constants.CACHE_FILETYPE_HTML)
 @sleep_and_retry
 @limits(calls=constants.RATE_LIMIT_WEB_CALLS, period=constants.RATE_LIMIT_WEB_PERIOD)
 def get_web_page(*args, **kwargs):

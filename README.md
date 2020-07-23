@@ -47,6 +47,7 @@ To run tests:
 * Unit tests: `python3 -m unittest discover -s test_unit -t .`
 * Component tests: `python3 -m unittest discover -s test_component -t .`
 * Platform tests: you usually want to run only the test you're interested in, otherwise you'll be here all day: `python3 -m unittest test_platform/path/to/test_file.py`
+  * Note: some platform tests may prompt you for a Wikidot API key.
 
 ### Editing tool parameters
 

@@ -106,13 +106,17 @@ class TestGetPageDataUndecorated(unittest.TestCase):
     def test_get_page_data(self, mock_get_wikidot_client):
         # Arrange
         expected_site = constants.SITE_NAME
-        expected_page = 'scp-1337'
+        expected_page = 'scp-123'
         expected_client = mock_get_wikidot_client.return_value
         expected_get_meta_call = {
             'site': expected_site,
-            'page': expected_page
+            'pages': [expected_page]
         }
-        expected_page_data = expected_client.pages.get_meta.return_value
+
+        expected_page_data = {'fullname': 'scp-123', 'created_at': '2008-07-26T12:28:25+00:00', 'created_by': 'far2', 'updated_at': '2020-02-14T00:29:33+00:00', 'updated_by': 'Elogee FishTruck', 'title': 'SCP-123', 'title_shown': 'SCP-123', 'parent_fullname': None, 'tags': ['euclid', 'scp', 'gravity', 'spacetime', 'sphere'], 'rating': 319, 'revisions': 27}
+        expected_return_value = {expected_page: expected_page_data}
+
+        expected_client.pages.get_meta.return_value = expected_return_value
 
         # Act
         actual_page_data = download.wikidot_api._get_page_metadata_undecorated(expected_page)

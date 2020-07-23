@@ -27,9 +27,10 @@ TASKS:
 			[DONE] * Web download
 			* Apply edge case if applicable
 	* Platform tests:
-		* Single page with cache
-		* Single page without cache
-		* Multiple pages
+		[DONE] * Single page with cache
+		[DONE] * Single page without cache
+		[IP] * Edge case downloading
+		* Downloading everything
 
 [DONE] 2. PRETTIFY SINGLE PAGE
 [CANCELLED] * delete the div that aligns right and is at the very beginning of every page ( should we do this? what if there's a page that doesn't have that div but has another one instead with actual content)

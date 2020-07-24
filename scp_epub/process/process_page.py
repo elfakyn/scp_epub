@@ -3,7 +3,8 @@ import re
 
 from constants import constants
 
-def process_page(page, url_allow_list = None):
+
+def process_page(page, url_allow_list=None):
     if page[constants.TITLE_SHOWN_KEY] is not None:
         title = page[constants.TITLE_SHOWN_KEY]
     elif page[constants.TITLE_KEY] is not None:
@@ -11,7 +12,7 @@ def process_page(page, url_allow_list = None):
     else:
         title = constants.EMPTY_TITLE
 
-    html = page[constants.ADDITIONAL_DATA_KEY][constants.WEB_HTML_KEY] if constants.WEB_HTML_KEY in page[constants.ADDITIONAL_DATA_KEY] else page[constants.ADDITIONAL_DATA_KEY][constants.EDGE_CASE_KEY]
+    html = page[constants.ADDITIONAL_DATA_KEY][constants.WEB_HTML_KEY]
     tags = page[constants.TAGS_KEY] if page[constants.TAGS_KEY] is not None else []
     author = page[constants.CREATED_BY_KEY] if page[constants.CREATED_BY_KEY] is not None else constants.EMPTY_AUTHOR
     creation_date = page[constants.CREATED_AT_KEY] if page[constants.CREATED_AT_KEY] is not None else constants.EMPTY_TIMESTAMP
@@ -26,6 +27,7 @@ def process_page(page, url_allow_list = None):
         constants.PROCESSED_TAGS_KEY: tags,
         constants.PROCESSED_HTML_KEY: processed_html
     }
+
 
 def process_page_html(web_html, page_title, url_allow_list=None):
     content = get_page_content(web_html)
@@ -57,10 +59,12 @@ def remove_classes(content, classes_to_remove=constants.CLASSES_TO_REMOVE):
         for element in content(class_=class_to_remove):
             element.decompose()
 
+
 def remove_tags(content, tags_to_remove=constants.TAGS_TO_REMOVE):
     for tag_to_remove in tags_to_remove:
         for element in content(tag_to_remove):
             element.decompose()
+
 
 def unwrap_collapsible_blocks(content):
     for element in content(class_=constants.COLLAPSIBLE_BLOCK_CLASS):
@@ -76,16 +80,18 @@ def unwrap_collapsible_blocks(content):
         for item in collapsible_content.contents[:]:
             element.append(item)
 
+
 def divify_blockquotes(content):
     for element in content(constants.BLOCKQUOTE_TAG):
         element.name = 'div'
         element.attrs = {'class': constants.BLOCKQUOTE_CLASS_NEW}
 
+
 def unwrap_yui_navset(content):
-    for element in content(class_ = constants.YUI_NAVSET_CLASS):
+    for element in content(class_=constants.YUI_NAVSET_CLASS):
         element.attrs = {'class': constants.YUI_NAVSET_CLASS_NEW}
         titles = [title.string for title in element.find(class_=constants.YUI_NAVSET_TAB_CLASS)(constants.YUI_NAVSET_TAB_TITLE_IDENTIFIER)]
-        element.find(class_ = constants.YUI_NAVSET_TAB_CLASS).decompose()
+        element.find(class_=constants.YUI_NAVSET_TAB_CLASS).decompose()
         element.div.unwrap()
         for tab, title in zip(element('div', recursive=False), titles):
             tab.attrs = {'class': constants.YUI_NAVSET_TAB_CLASS_NEW}
@@ -93,7 +99,8 @@ def unwrap_yui_navset(content):
             title_new.string = title
             tab.insert(0, title_new)
 
-def fix_links(content, url_allow_list = None):
+
+def fix_links(content, url_allow_list=None):
     for element in content(constants.LINK_TAG):
         if constants.HREF_ATTRIBUTE not in element.attrs:
             continue
@@ -116,10 +123,12 @@ def fix_links(content, url_allow_list = None):
             element.unwrap()
             continue
 
+
 def add_title(content, page_title):
     title_new = bs4.BeautifulSoup('', constants.BS4_FORMAT).new_tag(constants.PAGE_TITLE_TAG, **{'class': constants.PAGE_TITLE_CLASS})
     title_new.string = page_title
     content.insert(0, title_new)
+
 
 def fix_footnotes(content):
     for footnoteref in content(constants.FOOTNOTEREF_TAG, class_=constants.FOOTNOTEREF_CLASS):
@@ -154,6 +163,7 @@ def fix_footnotes(content):
 
         footnote.attrs = footnote_attributes_new
         link.attrs = link_attributes_new
+
 
 def get_filename(name):
     return name + constants.LINK_EXTENSION

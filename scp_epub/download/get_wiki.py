@@ -19,3 +19,7 @@ def get_complete_page(page_name, refresh=False, edge_case=False):
     }
 
     return page
+
+
+def get_edge_case(page_name):
+    return NotImplemented

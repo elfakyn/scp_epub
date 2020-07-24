@@ -56,7 +56,6 @@ CREATED_AT_KEY = 'created_at'
 TAGS_KEY = 'tags'
 ADDITIONAL_DATA_KEY = 'scp_epub_additional_data'
 WEB_HTML_KEY = 'web_html'
-EDGE_CASE_KEY = 'substitute_html'
 
 PROCESSED_NAME_KEY = 'name'
 PROCESSED_TITLE_KEY = 'title'

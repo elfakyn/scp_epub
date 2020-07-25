@@ -7,18 +7,18 @@ from constants import constants
 import download.get_wiki
 
 
-DOWNLOAD_PAGE_TEST_CASES_REGULAR = [
+TEST_CASES_REGULAR = [
     ['scp-123'],
     ['scp-4000'],
     ['scp-173']
 ]
 
-DOWNLOAD_PAGE_TEST_CASES_EDGE_CASES = [
+TEST_CASES_EDGE_CASE = [
     ['scp-3125']
 ]
 
 
-class TestDownloadPage(unittest.TestCase):
+class TestGetCompletePageSameWithWithoutCache(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         os.environ[constants.API_KEY_VARIABLE] = getpass.getpass('Wikidot read-only API key: ')
@@ -32,7 +32,7 @@ class TestDownloadPage(unittest.TestCase):
     def setUp(self):
         self.maxDiff = 500
 
-    @parameterized.parameterized.expand(DOWNLOAD_PAGE_TEST_CASES_REGULAR)
+    @parameterized.parameterized.expand(TEST_CASES_REGULAR)
     def test_download_page(self, expected_page_name):
         # Arrange
         expected_page = download.get_wiki.get_complete_page(expected_page_name, refresh=True)

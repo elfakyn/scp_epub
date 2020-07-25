@@ -44,6 +44,7 @@ RATE_LIMIT_WEB_CALLS = 10
 RATE_LIMIT_WEB_PERIOD = 5
 
 EDGE_CASES_DIR = os.path.join(os.path.dirname(__file__), '../../edge_cases')
+EDGE_CASES_FILETYPE = 'json'
 
 ######################
 # Processing pages

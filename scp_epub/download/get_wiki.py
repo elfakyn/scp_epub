@@ -5,7 +5,11 @@ import download.wikidot_api
 from constants import constants
 
 
-def get_scp_wiki(tags_to_download, edge_cases):
+def get_filtered_page_list(book_definition):
+    return NotImplemented
+
+
+def get_scp_wiki(book_definition):
     return NotImplemented
 
 

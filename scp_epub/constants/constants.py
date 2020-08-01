@@ -31,7 +31,6 @@ CACHE_PAGE_LIST_DIR = 'lists/'
 SITE_NAME = 'scp-wiki'
 SITE_HOST = 'http://scp-wiki.net'
 SITE_DOWNLOAD_HOST = 'http://scp-wiki.net/printer--friendly'
-PAGE_CATEGORY = '_default'
 
 CLIENT_NAME = 'scp-epub'
 RPC_ENDPOINT = 'www.wikidot.com/xml-rpc-api.php'

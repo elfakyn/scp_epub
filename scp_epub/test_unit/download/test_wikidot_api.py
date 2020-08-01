@@ -84,7 +84,7 @@ class TestGetListOfPagesUndecorated(unittest.TestCase):
     def test_get_list_of_pages(self, mock_get_wikidot_client):
         # Arrange
         expected_site = constants.SITE_NAME
-        expected_category = constants.PAGE_CATEGORY
+        expected_category = '_default'
         expected_client = mock_get_wikidot_client.return_value
         expected_select_call = {
             'site': expected_site,

@@ -8,6 +8,53 @@ import download.get_wiki
 from constants import constants
 
 
+class TestGetScpWiki(unittest.TestCase):
+    @unittest.mock.patch('download.get_wiki.get_filtered_page_list')
+    @unittest.mock.patch('download.get_wiki.get_complete_page')
+    def test_get_scp_wiki(self, mock_get_complete_page, mock_get_filtered_page_list):
+        # Arrange
+        expected_page_list = [
+            'scp-123', 'an-interesting-tale', 'something-else'
+        ]
+        expected_get_complete_page_calls = [
+            unittest.mock.call(item)
+            for item in expected_page_list
+        ]
+
+        expected_scp_wiki = [
+            {
+                constants.PAGE_PATH_KEY: item
+            }
+            for item in expected_page_list
+        ]
+
+        expected_category = "_default"
+        expected_tags = [
+            "scp",
+            "tale",
+            "hub",
+            "supplement"
+        ]
+        expected_edge_cases = [
+            "scp-3125"
+        ]
+        expected_book_definition = {
+            "download": {
+                "category": expected_category,
+                "tags_to_download": expected_tags,
+                "edge_cases": expected_edge_cases
+            }
+        }
+
+        # Act
+        actual_scp_wiki = download.get_wiki.get_scp_wiki()
+
+        # Assert
+        self.assertEqual(expected_scp_wiki, actual_scp_wiki)
+        mock_get_filtered_page_list.assert_called_once_with(expected_book_definition)
+        mock_get_complete_page.assert_has_calls(expected_get_complete_page_calls)
+
+
 class TestGetCompletePage(unittest.TestCase):
     @unittest.mock.patch('download.wikidot_api.get_web_page')
     @unittest.mock.patch('download.wikidot_api.get_page_metadata')

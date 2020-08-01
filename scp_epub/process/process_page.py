@@ -134,7 +134,7 @@ def fix_footnotes(content):
     for footnoteref in content(constants.FOOTNOTEREF_TAG, class_=constants.FOOTNOTEREF_CLASS):
         link = footnoteref.find(constants.LINK_TAG)
 
-        footnote_href_result = re.search("WIKIDOT\.page\.utils\.scrollToReference\('([a-zA-Z0-9-_]+)'\)", link.attrs[constants.ONCLICK_ATTRIBUTE])
+        footnote_href_result = re.search(constants.FOOTNOTE_HREF_PATTERN, link.attrs[constants.ONCLICK_ATTRIBUTE])
         footnote_href = footnote_href_result[1] if footnote_href_result else ''
 
         link_attributes_new = {
@@ -148,7 +148,7 @@ def fix_footnotes(content):
     for footnote in content(class_=constants.FOOTNOTE_CLASS):
         link = footnote.find(constants.LINK_TAG)
 
-        footnoteref_href_result = re.search("WIKIDOT\.page\.utils\.scrollToReference\('([a-zA-Z0-9-_]+)'\)", link.attrs[constants.ONCLICK_ATTRIBUTE])
+        footnoteref_href_result = re.search(constants.FOOTNOTE_HREF_PATTERN, link.attrs[constants.ONCLICK_ATTRIBUTE])
         footnoteref_href = footnoteref_href_result[1] if footnoteref_href_result else ''
 
         footnote_attributes_new = {

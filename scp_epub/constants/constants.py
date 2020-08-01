@@ -127,6 +127,8 @@ FOOTNOTE_CLASS = 'footnote-footer'
 EPUB_TYPE_FOOTNOTEREF = 'noteref'
 EPUB_TYPE_FOOTNOTE = 'footnote'
 
+FOOTNOTE_HREF_PATTERN = r"WIKIDOT\.page\.utils\.scrollToReference\('([a-zA-Z0-9-_]+)'\)"
+
 ######################
 # Assembling pages
 

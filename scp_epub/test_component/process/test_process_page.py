@@ -12,6 +12,7 @@ from constants import constants
 
 TEST_COMPONENT_PROCESS_PAGE_CASES_DIR = 'test_process_page_cases'
 
+
 class TestProcessPage(unittest.TestCase):
     def setUp(self):
         self.maxDiff = 0

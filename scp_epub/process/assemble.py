@@ -4,6 +4,7 @@ import re
 from constants import constants
 import process.process_page
 
+
 def process_all_pages(pages):
     page_names = [
         page[constants.PAGE_PATH_KEY]

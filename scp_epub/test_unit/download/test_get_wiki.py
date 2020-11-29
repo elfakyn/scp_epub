@@ -9,26 +9,11 @@ from constants import constants
 
 
 class TestGetScpWiki(unittest.TestCase):
-    @unittest.mock.patch('download.get_wiki.get_filtered_page_list')
-    @unittest.mock.patch('download.get_wiki.get_complete_page')
-    def test_get_scp_wiki(self, mock_get_complete_page, mock_get_filtered_page_list):
+    def test_get_scp_wiki(self):
         # Arrange
-        expected_page_list = [
-            'scp-123', 'an-interesting-tale', 'something-else'
-        ]
-        expected_get_complete_page_calls = [
-            unittest.mock.call(item)
-            for item in expected_page_list
-        ]
+        expected_refresh = False
 
-        expected_scp_wiki = [
-            {
-                constants.PAGE_PATH_KEY: item
-            }
-            for item in expected_page_list
-        ]
-
-        expected_category = "_default"
+        expected_categories = "_default"
         expected_tags = [
             "scp",
             "tale",
@@ -40,117 +25,16 @@ class TestGetScpWiki(unittest.TestCase):
         ]
         expected_book_definition = {
             "download": {
-                "category": expected_category,
+                "categories": expected_categories,
                 "tags_to_download": expected_tags,
                 "edge_cases": expected_edge_cases
             }
         }
 
         # Act
-        actual_scp_wiki = download.get_wiki.get_scp_wiki()
+        actual_scp_wiki = download.get_wiki.get_scp_wiki(expected_book_definition, expected_refresh)
 
         # Assert
-        self.assertEqual(expected_scp_wiki, actual_scp_wiki)
-        mock_get_filtered_page_list.assert_called_once_with(expected_book_definition)
-        mock_get_complete_page.assert_has_calls(expected_get_complete_page_calls)
-
-
-class TestGetCompletePage(unittest.TestCase):
-    @unittest.mock.patch('download.wikidot_api.get_web_page')
-    @unittest.mock.patch('download.wikidot_api.get_page_metadata')
-    def test_get_complete_page_normal(self, mock_get_page_metadata, mock_get_web_page):
-        # Arrange
-        expected_page_name = 'a-funny-tale'
-
-        expected_metadata = {
-            'fullname': expected_page_name
-        }
-        expected_contents = 'contents'
-
-        expected_page = {
-            'fullname': expected_page_name,
-            constants.ADDITIONAL_DATA_KEY: {
-                constants.WEB_HTML_KEY: expected_contents
-            }
-        }
-
-        expected_refresh = False
-        expected_edge_case = False
-
-        mock_get_page_metadata.return_value = expected_metadata
-        mock_get_web_page.return_value = expected_contents
-
-        # Act
-        actual_page = download.get_wiki.get_complete_page(expected_page_name, refresh=expected_refresh, edge_case=expected_edge_case)
-
-        # Assert
-        self.assertEqual(expected_page, actual_page)
-        mock_get_page_metadata.assert_called_once_with(expected_page_name, refresh=expected_refresh)
-        mock_get_web_page.assert_called_once_with(expected_page_name, refresh=expected_refresh)
-
-    @unittest.mock.patch('download.wikidot_api.get_web_page')
-    @unittest.mock.patch('download.wikidot_api.get_page_metadata')
-    def test_get_complete_page_refresh(self, mock_get_page_metadata, mock_get_web_page):
-        # Arrange
-        expected_page_name = 'a-funny-tale'
-
-        expected_metadata = {
-            'fullname': expected_page_name
-        }
-        expected_contents = 'contents'
-
-        expected_page = {
-            'fullname': expected_page_name,
-            constants.ADDITIONAL_DATA_KEY: {
-                constants.WEB_HTML_KEY: expected_contents
-            }
-        }
-
-        expected_refresh = False
-        expected_edge_case = False
-
-        mock_get_page_metadata.return_value = expected_metadata
-        mock_get_web_page.return_value = expected_contents
-
-        # Act
-        actual_page = download.get_wiki.get_complete_page(expected_page_name, refresh=expected_refresh, edge_case=expected_edge_case)
-
-        # Assert
-        self.assertEqual(expected_page, actual_page)
-        mock_get_page_metadata.assert_called_once_with(expected_page_name, refresh=expected_refresh)
-        mock_get_web_page.assert_called_once_with(expected_page_name, refresh=expected_refresh)
-
-    @unittest.mock.patch('download.get_wiki.get_edge_case')
-    @unittest.mock.patch('download.wikidot_api.get_web_page')
-    @unittest.mock.patch('download.wikidot_api.get_page_metadata')
-    def test_get_complete_page_edge_case(self, mock_get_page_metadata, mock_get_web_page, mock_get_edge_case):
-        # Arrange
-        expected_page_name = 'a-funny-tale'
-
-        expected_metadata = {
-            'fullname': expected_page_name
-        }
-        expected_contents = 'contents'
-
-        expected_page = {
-            'fullname': expected_page_name,
-            constants.ADDITIONAL_DATA_KEY: {
-                constants.WEB_HTML_KEY: expected_contents
-            }
-        }
-
-        expected_refresh = False
-        expected_edge_case = True
-
-        mock_get_edge_case.return_value = expected_page
-
-        # Act
-        actual_page = download.get_wiki.get_complete_page(expected_page_name, refresh=expected_refresh, edge_case=expected_edge_case)
-
-        # Assert
-        self.assertEqual(expected_page, actual_page)
-        mock_get_page_metadata.assert_not_called()
-        mock_get_web_page.assert_not_called()
 
 
 class TestGetEdgeCase(unittest.TestCase):

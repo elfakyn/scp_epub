@@ -1,6 +1,6 @@
 {
   "download": {
-    "category": "_default",
+    "categories": ["_default"],
     "tags_to_download": [
       "scp",
       "tale",

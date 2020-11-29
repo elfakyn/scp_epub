@@ -5,27 +5,20 @@ import download.wikidot_api
 from constants import constants
 
 
-def get_filtered_page_list(book_definition):
-    return NotImplemented
+def get_scp_wiki(book_definition, refresh=False):
+    raise NotImplementedError
 
 
-def get_scp_wiki(book_definition):
-    return NotImplemented
+def filter_page_list(book_definition):
+    raise NotImplementedError
 
 
-def get_complete_page(page_name, refresh=False, edge_case=False):
-    if (edge_case):
-        return get_edge_case(page_name)
+def get_page_metadata(page_name, refresh=False, edge_case=False):
+    raise NotImplementedError
 
-    page = download.wikidot_api.get_page_metadata(page_name, refresh=refresh)
 
-    content = download.wikidot_api.get_web_page(page_name, refresh=refresh)
-
-    page[constants.ADDITIONAL_DATA_KEY] = {
-        constants.WEB_HTML_KEY: content
-    }
-
-    return page
+def enrich_metadata_with_page_content(page_metadata, refresh=False, edge_case=False):
+    raise NotImplementedError
 
 
 def get_edge_case(page_name):

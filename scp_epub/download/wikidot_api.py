@@ -8,6 +8,7 @@ import xmlrpc.client
 import download.aws
 from download import cache
 from constants import constants
+from exceptions import exceptions
 
 
 _wikidot_client = None
@@ -33,11 +34,11 @@ def _get_wikidot_client():
     return _wikidot_client
 
 
-def _get_list_of_pages_undecorated(category, **kwargs):
+def _get_list_of_pages_undecorated(categories, **kwargs):
     client = _get_wikidot_client()
     list_of_pages = client.pages.select({
         'site': constants.SITE_NAME,
-        'categories': [category]
+        'categories': categories
     })
     return list_of_pages
 

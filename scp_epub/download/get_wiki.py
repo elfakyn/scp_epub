@@ -9,15 +9,15 @@ def get_scp_wiki(book_definition, refresh=False):
     raise NotImplementedError
 
 
-def filter_page_list(book_definition):
+def filter_pages(book_definition):
     raise NotImplementedError
 
 
-def get_page_metadata(page_name, refresh=False, edge_case=False):
+def get_all_page_metadata(page_name, refresh=False):
     raise NotImplementedError
 
 
-def enrich_metadata_with_page_content(page_metadata, refresh=False, edge_case=False):
+def enrich_all_page_metadata_with_contents(page_metadata, refresh=False):
     raise NotImplementedError
 
 

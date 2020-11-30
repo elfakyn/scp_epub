@@ -8,35 +8,6 @@ import download.get_wiki
 from constants import constants
 
 
-class TestGetScpWiki(unittest.TestCase):
-    def test_get_scp_wiki(self):
-        # Arrange
-        expected_refresh = False
-
-        expected_categories = "_default"
-        expected_tags = [
-            "scp",
-            "tale",
-            "hub",
-            "supplement"
-        ]
-        expected_edge_cases = [
-            "scp-3125"
-        ]
-        expected_book_definition = {
-            "download": {
-                "categories": expected_categories,
-                "tags_to_download": expected_tags,
-                "edge_cases": expected_edge_cases
-            }
-        }
-
-        # Act
-        actual_scp_wiki = download.get_wiki.get_scp_wiki(expected_book_definition, expected_refresh)
-
-        # Assert
-
-
 class TestGetEdgeCase(unittest.TestCase):
     @unittest.mock.patch('builtins.open')
     def test_retrieve_from_local_cache(self, mock_open):

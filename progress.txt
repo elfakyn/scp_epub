@@ -106,3 +106,8 @@ INDICES AND CREDITS GENERATOR:
 Long-term:
 * add support for images
 * more book definitions
+
+======================================
+
+Fixing some jank:
+* Don't use paths relative to the constants file

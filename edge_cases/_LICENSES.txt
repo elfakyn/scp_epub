@@ -1,1 +1,3 @@
+The files in this directory are governed by a separate license than the main project.
+
 SCP-3125: CC-BY-SA-3.0 http://www.scp-wiki.net/scp-3125 by qntm (http://www.scp-wiki.net/qntm-s-author-page)

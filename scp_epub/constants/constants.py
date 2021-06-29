@@ -1,5 +1,8 @@
 import os
 
+########################
+# Charset
+
 ENCODING = 'utf-8'
 
 ########################
@@ -11,10 +14,10 @@ S3_BUCKET_VARIABLE = 'SCP_EPUB_S3_BUCKET'
 API_KEY_SECRETSMANAGER_VARIABLE = 'SCP_EPUB_API_KEY_SECRET'
 
 ########################
-# Local execution
+# Relative filepaths
 
 LOCAL_CACHE_BASE_PATH = os.path.join(os.path.dirname(__file__), '../../build/cache')
-API_KEY_VARIABLE = 'SCP_EPUB_WIKIDOT_API_KEY'
+EDGE_CASES_DIR = os.path.join(os.path.dirname(__file__), '../../edge_cases')
 
 ########################
 # Caching paths
@@ -28,6 +31,9 @@ CACHE_PAGE_LIST_DIR = 'lists/'
 
 ########################
 # Scraping
+
+API_KEY_VARIABLE = 'SCP_EPUB_WIKIDOT_API_KEY'
+
 SITE_NAME = 'scp-wiki'
 SITE_HOST = 'http://scp-wiki.net'
 SITE_DOWNLOAD_HOST = 'http://scp-wiki.net/printer--friendly'
@@ -42,7 +48,6 @@ RATE_LIMIT_PERIOD = 30
 RATE_LIMIT_WEB_CALLS = 10
 RATE_LIMIT_WEB_PERIOD = 5
 
-EDGE_CASES_DIR = os.path.join(os.path.dirname(__file__), '../../edge_cases')
 EDGE_CASES_FILETYPE = 'json'
 
 ######################
